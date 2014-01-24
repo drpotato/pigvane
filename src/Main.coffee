@@ -14,26 +14,21 @@ class Pigvane.States.Main
 
         @tileset.setCollisionRange 0, 1, true, true, true, true
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, @game.width, @game.height, @tileset, @map, 0
-
-        # Set up the main groups
-        @groups = []
-        @groups.groundGroup = @game.add.group()
-        @groups.airGroup = @game.add.group()
-        @groups.bulletsGroup = @game.add.group()
+        @mainLayer = @game.add.tilemapLayer 0, 0, 100*32, 672, @tileset, @map, 0
+        # @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#fff"
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 400, 400
-        @groups.groundGroup.add @dude
+        @dude = new Pigvane.Classes.Dude @game, 10, 10
+        @add.existing @dude
 
     # Called every frame
     update: ->
-        @game.physics.collide @groups.groundGroup, @mainLayer
 
         # Make camera follow dude
         # @game.world.camera.x = @dude.x-400
+
 
     # Some helper functions used throughout the game
     calculateDistance: (aX, aY, bX, bY) ->
