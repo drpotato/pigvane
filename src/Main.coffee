@@ -9,53 +9,46 @@ class Pigvane.States.Main
         @gameWidth = 5
 
         # Add the map and tileset that we loaded earlier 
-        # @map = @game.add.tilemap 'desert'
-        # @tileset = @game.add.tileset 'tiles'
+        @map = @game.add.tilemap 'test'
+        @tileset = @game.add.tileset 'blocks'
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, @game.width * @gameWidth, @game.height, @tileset, @map, 0
+        @tileset.setCollisionRange 0, 1, true, true, true, true
+
+        @mainLayer = @game.add.tilemapLayer 0, 0, @game.width, @game.height, @tileset, @map, 0
 
         # Set up the main groups
         @groups = []
         @groups.groundGroup = @game.add.group()
         @groups.airGroup = @game.add.group()
-        @groups.bulletsGroup = @game.add.group() 
+        @groups.bulletsGroup = @game.add.group()
+
+        @game.stage.backgroundColor = "#fff"
 
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 400, 400
         @groups.groundGroup.add @dude
 
-        # Add some enemies
-        @enemies = (@groups.groundGroup.add new Pigvane.Classes.Enemy @game, @game.world.randomX, @game.world.randomY for i in [0..5])
-
-        # Add some buddies
-        @buddies = (@groups.airGroup.add new Pigvane.Classes.Buddy @game, @dude.x-40, @dude.y-40 for i in [0])
-
-        # Pool some bullets
-        (@groups.bulletsGroup.add new Pigvane.Classes.Bullet @game for i in [0..60])
-        
-        # Create trees and set up game environment (basically anything that doesn't move)
-        @environment = new Pigvane.Classes.Environment @game
-
     # Called every frame
     update: ->
+        @game.physics.collide @groups.groundGroup, @mainLayer
         # Do collisions. We use overlap so it can pass through dead bodies.
-        @game.physics.collide(@dude, @groups.groundGroup, @groundCollide)
-        @game.physics.overlap(@groups.bulletsGroup, @groups.groundGroup, @bulletCollide)
+        # @game.physics.collide(@dude, @groups.groundGroup, @groundCollide)
+        # @game.physics.overlap(@groups.bulletsGroup, @groups.groundGroup, @bulletCollide)
 
         # Make camera follow dude
-        @game.world.camera.x = @dude.x-400
-        @game.world.camera.y = @dude.y-400
+        # @game.world.camera.x = @dude.x-400
+        # @game.world.camera.y = @dude.y-400
 
-    groundCollide: (obj1, obj2) ->
-        if obj2.name is 'enemy' and obj2.health > 0
-            Pigvane.Main.dude.hitByEnemy()
+    # groundCollide: (obj1, obj2) ->
+    #     if obj2.name is 'enemy' and obj2.health > 0
+    #         Pigvane.Main.dude.hitByEnemy()
 
-    bulletCollide: (obj1, obj2) ->
+    # bulletCollide: (obj1, obj2) ->
         # Catch the error if the receiver doesn't actually have a `.hitByBullet` method
-        try
-            obj2.hitByBullet(obj1)
-        catch
-            console.log "Implement hitByBullet for #{obj2.name}"
+        # try
+        #     obj2.hitByBullet(obj1)
+        # catch
+        #     console.log "Implement hitByBullet for #{obj2.name}"
 
     # Some helper functions used throughout the game
     calculateDistance: (aX, aY, bX, bY) ->

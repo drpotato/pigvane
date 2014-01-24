@@ -7,16 +7,14 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @name = 'dude'
 
         # Set up animations
-        @animations.add 'down', [0,1,2,3]
-        @animations.add 'up',   [4,5,6,7]
-        @animations.add 'right',[8,9,10,11]
-        @animations.add 'left', [12,13,14,15]
+        # @animations.add 'right',[8,9,10,11]
+        # @animations.add 'left', [12,13,14,15]
         
         # Default frame
         @animations.frame = 0
 
         # Set collision size
-        @body.setSize 32, 16, 0, 16
+        # @body.setSize 32, 16, 0, 16
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
@@ -28,13 +26,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Next time a bullet can be fired, used in `fire()`
         @nextBullet = 0
 
-        # Fixes a bug where a person shoots without moving
-        @facing = 'down'
+        @facing = 'right'
+
+        @body.gravity.y = 10
 
     update: () ->
         # Reset body
         @body.velocity.x = 0
-        @body.velocity.y = 0
 
         # Set resulting speed of body
         @velocity = 150
@@ -45,22 +43,19 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Series of ifs to change dude velocity if arrow keys are pressed
         if @cursors.left.isDown
-            @body.velocity.x = -@velocity / 1.4142
+            @body.velocity.x = -@velocity
             facing = 'left'
         else if @cursors.right.isDown
-            @body.velocity.x = @velocity / 1.4142
+            @body.velocity.x = @velocity
             facing = 'right'
 
         if @cursors.up.isDown
-            @body.velocity.y = -@velocity / 1.4142
+            @body.velocity.y = -@velocity
             facing = 'up'
-        else if @cursors.down.isDown
-            @body.velocity.y = @velocity / 1.4142
-            facing = 'down'
 
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X
-            @fire()
+            # @fire()
         # If not, update his facing, and display the correct animation
         else
             @facing = facing
