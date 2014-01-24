@@ -51,6 +51,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             facing = 'right'
 
         if @cursors.up.isDown
+            @y -= 1
             @body.velocity.y = -@velocity
             facing = 'up'
 
