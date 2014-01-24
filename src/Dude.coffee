@@ -31,8 +31,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @body.gravity.y = 10
 
     update: () ->
+
         # Reset body
-        @body.velocity.x = 0
+        @body.velocity.x = 0    
 
         # Set resulting speed of body
         @velocity = 150
@@ -65,17 +66,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.left.isUp and @cursors.right.isUp and @cursors.up.isUp and @cursors.down.isUp and !@game.input.keyboard.isDown Phaser.Keyboard.X
             @animations.stop()
 
-    # Called from `Main`, handles collision with enemy
-    hitByEnemy: () ->
-        # If alive
-        if @health > 0
-            @health -= 0.1
-            # If health drops below 0
-            if @health <= 0
-                console.log 'ded'
-                # Go to the restart screen
-                @game.start 'Restart'
-
     # Fire his non-existent gun!
     fire: () ->
         # If it's been 80 ms since last bullet
@@ -90,23 +80,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 bullet.reset @x, @y
                 # Change velocity and position of bullet based on the way the dude is facing.  
                 # Also knockback dude.
-                switch @facing
-                    when 'up'
-                        bullet.body.velocity.y = -800
-                        bullet.y -= 22
-                        @body.y +=3 
-                    when 'down'
-                        bullet.body.velocity.y = 800
-                        bullet.y += 22
-                        @body.y -=3
-                    when 'left'
-                        bullet.body.velocity.x = -800
-                        bullet.x -= 22
-                        @body.x +=3
-                    when 'right'
-                        bullet.body.velocity.x = 800
-                        bullet.x += 22
-                        @body.x -=3
+                
+                
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
                 bullet.body.velocity.y += @game.rnd.integerInRange(-100, 100)

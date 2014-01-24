@@ -31,37 +31,13 @@ class Pigvane.States.Main
     # Called every frame
     update: ->
         @game.physics.collide @groups.groundGroup, @mainLayer
-        # Do collisions. We use overlap so it can pass through dead bodies.
-        # @game.physics.collide(@dude, @groups.groundGroup, @groundCollide)
-        # @game.physics.overlap(@groups.bulletsGroup, @groups.groundGroup, @bulletCollide)
 
         # Make camera follow dude
         # @game.world.camera.x = @dude.x-400
-        # @game.world.camera.y = @dude.y-400
-
-    # groundCollide: (obj1, obj2) ->
-    #     if obj2.name is 'enemy' and obj2.health > 0
-    #         Pigvane.Main.dude.hitByEnemy()
-
-    # bulletCollide: (obj1, obj2) ->
-        # Catch the error if the receiver doesn't actually have a `.hitByBullet` method
-        # try
-        #     obj2.hitByBullet(obj1)
-        # catch
-        #     console.log "Implement hitByBullet for #{obj2.name}"
 
     # Some helper functions used throughout the game
     calculateDistance: (aX, aY, bX, bY) ->
         return Math.pow Math.pow( aX - bX, 2 ) + Math.pow( aY - bY, 2 ), 0.5
-
-    calculateVelocity: (sourceX, sourceY, destX, destY, velocity) ->
-        vel = {}
-        vel.x = destX - sourceX
-        vel.y = destY - sourceY
-        factor = Math.pow( Math.pow(vel.x, 2) + Math.pow(vel.y, 2), 0.5 ) / velocity
-
-        return {x: vel.x / factor, y: vel.y / factor}
-
 
         
 
