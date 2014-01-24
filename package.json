@@ -1,0 +1,20 @@
+{
+  "name": "Pigvane",
+  "version": "0.1.0",
+  "author": {
+  	"name": "Frederick Fogerty",
+  	"email": "frederick.fogerty@gmail.com",
+  	"url": "frederickfogerty.com"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-copy": ">=0.5.0",
+    "grunt-contrib-watch": "latest",
+    "grunt-responsive-images": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-docco": "latest"
+  }
+}
