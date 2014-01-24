@@ -1,9 +1,12 @@
-Pigvane = {}
+Pigvane = {
+	States: {},
+	Classes: {}
+}
 
 Pigvane.game = new Phaser.Game(800, 600, Phaser.AUTO, 'game')
 
-Polis.game.state.add('Boot', Polis.States.Boot, true);
-Polis.game.state.add('Preloader', Polis.States.Preloader, false);
-Polis.game.state.add('MainMenu', Polis.States.MainMenu, false);
-Polis.game.state.add('Main', Polis.States.Main, false);
-Polis.game.state.add('Restart', Polis.States.Restart, false);
+Pigvane.game.state.add('Boot', Pigvane.States.Boot, true);
+Pigvane.game.state.add('Preloader', Pigvane.States.Preloader, false);
+Pigvane.game.state.add('MainMenu', Pigvane.States.MainMenu, false);
+Pigvane.game.state.add('Main', Pigvane.States.Main, false);
+Pigvane.game.state.add('Restart', Pigvane.States.Restart, false);
