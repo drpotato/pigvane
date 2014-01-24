@@ -9,16 +9,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Set up animations
         # @animations.add 'right',[8,9,10,11]
         # @animations.add 'left', [12,13,14,15]
-        
-        # Default frame
-        @animations.frame = 0
 
         # Set collision size
-        # @body.setSize 32, 16, 0, 16
-        @anchor.setTo(0.5,0.5)
+        # @body.setSize 0, 0, 32, 32
+        # @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
-        @body.collideWorldBounds = true
+        # @body.collideWorldBounds = true
 
         # Set up some game cursors for later
         @cursors = @game.input.keyboard.createCursorKeys()
@@ -31,6 +28,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @body.gravity.y = 10
 
     update: () ->
+        @game.physics.collide @, Pigvane.Main.mainLayer
 
         # Reset body
         @body.velocity.x = 0    
@@ -51,9 +49,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             facing = 'right'
 
         if @cursors.up.isDown
-            @y -= 1
             @body.velocity.y = -@velocity
-            facing = 'up'
 
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X
@@ -61,11 +57,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If not, update his facing, and display the correct animation
         else
             @facing = facing
-            @animations.play @facing, 8, true
 
         # Not moving
         if @cursors.left.isUp and @cursors.right.isUp and @cursors.up.isUp and @cursors.down.isUp and !@game.input.keyboard.isDown Phaser.Keyboard.X
             @animations.stop()
+
+        
 
     # Fire his non-existent gun!
     fire: () ->
@@ -82,7 +79,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Change velocity and position of bullet based on the way the dude is facing.  
                 # Also knockback dude.
                 
-                
+
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
                 bullet.body.velocity.y += @game.rnd.integerInRange(-100, 100)
