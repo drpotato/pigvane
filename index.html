@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Polis</title>
+</head>
+<style type="text/css">
+
+	@font-face {
+		font-family: 'District Pro Thin';
+		src: url('res/DistProTh.otf');
+	}
+
+
+	#game {
+		/*width: 1200px;
+		height: 700px;
+		position: absolute;
+		margin-top: -350px;
+		margin-left: -600px;
+		left: 50%;
+		top: 50%;*/
+
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 800px;
+		height: 800px;
+		margin-top: -400px;
+		margin-left: -400px;
+
+		/*-webkit-filter: saturate(0.2) brightness(0.25);*/
+		
+	}
+
+	#filter {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 800px;
+		height: 800px;
+		margin-top: -400px;
+		margin-left: -400px;
+		z-index: 900;
+		opacity: 0;
+		box-shadow: inset 0 0 10em #666;
+		-webkit-box-shadow: inset 0 0 1200px #000;
+	}
+
+	#ded {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		width: 800px;
+		height: 800px;
+		margin-top: -400px;
+		margin-left: -400px;
+		z-index: 900;
+		opacity: 0;
+		-webkit-transition: 1s;
+		background-color: #111;
+	}
+	#ded > div {
+		margin-top: 350px;
+		line-height: 100px;
+		text-align: center;
+		font-family: 'District Pro Thin';
+		font-size: 40px;
+		color: white;
+
+
+	}
+	#ded.visible {
+		opacity: 1;
+	}
+
+	h1 {
+		font-family: 'District Pro Thin'
+	}
+
+	#description {
+		width: 270px;
+		font-family: 'District Pro Thin';
+		font-size: 17px;
+		line-height: 140%;
+	}
+	.credit {
+		font-size: 15px;
+		color: #666;
+	}
+	.credit a {
+		text-decoration: none;
+		color: #666;
+	}
+	.credit a:hover {
+		color: #000;
+		text-decoration: underline;
+	}
+</style>
+<script>
+	window.Polis = {
+		States: {},
+		Classes: {},
+		Helpers: {}
+	}
+</script>
+<script src="phaser.js"></script>
+<script src="app.js"></script>
+<script type="text/javascript">
+	current = 400;
+	var tick = function () {
+		current++;
+		if (current >= 420) {current = 0}
+		if (current > 180 && current < 240) {
+			var percent = 1-((current - 180)/60);
+			document.getElementById('game').style['-webkit-filter'] = 'brightness('+(percent*0.8+0.2)+') saturate('+ (percent*0.8+0.2)+')'
+			document.getElementById('filter').style.opacity = 1-percent
+		} 
+		if (current > 360 && current < 420 ) {
+			var percent = (current - 360)/60;
+			document.getElementById('game').style['-webkit-filter'] = 'brightness('+(percent*0.8+0.2)+') saturate('+ (percent*0.8+0.2)+')'	
+			document.getElementById('filter').style.opacity = 1-percent
+		}
+	}
+	setInterval(tick, 1000)
+</script>
+<body>
+
+<div id="description">
+	<h1>Polis</h1>
+	<p>
+		In some unknown future, the robot overlords' organic slaves have risen up. Very few have managed to escape, and even fewer have managed to survive. You are one of the lucky ones. You require resources; anything you can salvage.
+	</p>
+
+	<p>
+		Your electric companions will perform tasks for you, and you must protect them.
+	</p>
+
+	<p>
+		Controls: <br>
+		Arrow Keys - Move / Strafe <br>
+		X - Fire <br>
+		Spacebar - Sprint
+	</p>
+
+	<p>
+		Ascend.
+	</p>
+
+	<p class="credit">
+		Created by: <br>
+		<a href="http://twitter.com/freelyfred">@freelyfred</a> - programmer + game feel <br>
+		<a href="http://twitter.com/xxnxt">@xxNxt</a> - art + game design <br>
+		2014
+	</p>
+</div>
+
+<div id="ded"><div>You Died</div></div>
+
+<div id="filter"></div>
+
+<div id="game">
+	
+</div>
+
+<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+
+</body>
+</html>
