@@ -14,7 +14,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.add 'jump', [4,5,6,7,8,9]
         # @animations.add 'left', [12,13,14,15]
         
-        @animations.play 'jump', 16, true
+        @animations.play 'right', 16, true
 
         # Set collision size
         # @body.setSize 0, 0, 32, 32
@@ -39,9 +39,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
-
-        # Reset body
-        # @body.velocity.x = 0    
 
         # Set resulting speed of body
         @vStep = 50
@@ -124,17 +121,25 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Reset it to the dude's position
                 bullet.reset @x, @y
 
-                bullet.animations.frame = 2
+                bullet.animations.frame = 1
+                # bullet.animations.play('shoot', 60)
+
+                callback = () ->
+                    bullet.animations.stop()
+                    bullet.animations.play('repeat', 4, true)
+                    bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+
+                setTimeout callback, 17
                 # Change velocity and position of bullet based on the way the dude is facing.  
                 # Also knockback dude.
                 
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
-                    @body.velocity.x -= 100
+                    @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
                     bullet.scale.x = -1
-                    @body.velocity.x += 100
+                    @body.velocity.x += 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)

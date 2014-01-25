@@ -57,6 +57,12 @@ class Pigvane.Classes.Level
         @bullets.setAll 'anchor.y', 0.5
         @bullets.setAll 'outOfBoundsKill', true
 
+        @bullets.forEach( (obj) ->
+            obj.animations.add('shoot', [0,1,2,3])
+            obj.animations.add('repeat', [2,3])
+
+            )
+
         @overlay = @game.add.sprite 0, 0, 'scanlines'
         @overlay.fixedToCamera = true 
 
