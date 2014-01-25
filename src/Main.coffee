@@ -8,28 +8,33 @@ class Pigvane.States.Main
 
         @gameWidth = 5
 
+        @background = @add.sprite 0, 0, 'background'
+        @background.fixedToCamera = true 
+
         # Add the map and tileset that we loaded earlier 
         @map = @game.add.tilemap 'test'
         @tileset = @game.add.tileset 'blocks'
 
         @tileset.setCollisionRange 0, 1, true, true, true, true
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, 100*32, 672, @tileset, @map, 0
-        # @mainLayer.resizeWorld()
+        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
+        @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#fff"
         
         @achievements = new Pigvane.Classes.Achievements @game
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 10, 10
+        @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
+
+        @camera.follow @dude, 1
 
     # Called every frame
     update: ->
 
         # Make camera follow dude
-        # @game.world.camera.x = @dude.x-400
+        # @world.camera.x = @dude.x-100
 
 
     # Some helper functions used throughout the game

@@ -7,15 +7,18 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @name = 'dude'
 
         # Set up animations
-        # @animations.add 'right',[8,9,10,11]
+        @animations.add 'right',[0,1,2,3]
+        @animations.add 'jump', [4,5,6,7,8,9]
         # @animations.add 'left', [12,13,14,15]
+        
+        @animations.play 'jump', 16, true
 
         # Set collision size
         # @body.setSize 0, 0, 32, 32
-        # @anchor.setTo(0.5,0.5)
+        @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
-        # @body.collideWorldBounds = true
+        @body.collideWorldBounds = true
 
         # Set up some game cursors for later
         @cursors = @game.input.keyboard.createCursorKeys()
@@ -34,9 +37,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @body.velocity.x = 0    
 
         # Set resulting speed of body
-        @velocity = 150
+        @velocity = 300
+        @jumpVelocity = 600
         # More if running
-        @velocity = 300 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
 
@@ -44,15 +49,22 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.left.isDown
             @body.velocity.x = -@velocity
             facing = 'left'
+            @scale.x = -1
         else if @cursors.right.isDown
             @body.velocity.x = @velocity
             facing = 'right'
+            @scale.x = 1
 
-        if @cursors.up.isDown
-            @body.velocity.y = -@velocity
+        if @cursors.up.isDown and @body.touching.down
+            @body.velocity.y = -@jumpVelocity
+            @canceledJump = false
             
         if @game.input.keyboard.isDown Phaser.Keyboard.A
-            Pigvane.Main.achievements.grant()
+            Pigvane.Main.achievements.grant()            
+            
+        if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
+            @body.velocity.y = 0
+            @canceledJump = true
 
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X
