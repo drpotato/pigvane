@@ -10,6 +10,9 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         # Stop it walking out of the world
         @body.collideWorldBounds = true
+        
+        @talking = false
+        @willTalk = true
 
         @facing = 'left'
 
@@ -35,5 +38,19 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             Pigvane.Main.achievements.grant @deathAchievement
     
     talk: () ->
-        if @dialog?
-            response = Pigvane.Main.dialog.popup @dialog
+        if @dialog? and !@talking and @willTalk
+            @talking = true
+            response = Pigvane.Main.dialog.popup @dialog, @
+            
+    sendResponse: (option) ->
+        @talking = false
+        @willTalk = false
+        switch option
+            when '1'
+                console.log
+            when '2'
+                console.log
+            when '3'
+                @die()
+            when 'reset'
+                @willTalk = true
