@@ -33,6 +33,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @lives = 3
         
         @health = 3
+        
+        achievementCallback = () ->
+            Pigvane.Main.achievements.grant('free')
+            
+        setTimeout achievementCallback, 3000
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
@@ -42,7 +47,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set resulting speed of body
         @vStep = 50
-        @velocity = 300
+        @velocity = 100
         @jumpVelocity = 450
         # More if running
         @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
@@ -63,9 +68,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isDown and @body.touching.down
             @body.velocity.y = -@jumpVelocity
             @canceledJump = false
-            
-        if @game.input.keyboard.isDown Phaser.Keyboard.A
-            Pigvane.Main.achievements.grant('free')            
             
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
