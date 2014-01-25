@@ -175,7 +175,7 @@ class Pigvane.Classes.Achievements
         callback = () -> 
             tween = Pigvane.Main.game.add.tween(achievement).to({y: Pigvane.Main.game.height}, 2000, Phaser.Easing.Linear.None, true)
             tween.onComplete.add( () ->
-                background.kill()
+                achievement.destroy()
                 )
         
         setTimeout callback, 3000
