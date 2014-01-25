@@ -4,15 +4,14 @@ class Pigvane.Classes.Achievements
         @achievements = @game.add.group()
         
         @achievementList = {
-            'first is free': {
-                'title': 'first',
-                'text': 'hello, world!',
-                'img': '/path/to/image'
+            'free': {
+                'name': 'The First One is Free',
+                'img': ''
             }
         }
         
         
-    grant: (achivementName) ->
+    grant: (achievementName) ->
         
         achievementData = @achievementList[achievementName]
         
@@ -20,18 +19,20 @@ class Pigvane.Classes.Achievements
         
         @achievements.add achievement._container
         
-        achievement.height = 256
-        achievement.width = 512
+        achievement.height = 96
+        achievement.width = 192
         achievement.x = @game.width - achievement.width
         achievement.y = @game.height
         
-        background = achievement.create(0, 0, achievementData['img'])
+        background = achievement.create(0, 0, 'achievement_background')
         
-        textSprite = @game.add.sprite(0, 0,)
+        textSprite = @game.add.sprite(0, 0)
         textSprite.fixedToCamera = true
         
-        text = @game.add.text(20, 20, 'Achievement Text!')
-        textSprite.addChild(text)
+        textTitle = @game.add.text(20, 5, 'Achievement Unlocked!', {'font': '12pt Arial'})
+        textName = @game.add.text(20, 50, achievementData['name'], {'font': '12pt Arial'})
+        textSprite.addChild(textTitle)
+        textSprite.addChild(textName)
         
         text = achievement.add(textSprite)
         
