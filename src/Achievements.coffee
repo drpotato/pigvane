@@ -127,6 +127,66 @@ class Pigvane.Classes.Achievements
             'ninja_help': {
                 'name': 'Fruit Massacre'
                 'img': ''
+            },
+            
+            'red_kill': {
+                'name': 'Lamb to the Slaughter'
+                'img': ''
+            },
+            
+            'red_help': {
+                'name': 'Wolf in Sheep\'s Clothes'
+                'img': ''
+            },
+            
+            'squirrel_kill': {
+                'name': 'Part of the Janitor\'s Collection'
+                'img' : ''
+            },
+            
+            'squirrel_help': {
+                'name': 'What Innuendo?'
+                'img' : ''
+            },
+            
+            'yogi_kill': {
+                'name': 'Bear got a Boo-boo'
+                'img': ''
+            },
+            
+            'yogi_help': {
+                'name': 'Pic-a-nic Basket'
+                'img': ''
+            },
+            
+            'sonic_kill': {
+                'name': 'No Rings Left'
+                'img': ''
+            },
+            
+            'sonic_help': {
+                'name': 'Running Like The Wind'
+                'img': ''
+            },
+            
+            'human_end': {
+                'name': 'Loneliness'
+                'img': ''
+            },
+            
+            'cat_end': {
+                'name': 'Indifference'
+                'img': ''
+            },
+            
+            'wind_end': {
+                'name': 'Concordance'
+                'img': ''
+            },
+            
+            'pig_end': {
+                'name': 'Greed'
+                'img': ''
             }
         }
             
