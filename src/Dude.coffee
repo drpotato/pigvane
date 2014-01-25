@@ -35,7 +35,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         
         @lives = 3
         
-        @health = 3
+        @health = 10
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
@@ -86,6 +86,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @scale.x = 1
         else if @facing is 'left'
             @scale.x = -1
+
+        if @game.input.keyboard.isDown Phaser.Keyboard.V
+            @damage()
+        
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
@@ -139,11 +143,18 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             
     damage: () ->
         @health -=1
-        if (@health == 0)
-            @lives -=1
-            if (@lives == 0)
-                @kill()
+        if @health == 0
+            @respawn()
+            @health = 10
+            @lives--
+            console.log @lives
+            if @lives == 0
+                # @kill()
+                console.log @game.state.states
                 @game.state.start 'Restart'
-            else
-                @health = 3
+
         Pigvane.Main.healthBar.update()
+
+    respawn: () ->
+        @x = @game.world.camera.x + 50
+        @y = 500

@@ -18,7 +18,6 @@ class Pigvane.Classes.HealthOverlay
         
     update: () ->
         healthLeft = Pigvane.Main.dude.health
-        console.log healthLeft
         @healthText.content = @healthTitle + healthLeft
         livesLeft = Pigvane.Main.dude.lives
         @livesText.content = @livesTitle + livesLeft
