@@ -50,6 +50,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         if @cursors.up.isDown
             @body.velocity.y = -@velocity
+            
+        if @game.input.keyboard.isDown Phaser.Keyboard.A
+            Pigvane.Main.achievements.grant()
 
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X

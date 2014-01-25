@@ -18,6 +18,8 @@ class Pigvane.States.Main
         # @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#fff"
+        
+        @achievements = new Pigvane.Classes.Achievements @game
 
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 10, 10

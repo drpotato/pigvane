@@ -12,7 +12,8 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'dude', 'res/char-large.png', 32, 32
         @game.load.tilemap 'test', 'res/test.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.tileset 'blocks', 'res/blocks-large.png', 32, 32
-
+        @game.load.image 'achievement_background', 'res/achievement-large.png'
+        
         # Load title screen resources
         @game.load.image 'titlepage', 'res/rickroll.jpg'
         @game.load.image 'logo', 'res/ea.jpg'
