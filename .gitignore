@@ -1,2 +1,3 @@
 dev/*
 .Sync*
+.DS_Store
