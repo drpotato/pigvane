@@ -136,3 +136,14 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80
+            
+    damage: () ->
+        @health -=1
+        if (@health == 0)
+            @lives -=1
+            if (@lives == 0)
+                @kill()
+                @game.state.start 'Restart'
+            else
+                @health = 3
+        Pigvane.Main.healthBar.update()
