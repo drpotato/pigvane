@@ -28,7 +28,6 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     update: () ->
         
         @game.physics.collide @, Pigvane.Main.mainLayer
-        @game.physics.overlap Pigvane.Main.enemyBullets, Pigvane.Main.dude,  Pigvane.Main.dude.hitByNPC
 
         if @game.time.now > @updateTimer
             @body.velocity.x = @game.rnd.integerInRange(-20, 20)
@@ -52,7 +51,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                     @scale.x = 1
                     @facing = 'right'
 
-                if @gunDuration >= 1
+                if @gunDuration > 1
                     @fire()
 
 

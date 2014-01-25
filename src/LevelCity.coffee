@@ -4,7 +4,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
         super(@game)
 
-        # @spawnRandomNPCs()
+        @spawnRandomNPCs()
         
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', null, 'dialog_template')
         
@@ -20,8 +20,8 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         # @soundManager.music.play()
     
     spawnRandomNPCs: () ->
-    	for i in [0...100]
-    		@npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 10, 'hat_npc')
+    	for i in [0...50]
+    		@npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 400, 'hat_npc')
         
     setVariables: () ->
         @config.background = 'background'

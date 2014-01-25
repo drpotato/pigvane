@@ -36,6 +36,8 @@ class Pigvane.Classes.Level
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
         @mainLayer.resizeWorld()
 
+        @fgLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
+
         @game.stage.backgroundColor = "#222034"
 
         # Add the main guy 
@@ -75,6 +77,7 @@ class Pigvane.Classes.Level
         #     obj.animations.add('repeat', [2,3])
         #     )
 
+        @fgLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
 
         @overlay = @game.add.sprite 0, 0, 'scanlines'
         @overlay.fixedToCamera = true 
@@ -89,7 +92,9 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
 
-        # @game.physics.collide(@bullets, @mainLayer, @envHit)
+        @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
+
+        # @game.physics.collide(@bullets, @mainLayer, @envHit) Don't know why this is not working
         
         @npcController.update()
 
