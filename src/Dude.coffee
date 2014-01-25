@@ -39,7 +39,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
-
+        if @game.input.keyboard.isDown Phaser.Keyboard.D
+            console.log 'D Pressed'
+            Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
         @vStep = 50

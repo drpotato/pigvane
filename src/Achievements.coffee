@@ -7,7 +7,7 @@ class Pigvane.Classes.Achievements
         
         @achievementList = {
             'free': {
-                'name': 'The First One is Free',
+                'name': 'The First One\'s Free',
                 'img': ''
             },
             'cat_playable': {
@@ -163,8 +163,8 @@ class Pigvane.Classes.Achievements
         textSprite = @game.add.sprite(0, 0)
         textSprite.fixedToCamera = true
         
-        textTitle = @game.add.text(20, 5, 'Achievement Unlocked!', {'font': '12pt Arial', 'fill': 'white'})
-        textName = @game.add.text(20, 30, achievementData['name'], {'font': '8pt Arial', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 200 })
+        textTitle = @game.add.bitmapText(20, 5, 'Achievement Unlocked!', {'font': '16pt pixelFont', 'fill': 'white'})
+        textName = @game.add.bitmapText(20, 30, achievementData['name'], {'font': '12pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 200 })
         textSprite.addChild(textTitle)
         textSprite.addChild(textName)
         
