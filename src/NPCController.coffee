@@ -8,10 +8,11 @@ class Pigvane.Classes.NPCController
         
     update: () ->
         
-        @game.physics.collide Pigvane.Main.bullets, @npcs, @collisionHandler
+        @game.physics.overlap Pigvane.Main.bullets, @npcs, @collisionHandler
     
     collisionHandler: (obj1, obj2) ->
         
         obj2.hit()
         
-        obj1.kill()
+        if obj2.health > 0
+            obj1.kill()
