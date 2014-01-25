@@ -40,7 +40,7 @@ class Pigvane.Classes.HealthOverlay
         
     update: () ->
         healthLeft = Pigvane.Main.dude.health
-        @healthText.content = @healthTitle + healthLeft
+        @healthText.setText( @healthTitle + healthLeft )
         # livesLeft = Pigvane.Main.dude.lives
         # @livesText.content = @livesTitle + livesLeft
 
