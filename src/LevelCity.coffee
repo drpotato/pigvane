@@ -13,9 +13,9 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     doSound: () ->
         
         @music = @game.add.audio 'city_music', 1, true
-        @music.play();
+        # @music.play();
         
-        # @soundManager.music = @soundManager.add('circus_music', 1, true)
+        @soundManager.music = @soundManager.add('circus_music', 1, true)
         
         # @soundManager.music.play()
     
@@ -24,7 +24,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     		@npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 400, 'hat_npc')
         
     setVariables: () ->
-        @config.background = 'background'
+        @config.background = 'city-bg'
         @config.tilemap = 'city-tm'
         @config.tileset = 'city-ts'
 

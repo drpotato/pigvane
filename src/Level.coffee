@@ -22,13 +22,21 @@ class Pigvane.Classes.Level
         @map = @game.add.tilemap @config.tilemap
         @tileset = @game.add.tileset @config.tileset
 
-        # @bgmap = @game.add.tilemap 'bg'
-        # @bgTileSet = @game.add.tileset 'bgTile'
-        
         @initCollisions()
 
-        # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @bgTileSet, @bgmap, 2
-        # @paraLayer1.scrollFactorX = 0.2
+        # @bgScroll = @game.add.tilemapLayer 0, 0, 896, 672, @bgTileSet, @bgMap, 0
+        # @bgScroll.scrollFactorX = 0.2
+        
+        @bgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, 'bgScroll')
+        @bgScroll.tilePosition.x = 0
+        @bgScroll.tilePosition.y = -100
+
+        @bgbgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, 'bgbgScroll')
+        @bgbgScroll.tilePosition.x = 0
+        @bgbgScroll.tilePosition.y = -200
+
+        
+
 
         # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @tileset, @map, 1
         # @paraLayer2.scrollFactorX = 0.5
@@ -41,7 +49,7 @@ class Pigvane.Classes.Level
         @game.stage.backgroundColor = "#222034"
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 100, 500
+        @dude = new Pigvane.Classes.Dude @game, 100, 400
         @game.add.existing @dude
         
         @npcController = new Pigvane.Classes.NPCController @game
