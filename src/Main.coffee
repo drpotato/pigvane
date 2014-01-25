@@ -22,7 +22,10 @@ class Pigvane.States.Main
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 10, 10
         @add.existing @dude
-
+        
+        #add damage overlay
+        @damageOverlay = new Pigvane.Classes.DamageOverlay @game,@dude
+        @add.existing @damageOverlay
     # Called every frame
     update: ->
 
@@ -33,7 +36,3 @@ class Pigvane.States.Main
     # Some helper functions used throughout the game
     calculateDistance: (aX, aY, bX, bY) ->
         return Math.pow Math.pow( aX - bX, 2 ) + Math.pow( aY - bY, 2 ), 0.5
-
-        
-
-        

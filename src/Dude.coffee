@@ -24,6 +24,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @nextBullet = 0
 
         @facing = 'right'
+        
+        @health = 3
 
         @body.gravity.y = 10
 
@@ -47,10 +49,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         else if @cursors.right.isDown
             @body.velocity.x = @velocity
             facing = 'right'
-
         if @cursors.up.isDown
             @body.velocity.y = -@velocity
-
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X
             # @fire()
@@ -60,9 +60,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Not moving
         if @cursors.left.isUp and @cursors.right.isUp and @cursors.up.isUp and @cursors.down.isUp and !@game.input.keyboard.isDown Phaser.Keyboard.X
-            @animations.stop()
-
-        
+            @animations.stop()    
 
     # Fire his non-existent gun!
     fire: () ->
