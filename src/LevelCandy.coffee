@@ -1,4 +1,4 @@
-class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
+class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
 
     constructor: (@game) ->
         
@@ -19,9 +19,9 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
     setVariables: () ->
         @config.background = 'background'
-        @config.tilemap = 'city-tm'
-        @config.tileset = 'city-ts'
+        @config.tilemap = 'candy-tm'
+        @config.tileset = 'candy-ts'
 
     initCollisions: () ->
-    	@tileset.setCollisionRange 0, 8, true, true, true, true
+    	@tileset.setCollisionRange 0, 25, true, true, true, true
         
