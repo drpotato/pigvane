@@ -32,6 +32,8 @@ class Pigvane.States.Main
         @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
         
+        @npcController = new Pigvane.Classes.NPCController @game
+        
         # Add the achievements
         @achievements = new Pigvane.Classes.Achievements @game
 
