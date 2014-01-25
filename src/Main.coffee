@@ -27,6 +27,10 @@ class Pigvane.States.Main
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
+
+        @overlay = @add.sprite 0,0, 'scanlines'
+        @overlay.fixedToCamera = true 
+
         @healthBar = new Pigvane.Classes.HealthOverlay @game
         @camera.follow @dude, 1
 
