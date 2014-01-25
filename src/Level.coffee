@@ -52,7 +52,7 @@ class Pigvane.Classes.Level
 
         @bullets = @game.add.group()
 
-        @bullets.createMultiple 60, 'bullet'
+        @bullets.createMultiple 200, 'bullet'
         @bullets.setAll 'anchor.x', 0.5
         @bullets.setAll 'anchor.y', 0.5
         @bullets.setAll 'outOfBoundsKill', true

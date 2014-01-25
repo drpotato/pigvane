@@ -17,6 +17,8 @@ class Pigvane.States.Preloader
         @game.load.tilemap 'city', 'res/city-level.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.tileset 'blocks', 'res/tiles-large.png', 32, 32
 
+        @game.load.spritesheet 'lives', 'res/heart-large.png', 32, 32
+
         @game.load.image 'background', 'res/coolbackestround.png'
 
         @game.load.image 'achievement_background', 'res/achievement.png'
@@ -34,6 +36,8 @@ class Pigvane.States.Preloader
         @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
         @game.load.audio 'ambient_candy_music', 'res/ambient_candy_music.mp3'
         @game.load.audio 'ambient_forest_music', 'res/ambient_forest_music.mp3'
+
+        @game.load.bitmapFont 'pixelfont', 'res/pixelFont.png', 'res/pixelFont.xml'
         
         # Load title screen resources
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
