@@ -50,10 +50,7 @@ class Pigvane.Classes.Dialog
 
                 Pigvane.Main.game.add.tween(dialog).to({y: 100, alpha: 1}, 1000, Phaser.Easing.Linear.None, true)
                 
-                
                 waitForIt = () ->
-                    
-                    console.log 
                     
                     if Pigvane.Main.game.input.keyboard.isDown 49
                         Pigvane.Main.game.add.tween(dialog).to({y: 80, alpha: 0}, 2000, Phaser.Easing.Linear.None, true)
