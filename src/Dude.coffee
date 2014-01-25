@@ -55,6 +55,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @gunDrawn = false
 
+        @aggro = 1
+
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->

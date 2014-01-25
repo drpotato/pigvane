@@ -35,6 +35,12 @@ class Pigvane.States.Preloader
 
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-large.png', 32, 32
+        
+        # NPCs
+        @game.load.spritesheet 'npc_oldman', 'res/oldman-large.png', 32, 32
+        @game.load.spritesheet 'npc_pig_girl', 'res/piggirl-large.png', 32, 32
+        @game.load.spritesheet 'npc_monk', 'res/monk-large.png', 32, 32
+        @game.load.spritesheet 'npc_ice_cream_girl', 'res/icecreamgirl-large.png', 32, 32
 
         # Music
         @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
