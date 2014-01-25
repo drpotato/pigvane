@@ -43,6 +43,9 @@ class Pigvane.Classes.Level
         
         # Add the achievements
         @achievements = new Pigvane.Classes.Achievements @game
+        
+        # Add the dialog
+        @dialog = new Pigvane.Classes.Dialog @game
 
         @bullets = @game.add.group()
 
@@ -64,10 +67,7 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
         if @game.input.keyboard.isDown Phaser.Keyboard.C
-            new Pigvane.Classes.Dialog(@game)
-
-
-        # Make camera follow dude
+            @dialog.popup 'dialog_template'
         
         @npcController.update()
         

@@ -1,5 +1,14 @@
 class Pigvane.Classes.Dialog
     constructor: (@game, @text = "Hey") ->
+        
+        @dialogList = {
+            'dialog_template': {
+                'request': 'Help me!',
+                'options': '1. Yes.\n2. No\n3. Kill them.'
+            }
+        }
+    
+    popup: (dialogName) ->
 
         @dialog = @game.add.group()
         @dialog.x = 148
@@ -12,7 +21,7 @@ class Pigvane.Classes.Dialog
         textSprite = @game.add.sprite()
         textSprite.fixedToCamera = true
 
-        text = @game.add.text(30, 30, @text, {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 200 })
+        text = @game.add.text(30, 30, @dialogList[dialogName]['request'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 200 })
         textSprite.addChild(text)
 
         @dialog.add text
