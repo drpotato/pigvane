@@ -3,8 +3,6 @@ class Pigvane.Classes.Achievements
         
         @achievements = @game.add.group()
         
-        @achievements.fixedToCamera = true
-        
         @achievementList = {
             'first is free': {
                 'title': 'first',
@@ -25,10 +23,15 @@ class Pigvane.Classes.Achievements
         
         background = achievement.create(@game.width - achievement.width, @game.height, 'achievement_background')
         
-        @game.add.tween(achievement).to({y: -achievement.height}, 1000, Phaser.Easing.Linear.None, true);
+        background.fixedToCamera = true
+        
+        
+        @game.add.tween(achievement).to({y: -achievement.height}, 1000, Phaser.Easing.Linear.None, true)
         
         callback = () -> 
-            Pigvane.Main.game.add.tween(achievement).to({y: achievement.height}, 1000, Phaser.Easing.Linear.None, true);
+            tween = Pigvane.Main.game.add.tween(achievement).to({y: achievement.height}, 2000, Phaser.Easing.Linear.None, true)
+            tween.onComplete.add( () ->
+                background.kill()
+                )
         
-        setTimeout callback, 2000
-        
+        setTimeout callback, 3000
