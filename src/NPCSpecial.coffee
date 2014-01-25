@@ -19,6 +19,7 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
         if @deathAchievement?
             # @animations.frame = ?
             Pigvane.Main.achievements.grant @deathAchievement
+            @destroy()
     
     talk: () ->
         if @dialog? and !@talking and @willTalk
