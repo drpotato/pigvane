@@ -10,7 +10,7 @@ class Pigvane.States.Preloader
 
         # Load game resources
         @game.load.tilemap 'test', 'res/test.json', null, Phaser.Tilemap.TILED_JSON
-        @game.load.tileset 'blocks', 'res/blocks-large.png', 32, 32
+        @game.load.tileset 'blocks', 'res/tiles-large.png', 32, 32
         @game.load.image 'achievement_background', 'res/achievement-large.png'
         @game.load.spritesheet 'dude', 'res/testwalking-large.png', 32, 32
         @game.load.image 'background', 'res/basebackground.png'
