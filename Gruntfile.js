@@ -86,7 +86,7 @@ module.exports = function(grunt) {
                 }
             },
             statics: {
-                files: ['src/res/public/noupscale/**', 'src/*.html'],
+                files: ['src/res/public/**', 'src/*.html'],
                 tasks: ['copy:main'],
                 options: {
                     livereload: true,
