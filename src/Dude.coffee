@@ -34,11 +34,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @game.physics.collide @, Pigvane.Main.mainLayer
 
         # Reset body
-        @body.velocity.x = 0    
+        # @body.velocity.x = 0    
 
         # Set resulting speed of body
+        @vStep = 50
         @velocity = 300
-        @jumpVelocity = 600
+        @jumpVelocity = 450
         # More if running
         @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
@@ -46,12 +47,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
 
         # Series of ifs to change dude velocity if arrow keys are pressed
-        if @cursors.left.isDown
-            @body.velocity.x = -@velocity
+        if @cursors.left.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x >= 0 )
+            @body.velocity.x -= @vStep
             facing = 'left'
             @scale.x = -1
-        else if @cursors.right.isDown
-            @body.velocity.x = @velocity
+        else if @cursors.right.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x <= 0 )
+            @body.velocity.x += @vStep
             facing = 'right'
             @scale.x = 1
 
@@ -67,15 +68,25 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @canceledJump = true
 
         # If shooting, fire?
-        if @game.input.keyboard.isDown Phaser.Keyboard.X
+        #if @game.input.keyboard.isDown Phaser.Keyboard.X
             # @fire()
         # If not, update his facing, and display the correct animation
-        else
-            @facing = facing
+        # else
+        #    @facing = facing
 
         # Not moving
-        if @cursors.left.isUp and @cursors.right.isUp and @cursors.up.isUp and @cursors.down.isUp and !@game.input.keyboard.isDown Phaser.Keyboard.X
+        if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
+            if @body.velocity.x > 0
+                @body.velocity.x -= 50
+            else if @body.velocity.x < 0
+                @body.velocity.x += 50
+
+        if @body.velocity.x is 0 and @body.velocity.y is 0
             @animations.stop()
+        else
+            @animations.play 'jump', 16, true
+
+        return true
 
         
 
