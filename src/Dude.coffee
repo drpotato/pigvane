@@ -17,7 +17,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.play 'right', 16, true
 
         # Set collision size
-        # @body.setSize 0, 0, 32, 32  
+        @body.setSize 32, 32, 0, 0
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
@@ -39,7 +39,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
-        
         if @game.input.keyboard.isDown Phaser.Keyboard.D
             Pigvane.Main.dlc.popup()
 
@@ -110,7 +109,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         return true
 
     hitByNPC: (obj1, obj2) ->
-        console.log ''
+        console.log 'Hey'
         obj1.kill()
         @damage()
 

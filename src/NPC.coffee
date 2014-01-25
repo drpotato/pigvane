@@ -28,7 +28,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     update: () ->
         
         @game.physics.collide @, Pigvane.Main.mainLayer
-        # @game.physics.overlap Pigvane.Main.enemyBullets, Pigvane.Main.dude,  Pigvane.Main.dude.hitByNPC
+        @game.physics.overlap Pigvane.Main.enemyBullets, Pigvane.Main.dude,  Pigvane.Main.dude.hitByNPC
 
         if @game.time.now > @updateTimer
             @body.velocity.x = @game.rnd.integerInRange(-20, 20)
@@ -72,17 +72,15 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             # Reset it to the dude's position
             bullet.reset @x, @y
 
-            # bullet.animations.frame = 1
+            bullet.animations.frame = 1
             # bullet.animations.play('shoot', 60)
 
-            # callback = () ->
-            #     bullet.animations.stop()
-            #     bullet.animations.play('repeat', 4, true)
-            #     bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+            callback = () ->
+                bullet.animations.stop()
+                bullet.animations.play('repeat', 4, true)
+                bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
 
-            # setTimeout callback, 17
-            # Change velocity and position of bullet based on the way the dude is facing.  
-            # Also knockback dude.
+            setTimeout callback, 17
             
             if @facing is 'right'
                 bullet.body.velocity.x = 1000
@@ -90,8 +88,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 bullet.body.velocity.x = -1000
 
             # Randomise velocity
-            # bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-            # bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+            bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
+            bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
 
 
 
@@ -106,4 +104,6 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     
     die: () ->
         # @animations.frame = ?
+        @kill()
+        @destroy()
     

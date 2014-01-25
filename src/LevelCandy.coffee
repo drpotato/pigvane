@@ -3,12 +3,10 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
     constructor: (@game) ->
         
         super(@game)
-
+        
         # @spawnRandomNPCs()
         
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 'kill_1', 'dialog_template')
-        
-        Pigvane.Main.dlc = new Pigvane.Classes.DLC(@game)
         
     doSound: () ->
         @soundManager.music = @soundManager.add 'circus_music', 1, true
@@ -21,9 +19,8 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         
     setVariables: () ->
         @config.background = 'background'
-        @config.tilemap = 'city'
-        @config.tileset = 'blocks'
+        @config.tilemap = 'candy-tm'
+        @config.tileset = 'candy-ts'
 
     initCollisions: () ->
-    	@tileset.setCollisionRange 0, 8, true, true, true, true
-        
+    	@tileset.setCollisionRange 0, 25, true, true, true, true
