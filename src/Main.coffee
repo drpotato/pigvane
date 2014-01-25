@@ -59,6 +59,9 @@ class Pigvane.States.Main
 
     # Called every frame
     update: ->
+        if @game.input.keyboard.isDown Phaser.Keyboard.C
+            new Pigvane.Classes.Dialog(@game)
+
 
         # Make camera follow dude
         
