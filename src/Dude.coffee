@@ -12,6 +12,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Set up animations
         @animations.add 'right',[0,1,2,3]
         @animations.add 'jump', [4,5,6,7,8,9]
+        @animations.add 'drawn', [10,11,12,13]
         # @animations.add 'left', [12,13,14,15]
         
         @animations.play 'right', 16, true
@@ -36,6 +37,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @lives = 3
         
         @health = 10
+
+        @gunDrawn = false
+
+        @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
@@ -94,7 +99,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @body.velocity.x += 50
 
         # If shooting, fire?
-        if @game.input.keyboard.isDown Phaser.Keyboard.X
+        if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
         # If not, update his facing, and display the correct animation
         else
@@ -104,14 +109,25 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @body.velocity.x is 0 and @body.velocity.y is 0
             @animations.stop()
         else
-            @animations.play 'right', 16, true
+            if @gunDrawn is true
+                @animations.play 'drawn', 16, true
+            else
+                @animations.play 'right', 16, true
 
         return true
 
+    switchDrawnState: () ->
+        @gunDrawn = !@gunDrawn
+        if @gunDrawn is true
+            # @animations.play 'drawn', 16, true
+            @animations.frame = 10
+        else
+            @animations.frame = 0
+            # @animations.play 'right', 16, true
+
     hitByNPC: (obj1, obj2) ->
-        console.log 'Hey'
-        obj1.kill()
-        @damage()
+        obj2.kill()
+        Pigvane.Main.dude.damage()
 
     # Fire his non-existent gun!
     fire: () ->

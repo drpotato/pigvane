@@ -3,7 +3,7 @@ class Pigvane.States.Main
     constructor: (@game) ->
         Pigvane.levelController = @
 
-        @currentLevelIndex = 1
+        @currentLevelIndex = 0
         
         
     preload: (@game) ->
@@ -24,4 +24,5 @@ class Pigvane.States.Main
                 @currentLevel = new Pigvane.Classes.LevelForest @game
             when 3
                 @currentLevel = new Pigvane.Classes.End @game
+
         
