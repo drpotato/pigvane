@@ -41,7 +41,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @game.physics.collide @, Pigvane.Main.mainLayer
         
         if @game.input.keyboard.isDown Phaser.Keyboard.D
-            console.log 'D Pressed'
             Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
@@ -115,8 +114,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         obj1.kill()
         @damage()
 
-        
-
     # Fire his non-existent gun!
     fire: () ->
         # If it's been 80 ms since last bullet
@@ -168,6 +165,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             Pigvane.Main.healthBar.removeLife()
             if @lives == 0
                 # @kill()
+                
+                # Pigvane.Main.achievements.grant('3_lives')
+                
                 console.log @game.state.states
                 @game.state.start 'Restart'
 

@@ -36,6 +36,9 @@ class Pigvane.States.Preloader
 
         @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
         @game.load.audio 'ambient_candy_music', 'res/ambient_candy_music.mp3'
+        @game.load.audio 'city_music', 'res/city_music_1.mp3'
+        @game.load.audio 'circus_music', 'res/circus_music.mp3'
+        @game.load.audio 'forest_music', 'res/forest_music.mp3'
         @game.load.audio 'ambient_forest_music', 'res/ambient_forest_music.mp3'
 
         @game.load.bitmapFont 'pixelfont', 'res/pixelFont.png', 'res/pixelFont.xml'
