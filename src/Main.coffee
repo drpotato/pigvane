@@ -38,6 +38,7 @@ class Pigvane.States.Main
         @vignette = @add.sprite 0,0, 'vignette'
         @vignette.fixedToCamera = true 
 
+        @healthBar = new Pigvane.Classes.HealthOverlay @game
         @camera.follow @dude, 1
 
     # Called every frame
