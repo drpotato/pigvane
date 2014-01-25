@@ -35,4 +35,4 @@ class Pigvane.States.Preloader
         
     startMainMenu: () ->
         # Continue to the `MainMenu` state since all resources have been loaded
-        @game.state.start 'Main'
+        @game.state.start 'MainMenu'

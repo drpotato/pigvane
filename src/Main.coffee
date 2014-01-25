@@ -12,8 +12,7 @@ class Pigvane.States.Main
         @candy_music = @game.add.audio 'ambient_candy_music', 1, true
         @forest_music = @game.add.audio 'ambient_forest_music', 1, true
         
-        
-        @candy_music.play()
+        @city_music.play()
 
         @background = @add.sprite 0, 0, 'background'
         @background.fixedToCamera = true 

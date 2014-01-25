@@ -1,0 +1,13 @@
+icecreamgirl doesn't walk;she just *slowly* bobs up and down
+
+old man paces back and forth because fuck you
+
+monk sprite is pretty shit imo, I'll tidy it up later. Maybe he occasionally turns around?
+
+pig girl just stands in one place.
+
+The backgrounds are done. The one called 'background' should be tiled, and parallax scroll relatively slowly, okay? The one called 'foreground' should scroll faster.
+
+There are some new pipe assets which should be good. One type will be collidable, the other not, cool.
+
+The fences are aesthetic and can go on that layer if you want.

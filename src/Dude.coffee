@@ -35,7 +35,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         
         @lives = 3
         
-        @health = 3
+        @health = 10
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
@@ -75,6 +75,25 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
             @cat = false
 
+        
+        if @facing is 'right'
+            @scale.x = 1
+        else if @facing is 'left'
+            @scale.x = -1
+
+        if @game.input.keyboard.isDown Phaser.Keyboard.V
+            @damage()
+        
+
+        # Not moving
+        if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
+            if Math.abs( @body.velocity.x ) < 50
+                @body.velocity.x = 0
+            if @body.velocity.x > 0
+                @body.velocity.x -= 50
+            else if @body.velocity.x < 0
+                @body.velocity.x += 50
+
         # If shooting, fire?
         if @game.input.keyboard.isDown Phaser.Keyboard.X
             @fire()
@@ -82,17 +101,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         else
            @facing = facing
 
-        if @facing is 'right'
-            @scale.x = 1
-        else if @facing is 'left'
-            @scale.x = -1
-
-        # Not moving
-        if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
-            if @body.velocity.x > 0
-                @body.velocity.x -= 50
-            else if @body.velocity.x < 0
-                @body.velocity.x += 50
 
         if @body.velocity.x is 0 and @body.velocity.y is 0
             @animations.stop()
@@ -122,10 +130,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
-                    @x -= 5 if !@body.touching.left
+                    @body.velocity.x -= 100
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    @x += 5 if !@body.touching.right
+                    bullet.scale.x = -1
+                    @body.velocity.x += 100
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
@@ -139,11 +148,18 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             
     damage: () ->
         @health -=1
-        if (@health == 0)
-            @lives -=1
-            if (@lives == 0)
-                @kill()
+        if @health == 0
+            @respawn()
+            @health = 10
+            @lives--
+            console.log @lives
+            if @lives == 0
+                # @kill()
+                console.log @game.state.states
                 @game.state.start 'Restart'
-            else
-                @health = 3
+
         Pigvane.Main.healthBar.update()
+
+    respawn: () ->
+        @x = @game.world.camera.x + 50
+        @y = 500
