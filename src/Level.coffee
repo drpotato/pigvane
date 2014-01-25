@@ -24,11 +24,11 @@ class Pigvane.Classes.Level
         
         @initCollisions()
 
-        @paraLayer1 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
-        @paraLayer1.scrollFactorX = 0.2
+        # @paraLayer1 = @game.add.tileSprite 0, 0, 896, 672, 'bgScroll'
+        # @paraLayer1.scrollFactorX = 0.2
 
-        @paraLayer2 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
-        @paraLayer2.scrollFactorX = 0.5
+        # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @tileset, @map, 1
+        # @paraLayer2.scrollFactorX = 0.5
 
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 2
         @mainLayer.resizeWorld()
