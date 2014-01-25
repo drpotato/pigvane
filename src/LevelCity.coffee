@@ -7,10 +7,13 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     doSound: () ->
         @soundManager.music = @soundManager.add 'ambient_city_music', 1, true
         
-        @soundManager.music.play()
+        # @soundManager.music.play()
         
     setVariables: () ->
         @config.background = 'background'
         @config.tilemap = 'test'
         @config.tileset = 'blocks'
+
+    initCollisions: () ->
+    	@tileset.setCollisionRange 0, 8, true, true, true, true
         

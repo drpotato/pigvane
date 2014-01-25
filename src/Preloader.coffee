@@ -14,7 +14,9 @@ class Pigvane.States.Preloader
         @game.load.image 'achievement_background', 'res/achievement.png'
         @game.load.spritesheet 'dude', 'res/testwalking-large.png', 32, 32
         @game.load.spritesheet 'hat_npc', 'res/npc6-large.png', 32, 32
-        @game.load.image 'background', 'res/basebackground.png'
+        # @game.load.image 'background', 'res/coolestround.png'
+        @game.load.image 'bgScroll', 'res/coolforeground-large.png'
+        @game.load.image 'fgScroll', 'res/coolbackground-large.png'
         @game.load.image 'scanlines', 'res/scanlines.png'
         @game.load.image 'vignette', 'res/vignette.png'
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
