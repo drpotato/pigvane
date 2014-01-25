@@ -39,7 +39,7 @@ class Pigvane.Classes.Level
         @game.stage.backgroundColor = "#222034"
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 100, 550
+        @dude = new Pigvane.Classes.Dude @game, 100, 500
         @game.add.existing @dude
         
         @npcController = new Pigvane.Classes.NPCController @game
@@ -63,6 +63,19 @@ class Pigvane.Classes.Level
 
             )
 
+        @enemyBullets = @game.add.group()
+
+        @enemyBullets.createMultiple 20, 'enemyBullet'
+        @enemyBullets.setAll 'anchor.x', 0.5
+        @enemyBullets.setAll 'anchor.y', 0.5
+        @enemyBullets.setAll 'outOfBoundsKill', true
+
+        # @enemyBullets.forEach( (obj) ->
+        #     obj.animations.add('shoot', [0,1,2,3])
+        #     obj.animations.add('repeat', [2,3])
+        #     )
+
+
         @overlay = @game.add.sprite 0, 0, 'scanlines'
         @overlay.fixedToCamera = true 
 
@@ -75,10 +88,14 @@ class Pigvane.Classes.Level
 
     # Called every frame
     update: ->
+
+        # @game.physics.collide(@bullets, @mainLayer, @envHit)
         
         @npcController.update()
-        
 
+    envHit: (obj1, obj2) ->
+        console.log 'Hey'
+        obj1.kill()
 
     # Some helper functions used throughout the game
     calculateDistance: (aX, aY, bX, bY) ->

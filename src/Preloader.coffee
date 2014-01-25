@@ -32,6 +32,7 @@ class Pigvane.States.Preloader
         @game.load.image 'vignette', 'res/vignette.png'
 
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
+        @game.load.spritesheet 'enemyBullet', 'res/bullet-large.png', 32, 32
 
         @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
         @game.load.audio 'ambient_candy_music', 'res/ambient_candy_music.mp3'

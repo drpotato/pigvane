@@ -1,28 +1,100 @@
 class Pigvane.Classes.NPC extends Phaser.Sprite
-    constructor: (@game, x, y, name, @deathAchievement, @dialog) ->
+    constructor: (@game, x, y, name) ->
         
         super @game, x, y, name
-        
-        Pigvane.Main.npcController.npcDialogBoxes.add(new Pigvane.Classes.NPCDialogBox(@game, x, y, @))
         
         # Set collision size
         @anchor.setTo(0.5,0.5)
 
+        @addAnimations()
+
         # Stop it walking out of the world
-        @body.collideWorldBounds = true
-        
-        @talking = false
-        @willTalk = true
+        # @body.collideWorldBounds = true
 
         @facing = 'left'
 
         @body.gravity.y = 10
         
         @health = 3
+
+        @updateTimer = 0
+
+        @gunDuration = 0
+
+    addAnimations: () ->
+        @animations.add 'walk', [0,1,2,3]
+        @animations.play 'walk', 2, true
         
     update: () ->
         
         @game.physics.collide @, Pigvane.Main.mainLayer
+        # @game.physics.overlap Pigvane.Main.enemyBullets, Pigvane.Main.dude,  Pigvane.Main.dude.hitByNPC
+
+        if @game.time.now > @updateTimer
+            @body.velocity.x = @game.rnd.integerInRange(-20, 20)
+            @animations.play 'walk', 2, true
+            if @body.velocity.x < 0
+                @scale.x = -1
+                @facing = 'left'
+            else 
+                @scale.x = 1
+                @facing = 'right'
+
+            if Math.abs( @body.x - Pigvane.Main.dude.x ) < 200
+                @body.velocity.x = 0
+                @animations.stop()
+                @animations.frame = 4
+                @gunDuration++
+                if @body.x - Pigvane.Main.dude.x > 0
+                    @scale.x = -1
+                    @facing = 'left'
+                else 
+                    @scale.x = 1
+                    @facing = 'right'
+
+                if @gunDuration >= 1
+                    @fire()
+
+
+            else
+                @gunDuration = 0
+
+
+            @updateTimer = @game.time.now + @game.rnd.integerInRange(40, 60)*100
+
+    fire: () ->
+
+        # See if there is a free bullet 
+        bullet = Pigvane.Main.enemyBullets.getFirstExists false
+
+        # If there is one
+        if bullet
+            # Reset it to the dude's position
+            bullet.reset @x, @y
+
+            # bullet.animations.frame = 1
+            # bullet.animations.play('shoot', 60)
+
+            # callback = () ->
+            #     bullet.animations.stop()
+            #     bullet.animations.play('repeat', 4, true)
+            #     bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+
+            # setTimeout callback, 17
+            # Change velocity and position of bullet based on the way the dude is facing.  
+            # Also knockback dude.
+            
+            if @facing is 'right'
+                bullet.body.velocity.x = 1000
+            else if @facing is 'left'
+                bullet.body.velocity.x = -1000
+
+            # Randomise velocity
+            # bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
+            # bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+
+
+
         
     hit: () ->
         
@@ -33,24 +105,5 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @die()
     
     die: () ->
-        
-        if @deathAchievement?
-            Pigvane.Main.achievements.grant @deathAchievement
+        # @animations.frame = ?
     
-    talk: () ->
-        if @dialog? and !@talking and @willTalk
-            @talking = true
-            response = Pigvane.Main.dialog.popup @dialog, @
-            
-    sendResponse: (option) ->
-        @talking = false
-        @willTalk = false
-        switch option
-            when '1'
-                console.log
-            when '2'
-                console.log
-            when '3'
-                @die()
-            when 'reset'
-                @willTalk = true
