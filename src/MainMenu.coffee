@@ -14,8 +14,8 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @restartText = @game.add.text(300, 600, 'Press Enter to Play', {
-            'font': '30px Arial',
+        @restartText = @game.add.bitmapText(300, 600, 'Press Enter to Play', {
+            'font': '30px pixelFont',
             'fill': 'white'
             })        
 
