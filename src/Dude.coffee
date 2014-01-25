@@ -59,7 +59,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isDown and @body.touching.down
             @body.velocity.y = -@jumpVelocity
             @canceledJump = false
-
+            
+        if @game.input.keyboard.isDown Phaser.Keyboard.A
+            Pigvane.Main.achievements.grant()            
+            
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
             @canceledJump = true
