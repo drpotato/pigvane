@@ -49,8 +49,6 @@ class Pigvane.Classes.Dialog
                 'request': '"I used to run fast, but without my lucky sneakers I\'ll never run like I used to."',
                 'options': '1. "You never needed the sneakers. \'You could run fast all day long\'"\n2. "Gotta go fast!"\n3. "I don\t care for your pumped up kicks, you can\'t outrun my gun!"'
             }
-            
-            
         }
     
     popup: (dialogName, npc) ->

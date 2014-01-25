@@ -6,6 +6,21 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Used in collisions
         @name = 'dude'
         
+        # Has the dude moved?
+        @moved = false
+        
+        # Generic NPC kills
+        @kills
+        
+        # Special NPC Kills
+        @specialKills = 0
+        
+        # Special NPC helps
+        @helps = 0
+        
+        # Special NPC ignores
+        @ignores = 0
+        
         # Is a cat?
         @cat = true
 
@@ -105,6 +120,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @animations.stop()
         else
             @animations.play 'right', 16, true
+            
+        @updateAchievements()
 
         return true
 
@@ -175,3 +192,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     respawn: () ->
         @x = @game.world.camera.x + 50
         @y = 500
+        
+    updateAchievements: () ->
+        
+        if !@moved and @body.velocity.x != 0
+            @moved = true
+            Pigvane.Main.achievements.grant('first_steps')
+            
+        if @specialKills == 1
+            Pigvane.Main.achievements.grant('kill_1')

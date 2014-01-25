@@ -14,6 +14,8 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
     
     die: () ->
         
+        Pigvane.Main.dude.specialKills += 1
+        
         if @deathAchievement?
             # @animations.frame = ?
             Pigvane.Main.achievements.grant @deathAchievement
@@ -28,9 +30,9 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
         @willTalk = false
         switch option
             when '1'
-                console.log
+                Pigvane.Main.dude.helps += 1
             when '2'
-                console.log
+                Pigvane.Main.dude.ignores += 1
             when '3'
                 @die()
             when 'reset'
