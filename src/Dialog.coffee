@@ -10,12 +10,12 @@ class Pigvane.Classes.Dialog
     
     popup: (dialogName) ->
 
-        @dialog = @game.add.group()
-        @dialog.x = 148
-        @dialog.y = 80
-        @dialog.alpha = 0
+        dialog = @game.add.group()
+        dialog.x = 148
+        dialog.y = 80
+        dialog.alpha = 0
         
-        bg = @dialog.create(0, 0, 'dialog')
+        bg = dialog.create(0, 0, 'dialog')
         bg.fixedToCamera = true
 
         textSprite = @game.add.sprite()
@@ -24,11 +24,9 @@ class Pigvane.Classes.Dialog
         textSprite.addChild(text)
         textSprite.fixedToCamera = true
 
-        @dialog.add text
+        dialog.add textSprite
 
-        @game.add.tween(@dialog).to({y: 100, alpha: 1}, 1000, Phaser.Easing.Linear.None, true)
-
-        dialog = @dialog
+        @game.add.tween(dialog).to({y: 100, alpha: 1}, 1000, Phaser.Easing.Linear.None, true)
 
         callback = () -> 
             tween = Pigvane.Main.game.add.tween(dialog).to({y: 80, alpha: 0}, 2000, Phaser.Easing.Linear.None, true)
