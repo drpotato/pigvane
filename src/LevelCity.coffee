@@ -11,7 +11,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
     setVariables: () ->
         @config.background = 'background'
-        @config.tilemap = 'test'
+        @config.tilemap = 'city'
         @config.tileset = 'blocks'
 
     initCollisions: () ->

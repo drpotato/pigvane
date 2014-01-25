@@ -19,11 +19,8 @@ class Pigvane.States.MainMenu
             'fill': 'white'
             })        
 
-        console.log Phaser.Keyboard.ENTER
-
     update: () ->
         if @input.keyboard.isDown 13
-            console.log 'Hey'
             if !@fadedOut?
                 @fadedOut = true
                 @fadeOut()

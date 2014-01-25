@@ -21,16 +21,19 @@ class Pigvane.Classes.Level
         # Add the map and tileset that we loaded earlier 
         @map = @game.add.tilemap @config.tilemap
         @tileset = @game.add.tileset @config.tileset
+
+        # @bgmap = @game.add.tilemap 'bg'
+        # @bgTileSet = @game.add.tileset 'bgTile'
         
         @initCollisions()
 
-        # @paraLayer1 = @game.add.tileSprite 0, 0, 896, 672, 'bgScroll'
+        # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @bgTileSet, @bgmap, 2
         # @paraLayer1.scrollFactorX = 0.2
 
         # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @tileset, @map, 1
         # @paraLayer2.scrollFactorX = 0.5
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 2
+        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
         @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#222034"
@@ -47,14 +50,14 @@ class Pigvane.Classes.Level
         @bullets = @game.add.group()
 
         @bullets.createMultiple 60, 'bullet'
-        @bullets.setAll('anchor.x', 0.5);
-        @bullets.setAll('anchor.y', 0.5);
-        @bullets.setAll('outOfBoundsKill', true);
+        @bullets.setAll 'anchor.x', 0.5
+        @bullets.setAll 'anchor.y', 0.5
+        @bullets.setAll 'outOfBoundsKill', true
 
-        @overlay = @game.add.sprite 0,0, 'scanlines'
+        @overlay = @game.add.sprite 0, 0, 'scanlines'
         @overlay.fixedToCamera = true 
 
-        @vignette = @game.add.sprite 0,0, 'vignette'
+        @vignette = @game.add.sprite 0, 0, 'vignette'
         @vignette.fixedToCamera = true 
 
         @healthBar = new Pigvane.Classes.HealthOverlay @game
