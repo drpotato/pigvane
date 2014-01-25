@@ -53,6 +53,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
                 if @gunDuration > 1
                     @fire()
+                    Pigvane.Main.soundManager.sfxGunshotEnemy.play()
 
 
             else
@@ -105,4 +106,5 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         # @animations.frame = ?
         @kill()
         @destroy()
+        Pigvane.Main.dude.kills += 1
     

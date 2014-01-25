@@ -85,6 +85,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isDown and @body.touching.down
             @body.velocity.y = -@jumpVelocity
             @canceledJump = false
+            soundCallback = () ->
+                Pigvane.Main.soundManager.sfxJump.play()
+                
+            setTimeout soundCallback, 150
             
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
@@ -116,6 +120,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
+            Pigvane.Main.soundManager.sfxGunshotPlayer.play()
         # If not, update his facing, and display the correct animation
         else
            @facing = facing
@@ -194,6 +199,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     damage: () ->
         @health -=1
         if @health == 0
+            Pigvane.Main.soundManager.sfxDeathScream.play()
             @respawn()
             @health = 10
             @lives--
