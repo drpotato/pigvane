@@ -12,12 +12,12 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
     doSound: () ->
         
-        @music = @game.add.audio 'city_music', 1, true
-        @music.play();
+        #@music = @game.add.audio 'city_music', 0.5, true
+        #@music.play();
         
-        # @soundManager.music = @soundManager.add('circus_music', 1, true)
+        @soundManager.music = @soundManager.add('city_music', 0.75, true)
+        @soundManager.music.play()
         
-        # @soundManager.music.play()
     
     spawnRandomNPCs: () ->
     	for i in [0...50]

@@ -157,7 +157,7 @@ class Pigvane.Classes.Achievements
             @achievements.add achievement._container
             
             achievement.height = 100
-            achievement.width = 250
+            achievement.width = 350
             achievement.x = @game.width - achievement.width
             achievement.y = @game.height
             
@@ -166,8 +166,8 @@ class Pigvane.Classes.Achievements
             textSprite = @game.add.sprite(0, 0)
             textSprite.fixedToCamera = true
             
-            textTitle = @game.add.bitmapText(20, 5, 'Achievement Unlocked!', {'font': '16pt pixelFont', 'fill': 'white'})
-            textName = @game.add.bitmapText(20, 30, achievementData['name'], {'font': '12pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 200 })
+            textTitle = @game.add.bitmapText(100, 10, 'Achievement Unlocked!', {'font': '16pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
+            textName = @game.add.bitmapText(100, 40, achievementData['name'], {'font': '12pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
             textSprite.addChild(textTitle)
             textSprite.addChild(textName)
             
@@ -180,10 +180,10 @@ class Pigvane.Classes.Achievements
             @game.add.tween(achievement).to({y: @game.height-achievement.height * @numberAchievements}, 1000, Phaser.Easing.Linear.None, true)
             
             callback = () -> 
+                Pigvane.Main.achievements.numberAchievements -= 1
                 tween = Pigvane.Main.game.add.tween(achievement).to({alpha: 0}, 3000, Phaser.Easing.Linear.None, true)
                 tween.onComplete.add( () ->
                     achievement.destroy()
-                    Pigvane.Main.achievements.numberAchievements -= 1
                     )
             
             setTimeout callback, 3000
