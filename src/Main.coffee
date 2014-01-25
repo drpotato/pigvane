@@ -18,8 +18,10 @@ class Pigvane.States.Main
         @tileset.setCollisionRange 0, 8, true, true, true, true
 
         @paraLayer1 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
+        @paraLayer1.scrollFactorX = 0.2
 
         @paraLayer2 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
+        @paraLayer2.scrollFactorX = 0.5
 
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 2
         @mainLayer.resizeWorld()
