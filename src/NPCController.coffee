@@ -4,15 +4,13 @@ class Pigvane.Classes.NPCController
         @npcs = @game.add.group()
         
         # Create NPCs here...
-        @npcs.add new Pigvane.Classes.NPC(@game, @game.height - 50, 50, 'hat_npc')
+        @npcs.add new Pigvane.Classes.NPC(@game, @game.height - 50, 50, 'hat_npc', 'kill_1')
         
     update: () ->
         
         @game.physics.collide Pigvane.Main.bullets, @npcs, @collisionHandler
     
     collisionHandler: (obj1, obj2) ->
-        
-        console.log 'Bullet hit!'
         
         obj2.hit()
         

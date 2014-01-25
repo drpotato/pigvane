@@ -27,105 +27,106 @@ class Pigvane.Classes.Achievements
                 'img': ''
             },
             
-            'kill_1' {
+            'kill_1': {
                 'name': 'Say Hello To My Little Friend',
                 'img': ''
             }, 
             
-            'pacifist' {
-                'name': 'It''s All Sunshine and Rainbows',
+            'pacifist': {
+                'name': 'It\'s All Sunshine and Rainbows',
                 'img': ''
             },
             
-            'suburbs_complete' {
+            'suburbs_complete': {
                 'name': 'A Dream On Oak Road',
                 'img': ''
             },
             
-            'candyland_complete' {
+            'candyland_complete': {
                 'name': 'Copyright Violation',
                 'img': ''
             },
             
-            'old_man_kill' {
+            'old_man_kill': {
                 'name': 'Euthanasia Enthusiast'
                 'img': ''
             },
             
-            'old_man_help' {
+            'old_man_help': {
                 'name': 'Let There Be Sight!'
                 'img': ''
             },
             
-            'kid_kill' {
+            'kid_kill': {
                 'name': 'Yuck 9mm flavour'
                 'img': ''
             },
             
-            'kid_help' {
+            'kid_help': {
                 'name': 'Diabetes Enabler'
                 'img': ''
             },
             
-            'pig_owner_kill' {
-                'name': 'Makin'' some bacon'
+            'pig_owner_kill': {
+                'name': 'Makin\' some bacon'
                 'img': ''
             },
             
-            'pig_owner_help' {
+            'pig_owner_help': {
                 'name': 'Lipstick on a Pig'
                 'img': ''
             },
             
-            'monk_kill' {
+            'monk_kill': {
                 'name': 'No Yin, Only Yang'
                 'img': ''
             },
             
-            'monk_help' {
+            'monk_help': {
                 'name': 'Enlightened'
                 'img': ''
             },
             
-            'crusher_kill' {
+            'crusher_kill': {
                 'name': 'Better Lawyer Up'
                 'img': ''
             },
             
-            'crusher_help' {
+            'crusher_help': {
                 'name': 'Delicious!'
                 'img': ''
             },
             
-            'cat_kill' {
-                'name': 'Schrodinger''s cat'
+            'cat_kill': {
+                'name': 'Schrodinger\'s cat'
                 'img': ''
             },
             
-            'cat_help' {
+            'cat_help': {
                 'name': 'Time For Adventure!'
                 'img': ''
             },
             
-            'sick_pig_kill' {
+            'sick_pig_kill': {
                 'name': 'Green Eggs and Ham'
                 'img': ''
             },
             
-            'sick_pig_help' {
-                'name': 'At Least There''s No Birds'
+            'sick_pig_help': {
+                'name': 'At Least There\'s No Birds'
                 'img': ''
             },
             
-            'ninja_kill' {
+            'ninja_kill': {
                 'name': 'Gun Beats Sword'
                 'img': ''
             },
             
-            'ninja_help' {
+            'ninja_help': {
                 'name': 'Fruit Massacre'
                 'img': ''
-            },
+            }
+        }
             
         
         

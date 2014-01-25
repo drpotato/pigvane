@@ -21,6 +21,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
     hit: () ->
         
+        console.log @health
+        
         if @health > 0
             @health -= 1
         
@@ -28,6 +30,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @die()
     
     die: () ->
+        
+        console.log deathAchievement
         
         if deathAchievement?
             Pigvane.Main.achievements.grant(deathAchievement)
