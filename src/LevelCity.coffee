@@ -27,7 +27,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     		@npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 400, 'hat_npc')
         
     setVariables: () ->
-        @config.background = 'background'
+        @config.background = 'city-bg'
         @config.tilemap = 'city-tm'
         @config.tileset = 'city-ts'
 

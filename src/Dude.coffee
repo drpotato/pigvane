@@ -135,6 +135,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @animations.play 'right', 16, true
         
         @updateAchievements()
+
+        Pigvane.Main.bgScroll.tilePosition.x = @game.world.camera.x/2.5
+        Pigvane.Main.bgbgScroll.tilePosition.x = @game.world.camera.x/5
         
         return true
 

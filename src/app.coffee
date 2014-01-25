@@ -5,7 +5,7 @@ height = 672
 
 # The global Pigvane variable is set in index.html to avoide out-of-order assignment issues.  
 # Creates the game instance, notice ommitance of states `preload`, `create`, and `update`
-Pigvane.game = new Phaser.Game width, height, Phaser.AUTO, 'game'
+Pigvane.game = new Phaser.Game width, height, Phaser.CANVAS, 'game'
 
 # Add the states from the Pigvane.States object
 # The last boolean value determines which will run on startup
