@@ -75,13 +75,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
             @cat = false
 
-        # If shooting, fire?
-        if @game.input.keyboard.isDown Phaser.Keyboard.X
-            @fire()
-        # If not, update his facing, and display the correct animation
-        else
-           @facing = facing
-
+        
         if @facing is 'right'
             @scale.x = 1
         else if @facing is 'left'
@@ -93,10 +87,20 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
+            if Math.abs( @body.velocity.x ) < 50
+                @body.velocity.x = 0
             if @body.velocity.x > 0
                 @body.velocity.x -= 50
             else if @body.velocity.x < 0
                 @body.velocity.x += 50
+
+        # If shooting, fire?
+        if @game.input.keyboard.isDown Phaser.Keyboard.X
+            @fire()
+        # If not, update his facing, and display the correct animation
+        else
+           @facing = facing
+
 
         if @body.velocity.x is 0 and @body.velocity.y is 0
             @animations.stop()
@@ -126,10 +130,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
-                    @x -= 5 if !@body.touching.left
+                    @body.velocity.x -= 100
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    @x += 5 if !@body.touching.right
+                    bullet.scale.x = -1
+                    @body.velocity.x += 100
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
