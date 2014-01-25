@@ -8,3 +8,12 @@ class Pigvane.Classes.NPCController
         
     update: () ->
         
+        @game.physics.collide Pigvane.Main.bullets, @npcs, @collisionHandler
+    
+    collisionHandler: (obj1, obj2) ->
+        
+        console.log 'Bullet hit!'
+        
+        obj2.hit()
+        
+        obj1.kill()

@@ -58,6 +58,8 @@ class Pigvane.States.Main
 
         # Make camera follow dude
         
+        @npcController.update()
+        
 
 
     # Some helper functions used throughout the game
