@@ -5,6 +5,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Used in collisions
         @name = 'dude'
+        
+        # Is a cat?
+        @cat = true
 
         # Set up animations
         @animations.add 'right',[0,1,2,3]
@@ -33,11 +36,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @lives = 3
         
         @health = 3
-        
-        achievementCallback = () ->
-            Pigvane.Main.achievements.grant('free')
-            
-        setTimeout achievementCallback, 3000
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
@@ -72,6 +70,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
             @canceledJump = true
+            
+        # Determine if cat.
+        if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
+            @cat = false
 
         # If shooting, fire?
         #if @game.input.keyboard.isDown Phaser.Keyboard.X

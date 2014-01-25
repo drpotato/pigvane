@@ -7,9 +7,23 @@ class Pigvane.Classes.Achievements
             'free': {
                 'name': 'The First One is Free',
                 'img': ''
+            },
+            'cat_playable': {
+                'name': 'Even Cats Can Play',
+                'img': ''
             }
         }
         
+        achievementCallback = () ->
+            Pigvane.Main.achievements.grant('free')
+            
+        setTimeout achievementCallback, 1000
+        
+        achievementCallback = () ->
+            if Pigvane.Main.dude.cat
+                Pigvane.Main.achievements.grant('cat_playable')
+                
+        setTimeout achievementCallback, 30000
         
     grant: (achievementName) ->
         
@@ -30,7 +44,7 @@ class Pigvane.Classes.Achievements
         textSprite.fixedToCamera = true
         
         textTitle = @game.add.text(20, 5, 'Achievement Unlocked!', {'font': '12pt Arial'})
-        textName = @game.add.text(20, 50, achievementData['name'], {'font': '12pt Arial'})
+        textName = @game.add.text(20, 50, achievementData['name'], {'font': '12pt Arial', 'fill': 'white'})
         textSprite.addChild(textTitle)
         textSprite.addChild(textName)
         

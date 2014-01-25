@@ -27,12 +27,13 @@ class Pigvane.States.Main
         @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#222034"
-        
-        @achievements = new Pigvane.Classes.Achievements @game
 
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
+        
+        # Add the achievements
+        @achievements = new Pigvane.Classes.Achievements @game
 
         @overlay = @add.sprite 0,0, 'scanlines'
         @overlay.fixedToCamera = true 
