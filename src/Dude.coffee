@@ -17,7 +17,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.play 'right', 16, true
 
         # Set collision size
-        # @body.setSize 0, 0, 32, 32
+        # @body.setSize 0, 0, 32, 32  
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
@@ -110,6 +110,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         return true
 
+    hitByNPC: (obj1, obj2) ->
+        console.log ''
+        obj1.kill()
+        @damage()
+
         
 
     # Fire his non-existent gun!
@@ -142,7 +147,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    bullet.scale.x = -1
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
 
                 # Randomise velocity
