@@ -46,7 +46,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Set resulting speed of body
         @vStep = 50
         @velocity = 200
-        @jumpVelocity = 450
+        @jumpVelocity = 300
         # More if running
         @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
@@ -122,10 +122,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
-                    @x -= 5
+                    @x -= 5 if !@body.touching.left
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    @x += 5
+                    @x += 5 if !@body.touching.right
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)

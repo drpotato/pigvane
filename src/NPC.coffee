@@ -29,8 +29,6 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     
     die: () ->
         
-        console.log @deathAchievement
-        
         if @deathAchievement?
             Pigvane.Main.achievements.grant(@deathAchievement)
             
