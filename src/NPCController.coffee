@@ -9,6 +9,7 @@ class Pigvane.Classes.NPCController
     update: () ->
         
         @game.physics.overlap Pigvane.Main.bullets, @npcs, @collisionHandler
+        
     
     collisionHandler: (obj1, obj2) ->
         
