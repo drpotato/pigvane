@@ -9,10 +9,13 @@ class Pigvane.States.Preloader
         @load.setPreloadSprite @preloadBar
 
         # Load game resources
-        @game.load.spritesheet 'dude', 'res/char-large.png', 32, 32
         @game.load.tilemap 'test', 'res/test.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.tileset 'blocks', 'res/blocks-large.png', 32, 32
-
+        @game.load.image 'achievement_background', 'res/achievement-large.png'
+        @game.load.spritesheet 'dude', 'res/testwalking-large.png', 32, 32
+        @game.load.image 'background', 'res/basebackground.png'
+        @game.load.image 'scanLines', 'res/'
+        
         # Load title screen resources
         @game.load.image 'titlepage', 'res/rickroll.jpg'
         @game.load.image 'logo', 'res/ea.jpg'
@@ -25,4 +28,4 @@ class Pigvane.States.Preloader
         
     startMainMenu: () ->
         # Continue to the `MainMenu` state since all resources have been loaded
-        @game.state.start 'MainMenu'
+        @game.state.start 'Main'
