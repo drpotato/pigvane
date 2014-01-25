@@ -24,7 +24,7 @@ class Pigvane.States.Main
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 2
         @mainLayer.resizeWorld()
 
-        @game.stage.backgroundColor = "#fff"
+        @game.stage.backgroundColor = "#222034"
         
         @achievements = new Pigvane.Classes.Achievements @game
 
@@ -34,6 +34,9 @@ class Pigvane.States.Main
 
         @overlay = @add.sprite 0,0, 'scanlines'
         @overlay.fixedToCamera = true 
+
+        @vignette = @add.sprite 0,0, 'vignette'
+        @vignette.fixedToCamera = true 
 
         @camera.follow @dude, 1
 
