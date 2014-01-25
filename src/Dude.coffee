@@ -152,7 +152,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @respawn()
             @health = 10
             @lives--
-            console.log @lives
+            Pigvane.Main.healthBar.removeLife()
             if @lives == 0
                 # @kill()
                 console.log @game.state.states
