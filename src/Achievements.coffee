@@ -43,7 +43,7 @@ class Pigvane.Classes.Achievements
         textSprite = @game.add.sprite(0, 0)
         textSprite.fixedToCamera = true
         
-        textTitle = @game.add.text(20, 5, 'Achievement Unlocked!', {'font': '12pt Arial'})
+        textTitle = @game.add.text(20, 5, 'Achievement Unlocked!', {'font': '12pt Arial', 'fill': 'white'})
         textName = @game.add.text(20, 50, achievementData['name'], {'font': '12pt Arial', 'fill': 'white'})
         textSprite.addChild(textTitle)
         textSprite.addChild(textName)
