@@ -1,5 +1,5 @@
 class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
-    constructor: (@game, x, y, name, @deathAchievement, @dialog) ->
+    constructor: (@game, x, y, name, @deathAchievement, @helpAchievement, @dialog) ->
         super @game, x, y, name
 
         Pigvane.Main.npcController.npcDialogBoxes.add(new Pigvane.Classes.NPCDialogBox(@game, x, y, @))
@@ -24,12 +24,18 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
         if @dialog? and !@talking and @willTalk
             @talking = true
             response = Pigvane.Main.dialog.popup @dialog, @
+    
+    addAnimations: () ->
+        @animations.add 'walk', [0,1]
+        @animations.play 'walk', 2, true
             
     sendResponse: (option) ->
         @talking = false
         @willTalk = false
         switch option
             when '1'
+                if @helpAchievement?
+                    Pigvane.Main.achievements.grant @helpAchievement
                 Pigvane.Main.dude.helps += 1
             when '2'
                 Pigvane.Main.dude.ignores += 1
