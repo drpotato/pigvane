@@ -49,6 +49,10 @@ class Pigvane.Classes.Dialog
                 'request': '"I used to run fast, but without my lucky sneakers I\'ll never run like I used to."',
                 'options': '1. "You never needed the sneakers. \'You could run fast all day long\'"\n2. "Gotta go fast!"\n3. "I don\t care for your pumped up kicks, you can\'t outrun my gun!"'
             }
+            'monk': {
+                'request': '"Karma is a big deal y\'know. If you are a good person, you\'ll get a good ending, but if you\'re evil... well, you don\'t wanna know."',
+            'options': '1. "Peace be with you, brother" \n2. Look strangely at the monk and back away. \n3. "Convert this!"'
+            }
         }
     
     popup: (dialogName, npc) ->
@@ -63,7 +67,7 @@ class Pigvane.Classes.Dialog
 
         textSprite = @game.add.sprite()
 
-        text = @game.add.text(30, 30, @dialogList[dialogName]['request'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 200 })
+        text = @game.add.text(40, 40, @dialogList[dialogName]['request'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 550 })
         textSprite.addChild(text)
         textSprite.fixedToCamera = true
 
@@ -85,7 +89,7 @@ class Pigvane.Classes.Dialog
         
                 textSprite = Pigvane.Main.game.add.sprite()
         
-                text = Pigvane.Main.game.add.text(30, 30, Pigvane.Main.dialog.dialogList[dialogName]['options'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 200 })
+                text = Pigvane.Main.game.add.text(40, 40, Pigvane.Main.dialog.dialogList[dialogName]['options'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 550 })
                 textSprite.addChild(text)
                 textSprite.fixedToCamera = true
                 
@@ -111,7 +115,7 @@ class Pigvane.Classes.Dialog
                         Pigvane.Main.game.add.tween(dialog).to({y: 80, alpha: 0}, 2000, Phaser.Easing.Linear.None, true)
                         npc.sendResponse 'reset'
                     else
-                        setTimeout waitForIt, 100
+                        setTimeout waitForIt, 50
                 
                 waitForIt()
                 )
