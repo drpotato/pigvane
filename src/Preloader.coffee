@@ -15,6 +15,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'dude', 'res/testwalking-large.png', 32, 32
         @game.load.image 'background', 'res/basebackground.png'
         @game.load.image 'scanlines', 'res/scanlines.png'
+        @game.load.image 'vignette', 'res/vignette.png'
         
         # Load title screen resources
         @game.load.image 'titlepage', 'res/rickroll.jpg'
