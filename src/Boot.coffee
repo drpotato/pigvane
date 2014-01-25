@@ -5,6 +5,7 @@ class Pigvane.States.Boot
 
     # We currently don't do anything in the Boot state
     preload: () ->
+    	@game.load.image 'preload', 'res/barscaled.png'
 
     create: () ->
     	# Continue on to the `Preloader` state
