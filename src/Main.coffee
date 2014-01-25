@@ -28,6 +28,9 @@ class Pigvane.States.Main
         @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
 
+        @overlay = @add.sprite 0,0, 'scanlines'
+        @overlay.fixedToCamera = true 
+
         @camera.follow @dude, 1
 
     # Called every frame
