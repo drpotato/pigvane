@@ -8,7 +8,7 @@ module.exports = function(grunt) {
             main: {
                 files: [
                     {cwd: 'src/', expand: true, src: ['*.html'], dest: 'dev/'},
-                    {cwd: 'src/res/public/', expand: true, src: ['*.json', '*.ttf', '*.otf'], dest: 'dev/res/'}
+                    {cwd: 'src/res/public/noupscale', expand: true, src: ['**'], dest: 'dev/res/'}
                 ],
                 nonull: true
             },
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['**.png'],
-                    cwd: 'src/res/public/',
+                    cwd: 'src/res/public/upscale',
                     dest: 'dev/res/'
                 }]
             }
@@ -59,7 +59,7 @@ module.exports = function(grunt) {
 
         watch: {
             img: {
-                files: ['src/res/**'],
+                files: ['src/res/public/upscale/**'],
                 tasks: ['responsive_images:main'],
                 options: {
                     livereload: true,
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
                 }
             },
             statics: {
-                files: ['src/res/public/**', 'src/*.html'],
+                files: ['src/res/public/noupscale', 'src/*.html'],
                 tasks: ['copy:main'],
                 options: {
                     livereload: true,

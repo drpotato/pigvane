@@ -12,7 +12,9 @@ class Pigvane.Classes.Achievements
         }
         
         
-    grant: () ->
+    grant: (achivementName) ->
+        
+        achievementData = @achievementList[achievementName]
         
         achievement = @game.add.group()
         
@@ -23,7 +25,7 @@ class Pigvane.Classes.Achievements
         achievement.x = @game.width - achievement.width
         achievement.y = @game.height
         
-        background = achievement.create(0, 0, 'achievement_background')
+        background = achievement.create(0, 0, achievementData['img'])
         
         textSprite = @game.add.sprite(0, 0,)
         textSprite.fixedToCamera = true
