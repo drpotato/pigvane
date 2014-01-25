@@ -9,7 +9,9 @@ module.exports = function(grunt) {
                 files: [
                     {cwd: 'src/', expand: true, src: ['*.html'], dest: 'dev/'},
                     {cwd: 'src/res/public/noupscale', expand: true, src: ['**'], dest: 'dev/res/'},
-                    {cwd: 'src/res/public/upscale', expand: true, src: ['**.json'], dest: 'dev/res/'}
+                    {cwd: 'src/res/public/upscale', expand: true, src: ['**.json'], dest: 'dev/res/'},
+                    {cwd: 'src/res/public/sounds', expand: true, src: ['**.mp3'], dest: 'dev/res/'}
+                    
                 ],
                 nonull: true
             },

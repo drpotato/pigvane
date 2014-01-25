@@ -18,6 +18,7 @@ class Pigvane.States.Preloader
         @game.load.image 'scanlines', 'res/scanlines.png'
         @game.load.image 'vignette', 'res/vignette.png'
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
+        @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
         
         # Load title screen resources
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
