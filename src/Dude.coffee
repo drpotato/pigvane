@@ -29,6 +29,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @facing = 'right'
 
         @body.gravity.y = 10
+        
+        @lives = 3
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
