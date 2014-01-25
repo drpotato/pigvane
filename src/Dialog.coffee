@@ -49,6 +49,10 @@ class Pigvane.Classes.Dialog
                 'request': '"I used to run fast, but without my lucky sneakers I\'ll never run like I used to."',
                 'options': '1. "You never needed the sneakers. \'You could run fast all day long\'"\n2. "Gotta go fast!"\n3. "I don\t care for your pumped up kicks, you can\'t outrun my gun!"'
             }
+            'monk': {
+                'request': '"Karma is a big deal y\'know. If you are a good person, you\'ll get a good ending, but if you\'re evil... well, you don\'t wanna know."',
+            'options': '1. "Peace be with you, brother" \n2. Look strangely at the monk and back away \n3. "Convert this!"'
+            }
         }
     
     popup: (dialogName, npc) ->
