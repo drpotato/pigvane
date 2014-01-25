@@ -45,7 +45,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set resulting speed of body
         @vStep = 50
-        @velocity = 100
+        @velocity = 200
         @jumpVelocity = 450
         # More if running
         @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
@@ -53,15 +53,15 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
 
+        facing = @facing
+
         # Series of ifs to change dude velocity if arrow keys are pressed
         if @cursors.left.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x >= 0 )
             @body.velocity.x -= @vStep
             facing = 'left'
-            @scale.x = -1
         else if @cursors.right.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x <= 0 )
             @body.velocity.x += @vStep
             facing = 'right'
-            @scale.x = 1
 
         if @cursors.up.isDown and @body.touching.down
             @body.velocity.y = -@jumpVelocity
@@ -76,11 +76,16 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @cat = false
 
         # If shooting, fire?
-        #if @game.input.keyboard.isDown Phaser.Keyboard.X
-            # @fire()
+        if @game.input.keyboard.isDown Phaser.Keyboard.X
+            @fire()
         # If not, update his facing, and display the correct animation
-        # else
-        #    @facing = facing
+        else
+           @facing = facing
+
+        if @facing is 'right'
+            @scale.x = 1
+        else if @facing is 'left'
+            @scale.x = -1
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
@@ -92,7 +97,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @body.velocity.x is 0 and @body.velocity.y is 0
             @animations.stop()
         else
-            @animations.play 'jump', 16, true
+            @animations.play 'right', 16, true
 
         return true
 
@@ -104,19 +109,30 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.time.now > @nextBullet
 
             # See if there is a free bullet 
-            bullet = Pigvane.Main.groups.bulletsGroup.getFirstExists false
+            bullet = Pigvane.Main.bullets.getFirstExists false
 
             # If there is one
             if bullet
                 # Reset it to the dude's position
                 bullet.reset @x, @y
+
+                bullet.animations.frame = 2
                 # Change velocity and position of bullet based on the way the dude is facing.  
                 # Also knockback dude.
                 
+                if @facing is 'right'
+                    bullet.body.velocity.x = 1000
+                    @x -= 5
+                else if @facing is 'left'
+                    bullet.body.velocity.x = -1000
+                    @x += 5
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-                bullet.body.velocity.y += @game.rnd.integerInRange(-100, 100)
+                bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+
+                # @game.world.camera.x += @game.rnd.integerInRange -20, 20
+                # @game.world.camera.y += @game.rnd.integerInRange -20, 20
 
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80

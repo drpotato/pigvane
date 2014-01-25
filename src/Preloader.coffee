@@ -17,10 +17,11 @@ class Pigvane.States.Preloader
         @game.load.image 'background', 'res/basebackground.png'
         @game.load.image 'scanlines', 'res/scanlines.png'
         @game.load.image 'vignette', 'res/vignette.png'
+        @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
         
         # Load title screen resources
-        @game.load.image 'titlepage', 'res/rickroll.jpg'
-        @game.load.image 'logo', 'res/ea.jpg'
+        # @game.load.image 'titlepage', 'res/rickroll.jpg'
+        # @game.load.image 'logo', 'res/ea.jpg'
 
     create: () ->
         # Animate the preloadBar
