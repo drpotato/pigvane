@@ -8,11 +8,14 @@ class Pigvane.States.Main
 
         @gameWidth = 5
         
-        @city_music = @game.add.audio 'ambient_city_music', 1, true
-        @candy_music = @game.add.audio 'ambient_candy_music', 1, true
-        @forest_music = @game.add.audio 'ambient_forest_music', 1, true
+        # Create a sound manager and add music
+        @soundManager = new Phaser.SoundManager(@game)
         
-        @city_music.play()
+        @soundManager.musicCity = @soundManager.add 'ambient_city_music', 1, true
+        @soundManager.musicCandy = @soundManager.add 'ambient_candy_music', 1, true
+        @soundManager.musicForest = @soundManager.add 'ambient_forest_music', 1, true
+        
+        # @soundManager.musicCity.play()
 
         @background = @add.sprite 0, 0, 'background'
         @background.fixedToCamera = true 
