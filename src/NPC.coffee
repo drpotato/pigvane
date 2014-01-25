@@ -107,4 +107,5 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         @kill()
         @destroy()
         Pigvane.Main.dude.kills += 1
+        Pigvane.Main.dude.aggro += 1
     
