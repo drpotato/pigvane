@@ -3,6 +3,8 @@ class Pigvane.Classes.Achievements
         
         @achievements = @game.add.group()
         
+        @numberAchievements = 0
+        
         @achievementList = {
             'free': {
                 'name': 'The First One is Free',
@@ -143,6 +145,8 @@ class Pigvane.Classes.Achievements
         
     grant: (achievementName) ->
         
+        @numberAchievements += 1
+        
         achievementData = @achievementList[achievementName]
         
         achievement = @game.add.group()
@@ -170,12 +174,13 @@ class Pigvane.Classes.Achievements
         text.fixedToCamera = true
         
         
-        @game.add.tween(achievement).to({y: @game.height-achievement.height}, 1000, Phaser.Easing.Linear.None, true)
+        @game.add.tween(achievement).to({y: @game.height-achievement.height * @numberAchievements}, 1000, Phaser.Easing.Linear.None, true)
         
         callback = () -> 
-            tween = Pigvane.Main.game.add.tween(achievement).to({y: Pigvane.Main.game.height}, 2000, Phaser.Easing.Linear.None, true)
+            tween = Pigvane.Main.game.add.tween(achievement).to({alpha: 0}, 3000, Phaser.Easing.Linear.None, true)
             tween.onComplete.add( () ->
                 achievement.destroy()
+                Pigvane.Main.achievements.numberAchievements -= 1
                 )
         
         setTimeout callback, 3000

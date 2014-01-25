@@ -7,6 +7,10 @@ class Pigvane.States.Main
         Pigvane.Main = @
 
         @gameWidth = 5
+        
+        @city_music = @game.add.audio 'ambient_city_music', 1, true
+        
+        @city_music.play()
 
         @background = @add.sprite 0, 0, 'background'
         @background.fixedToCamera = true 
