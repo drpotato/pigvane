@@ -1,7 +1,9 @@
 class Pigvane.Classes.NPC extends Phaser.Sprite
-    constructor: (@game, x, y, name, @deathAchievement) ->
+    constructor: (@game, x, y, name, @deathAchievement, @dialog) ->
         
         super @game, x, y, name
+        
+        Pigvane.Main.npcController.npcDialogBoxes.add(new Pigvane.Classes.NPCDialogBox(@game, x, y, @))
         
         # Set collision size
         @anchor.setTo(0.5,0.5)
@@ -30,7 +32,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     die: () ->
         
         if @deathAchievement?
-            Pigvane.Main.achievements.grant(@deathAchievement)
-            
-        
-        
+            Pigvane.Main.achievements.grant @deathAchievement
+    
+    talk: () ->
+        if @dialog?
+            response = Pigvane.Main.dialog.popup @dialog

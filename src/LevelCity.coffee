@@ -4,6 +4,8 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
         super(@game)
         
+        @npcController.npcs.add new Pigvane.Classes.NPC(@game, 100, 50, 'hat_npc', 'kill_1', 'dialog_template')
+        
     doSound: () ->
         @soundManager.music = @soundManager.add 'ambient_city_music', 1, true
         

@@ -19,10 +19,10 @@ class Pigvane.Classes.Dialog
         bg.fixedToCamera = true
 
         textSprite = @game.add.sprite()
-        textSprite.fixedToCamera = true
 
         text = @game.add.text(30, 30, @dialogList[dialogName]['request'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 200 })
         textSprite.addChild(text)
+        textSprite.fixedToCamera = true
 
         @dialog.add text
 

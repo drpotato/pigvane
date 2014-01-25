@@ -66,8 +66,6 @@ class Pigvane.Classes.Level
 
     # Called every frame
     update: ->
-        if @game.input.keyboard.isDown Phaser.Keyboard.C
-            @dialog.popup 'dialog_template'
         
         @npcController.update()
         

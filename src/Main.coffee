@@ -5,3 +5,7 @@ class Pigvane.States.Main
         
     preload: (@game) ->
         @levelCity = new Pigvane.Classes.LevelCity(@game)
+        
+    update: () ->
+        
+        @levelCity.update()

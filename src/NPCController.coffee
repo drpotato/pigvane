@@ -2,13 +2,12 @@ class Pigvane.Classes.NPCController
     constructor: (@game) ->
         
         @npcs = @game.add.group()
-        
-        # Create NPCs here...
-        @npcs.add new Pigvane.Classes.NPC(@game, @game.height - 50, 50, 'hat_npc', 'kill_1')
+        @npcDialogBoxes = @game.add.group()
         
     update: () ->
         
         @game.physics.overlap Pigvane.Main.bullets, @npcs, @collisionHandler
+        @game.physics.overlap Pigvane.Main.dude, @npcDialogBoxes, @dialogHandler
         
     
     collisionHandler: (obj1, obj2) ->
@@ -17,3 +16,7 @@ class Pigvane.Classes.NPCController
         
         if obj2.health > 0
             obj1.kill()
+    
+    dialogHandler: (obj1, obj2) ->
+        
+        obj2.initateDialog()
