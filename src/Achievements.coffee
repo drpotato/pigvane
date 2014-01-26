@@ -38,7 +38,7 @@ class Pigvane.Classes.Achievements
             },
             
             'suburbs_complete': {
-                'name': 'A Dream On Oak Road',
+                'name': 'Concrete Jungle',
                 'img': 'achievement_city_complete'
             },
             
