@@ -4,7 +4,7 @@ class Pigvane.Classes.DLC
         @choosing = false
         
     popup: () ->
-        
+
         if !@choosing
             @choosing = true
             dialog = @game.add.group()
@@ -26,20 +26,20 @@ class Pigvane.Classes.DLC
                         
                 if Pigvane.Main.game.input.keyboard.isDown 49
                     dialog.destroy()
-                    @purchase()
+                    Pigvane.Main.dlc.purchase()
                 else if Pigvane.Main.game.input.keyboard.isDown 50
                     dialog.destroy()
-                    @purchase()
-                else if Pigvane.Main.game.input.keyboard.isDown Phaser.Keyboard.LEFT
-                    @choosing = false
-                    dialog.destroy()
-                else if Pigvane.Main.game.input.keyboard.isDown Phaser.Keyboard.RIGHT
-                    @choosing = false
-                    dialog.destroy()
+                    Pigvane.Main.dlc.purchase()
+                # else if Pigvane.Main.game.input.keyboard.isDown Phaser.Keyboard.LEFT
+                #     @choosing = false
+                #     dialog.destroy()
+                # else if Pigvane.Main.game.input.keyboard.isDown Phaser.Keyboard.RIGHT
+                #     @choosing = false
+                #     dialog.destroy()
                 else
                     setTimeout waitForIt, 100
             
             waitForIt()
     
     purchase: () ->
-        Pigvane.Main.dude.body.position.x += 1664
+        Pigvane.Main.dude.x = 8192
