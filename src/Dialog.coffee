@@ -12,25 +12,25 @@ class Pigvane.Classes.Dialog
             },
             'ice_cream_kid': {
                 'request': '*sob* "My ICE CREEEEAM WAAAAHH!" *sob*',
-                'options': '1. "Kid, you don\'t need to scream for ice cream, here\'s a dollar."\n2. Let out a shrill scream and walk away.\n3. Give the kid a 9mm brian freeze.'
+                'options': '1. "Kid, you don\'t need to scream for ice cream, here\'s a dollar."\n2. Let out a shrill scream and walk away.\n3. Give the kid a 9mm brain freeze.'
             },
             'girl_with_pig': {
                 'request': '"My little piggy is just so adorable."',
                 'options': '1. Give her a pretty pink bow for her pig.\n2. Stare the pig in the eye and say "I love you." then leave.\n3. Make some bacon.'
             },
             'candy_crusher': {
-                'request': '"Crushing candy™ all day long, if only I could do this from my phone, then people would follow my saga™."',
-                'options': '1. Shop him to the app store.\n2. Leave before anyone takes legal action.\n3. Crush™ his dreams.'
+                'request': '"Crushing candy(tm) all day long, if only I could do this from my phone, then people would follow my saga(tm)."',
+                'options': '1. Shop him to the app store.\n2. Leave before anyone takes legal action.\n3. Crush(tm) his dreams.'
             },
             'cake_cat': {
                 'request': '"Have you seen Fionna anywhere? Oh I hope she took a jacket otherwise she\'ll get frozen solid!"',
                 'options': '1. "Maybe she went to see the gumball guy."\n2. "No."\n3. "I\'ll freeze you solid."'
             },'angry_pig': {
-                'request': '"Ooohh... * belch* I shouldn\'t have eaten so much candy™."',
-                'options': '1. Offer your sympathy and a pat on the back.\n2. Eat some candy™ infront of him.\n3. "I\'ve always wondered what green ham tastes like... Now I just need some green eggs."'
+                'request': '"Ooohh... * belch* I shouldn\'t have eaten so much candy(tm)."',
+                'options': '1. Offer your sympathy and a pat on the back.\n2. Eat some candy(tm) infront of him.\n3. "I\'ve always wondered what green ham tastes like... Now I just need some green eggs."'
             },
             'fruit_ninja': {
-                'request': '"Fruit has no place in candy™ land. Their vitamins and minerals must be sliced to pieces."',
+                'request': '"Fruit has no place in candy(tm) land. Their vitamins and minerals must be sliced to pieces."',
                 'options': '1. Join in the fruit massacre.\n2. "Nope."\n3. Kill the ninja and begin a fruit uprising.'
             },
             'red_riding_hood': {
