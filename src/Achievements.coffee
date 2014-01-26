@@ -1,8 +1,6 @@
 class Pigvane.Classes.Achievements
     constructor: (@game) ->
         
-        @achievements = @game.add.group()
-        
         @numberAchievements = 0
         
         @achievementList = {
@@ -12,121 +10,121 @@ class Pigvane.Classes.Achievements
             },
             'cat_playable': {
                 'name': 'Even Cats Can Play',
-                'img': ''
+                'img': 'achievement_cats_can_play'
             },
             'first_steps': {
                 'name': 'First Steps',
-                'img': ''
+                'img': 'achievement_first_steps'
             },
             
             '3_lives': {
                 'name': 'You Only Live Thrice',
-                'img': ''
+                'img': 'achievement_3_lives'
             },
             
             'dlc': {
                 'name': 'I Love Horse Armor',
-                'img': ''
+                'img': 'achievement_dlc'
             },
             
             'kill_1': {
-                'name': 'Say Hello To My Little Friend',
-                'img': ''
+                'name': 'Say Hello To My Little Friend!',
+                'img': 'achievement_first_blood'
             }, 
             
             'pacifist': {
                 'name': 'It\'s All Sunshine and Rainbows',
-                'img': ''
+                'img': 'achievement_sunshine_rainbows'
             },
             
             'suburbs_complete': {
                 'name': 'A Dream On Oak Road',
-                'img': ''
+                'img': 'achievement_city_complete'
             },
             
             'candyland_complete': {
                 'name': 'Copyright Violation',
-                'img': ''
+                'img': 'achievement_copyright_violation'
             },
             
             'old_man_kill': {
                 'name': 'Euthanasia Enthusiast'
-                'img': ''
+                'img': 'achievement_kill_old_man'
             },
             
             'old_man_help': {
                 'name': 'Let There Be Sight!'
-                'img': ''
+                'img': 'achievement_help_old_man'
             },
             
             'kid_kill': {
                 'name': 'Yuck 9mm flavour'
-                'img': ''
+                'img': 'achievement_kill_kid'
             },
             
             'kid_help': {
                 'name': 'Diabetes Enabler'
-                'img': ''
+                'img': 'achievement_help_kid'
             },
             
             'pig_owner_kill': {
                 'name': 'Makin\' some bacon'
-                'img': ''
+                'img': 'achievement_kill_pig_owner'
             },
             
             'pig_owner_help': {
                 'name': 'Lipstick on a Pig'
-                'img': ''
+                'img': 'achievement_help_pig_owner'
             },
             
             'monk_kill': {
                 'name': 'No Yin, Only Yang'
-                'img': ''
+                'img': 'achievement_kill_monk'
             },
             
             'monk_help': {
                 'name': 'Enlightened'
-                'img': ''
+                'img': 'achievement_help_monk'
             },
             
             'crusher_kill': {
                 'name': 'Better Lawyer Up'
-                'img': ''
+                'img': 'achievement_kill_candy_crusher'
             },
             
             'crusher_help': {
                 'name': 'Delicious!'
-                'img': ''
+                'img': 'achievement_help_candy_crusher'
             },
             
             'cat_kill': {
                 'name': 'Schrodinger\'s cat'
-                'img': ''
+                'img': 'achievement_kill_cat'
             },
             
             'cat_help': {
                 'name': 'Time For Adventure!'
-                'img': ''
+                'img': 'achievement_help_cat'
             },
             
             'sick_pig_kill': {
                 'name': 'Green Eggs and Ham'
-                'img': ''
+                'img': 'achievement_kill_sick_pig'
             },
             
             'sick_pig_help': {
                 'name': 'At Least There\'s No Birds'
-                'img': ''
+                'img': 'achievement_help_sick_pig'
             },
             
             'ninja_kill': {
                 'name': 'Gun Beats Sword'
-                'img': ''
+                'img': 'achievement_kill_fruit_ninja'
             },
             
             'ninja_help': {
                 'name': 'Fruit Massacre'
-                'img': ''
+                'img': 'achievement_help_fruit_ninja'
             },
             
             'red_kill': {
@@ -214,14 +212,17 @@ class Pigvane.Classes.Achievements
             
             achievement = @game.add.group()
             
-            @achievements.add achievement._container
-            
             achievement.height = 100
             achievement.width = 350
             achievement.x = @game.width - achievement.width
             achievement.y = @game.height
             
             background = achievement.create(0, 0, 'achievement_background')
+            
+            imageWrapperSprite = @game.add.sprite(0,0)
+            imageSprite = @game.add.sprite(25, 25, achievementData['img'])
+            
+            imageWrapperSprite.addChild(imageSprite)
             
             textSprite = @game.add.sprite(0, 0)
             textSprite.fixedToCamera = true
@@ -232,18 +233,20 @@ class Pigvane.Classes.Achievements
             textSprite.addChild(textName)
             
             text = achievement.add(textSprite)
+            image = achievement.add(imageWrapperSprite)
             
             background.fixedToCamera = true
             text.fixedToCamera = true
+            image.fixedToCamera = true
             
             
             @game.add.tween(achievement).to({y: @game.height-achievement.height * @numberAchievements}, 1000, Phaser.Easing.Linear.None, true)
             
             callback = () -> 
-                Pigvane.Main.achievements.numberAchievements -= 1
                 tween = Pigvane.Main.game.add.tween(achievement).to({alpha: 0}, 3000, Phaser.Easing.Linear.None, true)
                 tween.onComplete.add( () ->
                     achievement.destroy()
+                    Pigvane.Main.achievements.numberAchievements -= 1
                     )
             
             setTimeout callback, 3000

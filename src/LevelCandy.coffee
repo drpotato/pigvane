@@ -7,12 +7,15 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         
         # @spawnRandomNPCs()
         
-        # @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 'kill_1', 'dialog_template')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 3200, 384, 'npc_oldman', 4, 'old_man_kill', 'old_man_help', 'old_man')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 4192, 160, 'npc_pig_girl', 2, 'pig_owner_kill', 'pig_owner_kill', 'girl_with_pig')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 512, 512, 'npc_monk', 2, 'monk_kill', 'monk_help', 'monk')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 5568, 288, 'npc_ice_cream_girl', 2, 'kid_help', 'kid_help', 'ice_cream_kid')
         
     doSound: () ->
-        @soundManager.music = @soundManager.add 'circus_music', 1, true
         
-        # @soundManager.music.play()
+        @soundController.music = @game.add.audio 'circus_music', 0.5, true
+        @soundController.music.play();
     
     spawnRandomNPCs: () ->
     	for i in [0...100]

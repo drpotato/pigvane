@@ -6,7 +6,6 @@ class Pigvane.States.Main
         @currentLevelIndex = 0
         @nextLevelIndex = 1
         
-        
     preload: (@game) ->
         @game.state.add 'City', Pigvane.Classes.LevelCity, false
         @game.state.add 'Candy', Pigvane.Classes.LevelCandy, false

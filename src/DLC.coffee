@@ -26,10 +26,10 @@ class Pigvane.Classes.DLC
                         
                 if Pigvane.Main.game.input.keyboard.isDown 49
                     dialog.destroy()
-                    console.log 1
+                    @purchase()
                 else if Pigvane.Main.game.input.keyboard.isDown 50
                     dialog.destroy()
-                    console.log 2
+                    @purchase()
                 else if Pigvane.Main.game.input.keyboard.isDown Phaser.Keyboard.LEFT
                     @choosing = false
                     dialog.destroy()
@@ -40,3 +40,6 @@ class Pigvane.Classes.DLC
                     setTimeout waitForIt, 100
             
             waitForIt()
+    
+    purchase: () ->
+        Pigvane.Main.dude.body.position.x += 1664
