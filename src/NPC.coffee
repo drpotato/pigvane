@@ -1,5 +1,5 @@
 class Pigvane.Classes.NPC extends Phaser.Sprite
-    constructor: (@game, x, y, name, deathAchievement) ->
+    constructor: (@game, x, y, name, @deathAchievement) ->
         
         super @game, x, y, name
         
@@ -21,8 +21,6 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
     hit: () ->
         
-        console.log @health
-        
         if @health > 0
             @health -= 1
         
@@ -31,10 +29,10 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     
     die: () ->
         
-        console.log deathAchievement
+        console.log @deathAchievement
         
-        if deathAchievement?
-            Pigvane.Main.achievements.grant(deathAchievement)
+        if @deathAchievement?
+            Pigvane.Main.achievements.grant(@deathAchievement)
             
         
         
