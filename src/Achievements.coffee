@@ -38,7 +38,7 @@ class Pigvane.Classes.Achievements
             },
             
             'suburbs_complete': {
-                'name': 'A Dream On Oak Road',
+                'name': 'Concrete Jungle',
                 'img': 'achievement_city_complete'
             },
             
@@ -195,9 +195,15 @@ class Pigvane.Classes.Achievements
             
         setTimeout achievementCallback, 1000
         
+        endCallback = () ->
+            Pigvane.levelController.currentLevelIndex = 2
+            Pigvane.levelController.loadLevel()
+        
         achievementCallback = () ->
             if Pigvane.Main.dude.cat
                 Pigvane.Main.achievements.grant('cat_playable')
+                
+                setTimeout endCallback, 3000
                 
         setTimeout achievementCallback, 30000
         
