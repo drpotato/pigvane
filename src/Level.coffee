@@ -2,6 +2,7 @@ class Pigvane.Classes.Level
     # `@game` automatically creates this.game
     constructor: (@game) ->
 
+    preload: () ->
         # Set up cross Class communication as we cannot access parent classes in js
         Pigvane.Main = @
 
@@ -48,8 +49,6 @@ class Pigvane.Classes.Level
 
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
         @mainLayer.resizeWorld()
-
-        @fgLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
 
         @game.stage.backgroundColor = "#222034"
 
@@ -102,8 +101,14 @@ class Pigvane.Classes.Level
         
         @game.world.camera.follow @dude, 1
 
+        @subPreload()
+
     # Called every frame
     update: ->
+
+        if @game.world.camera.x > @config.nextLeveLX
+            Pigvane.levelController.nextLevelIndex = 1
+            @fadeOut()
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
 
@@ -111,13 +116,46 @@ class Pigvane.Classes.Level
         
         @npcController.update()
 
+    nextState: () ->
+        @game.state.start 'Candy', true, true
+
+    fadeOut: () ->
+        # spr_bg = @game.add.graphics 0, 0
+        # spr_bg.fixedToCamera = true
+        # spr_bg.beginFill 0x000000, 1
+        # spr_bg.drawRect 0, 0, @game.width*10, @game.height*10
+        # spr_bg.alpha = 0
+        # spr_bg.endFill()
+
+        # s = this.game.add.tween spr_bg
+        # s.to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true)
+        # s.onComplete.add(Pigvane.levelController.changeToLevel, Pigvane.levelController)
+        # s.start()
+        Pigvane.levelController.changeToLevel()
+
     envHit: (obj1, obj2) ->
-        console.log 'Hey'
         obj1.kill()
 
-    # Some helper functions used throughout the game
-    calculateDistance: (aX, aY, bX, bY) ->
-        return Math.pow Math.pow( aX - bX, 2 ) + Math.pow( aY - bY, 2 ), 0.5
+    unload: () ->
+        # @soundManager.destroy()
+        @background.destroy()
+        @map.destroy()
+        # @tileset.destroy()
+        @bgScroll.destroy()
+        @bgbgScroll.destroy()
+        @mainLayer.destroy()
+        @fgLayer.destroy()
+        @dude.destroy()
+        @npcController.npcs.destroy()
+        @npcController.npcDialogBoxes.destroy()
+        @npcController = null
+        @bullets.destroy()
+        @enemyBullets.destroy()
+        @dialog = null
+        @overlay.destroy()
+        @vignette.destroy()
+        @healthBar = null
+
 
         
 

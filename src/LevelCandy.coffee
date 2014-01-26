@@ -1,12 +1,13 @@
 class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
 
     constructor: (@game) ->
-        
         super(@game)
+
+    subPreload: () ->
         
         # @spawnRandomNPCs()
         
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 'kill_1', 'dialog_template')
+        # @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 'kill_1', 'dialog_template')
         
     doSound: () ->
         @soundManager.music = @soundManager.add 'circus_music', 1, true
@@ -23,6 +24,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @config.tileset = 'candy-ts'
         @config.bgScroll1 = 'candy-bgScroll1'
         @config.bgScroll2 = 'candy-bgScroll2'
+        @config.nextLeveLX = 1000
 
     repositionParallax: () ->
         @bgScroll.tilePosition.y = 0
