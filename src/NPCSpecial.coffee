@@ -1,5 +1,5 @@
 class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
-    constructor: (@game, x, y, name, @deathAchievement, @helpAchievement, @dialog) ->
+    constructor: (@game, x, y, name, @numberFrames, @deathAchievement, @helpAchievement, @dialog) ->
         super @game, x, y, name
 
         Pigvane.Main.npcController.npcDialogBoxes.add(new Pigvane.Classes.NPCDialogBox(@game, x, y, @))
@@ -19,6 +19,7 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
         if @deathAchievement?
             # @animations.frame = ?
             Pigvane.Main.achievements.grant @deathAchievement
+            @destroy()
     
     talk: () ->
         if @dialog? and !@talking and @willTalk
@@ -26,7 +27,7 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
             response = Pigvane.Main.dialog.popup @dialog, @
     
     addAnimations: () ->
-        @animations.add 'walk', [0,1]
+        @animations.add 'walk', [0...@numberFrames]
         @animations.play 'walk', 2, true
             
     sendResponse: (option) ->

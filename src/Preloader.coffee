@@ -41,7 +41,7 @@ class Pigvane.States.Preloader
         
         # NPCs
         @game.load.spritesheet 'npc_oldman', 'res/oldman-large.png', 32, 32
-        @game.load.spritesheet 'npc_pig_girl', 'res/piggirl-large.png', 32, 32
+        @game.load.spritesheet 'npc_pig_girl', 'res/piggirl-large.png', 64, 32
         @game.load.spritesheet 'npc_monk', 'res/monk-large.png', 32, 32
         @game.load.spritesheet 'npc_ice_cream_girl', 'res/icecreamgirl-large.png', 32, 32
 
