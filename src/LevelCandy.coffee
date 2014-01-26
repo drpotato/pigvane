@@ -32,4 +32,4 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @bgbgScroll.tilePosition.y = 0
 
     initCollisions: () ->
-    	@tileset.setCollisionRange 0, 25, true, true, true, true
+    	@tileset.setCollisionRange 0, 30, true, true, true, true
