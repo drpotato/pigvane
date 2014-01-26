@@ -14,12 +14,15 @@ class Pigvane.States.Preloader
         @game.load.tilemap 'city-tm', 'res/city-level.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.tileset 'city-ts', 'res/tiles-large.png', 32, 32
         @game.load.image 'city-bg', 'res/coolbackestround.png'
+        @game.load.image 'city-bgScroll1', 'res/bg1-large.png'
+        @game.load.image 'city-bgScroll2', 'res/bg2-large.png'
 
-        @game.load.tilemap 'candy-tm', 'res/candylandtest.json', null, Phaser.Tilemap.TILED_JSON
+
+        @game.load.tilemap 'candy-tm', 'res/candyland-map.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.tileset 'candy-ts', 'res/candylandtiles-large.png', 32, 32
-
-        @game.load.image 'bgScroll', 'res/bg1-large.png'
-        @game.load.image 'bgbgScroll', 'res/bg2-large.png'
+        @game.load.image 'candy-bg', 'res/candybase-large.png'
+        @game.load.image 'candy-bgScroll1', 'res/candycanes3-large.png'
+        @game.load.image 'candy-bgScroll2', 'res/candycanes1-large.png'
 
         @game.load.spritesheet 'lives', 'res/heart-large.png', 32, 32
 

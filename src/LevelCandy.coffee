@@ -18,9 +18,15 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
     		@npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 10, 'hat_npc')
         
     setVariables: () ->
-        @config.background = 'background'
+        @config.background = 'candy-bg'
         @config.tilemap = 'candy-tm'
         @config.tileset = 'candy-ts'
+        @config.bgScroll1 = 'candy-bgScroll1'
+        @config.bgScroll2 = 'candy-bgScroll2'
+
+    repositionParallax: () ->
+        @bgScroll.tilePosition.y = 0
+        @bgbgScroll.tilePosition.y = 0
 
     initCollisions: () ->
     	@tileset.setCollisionRange 0, 25, true, true, true, true
