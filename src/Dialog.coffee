@@ -34,7 +34,7 @@ class Pigvane.Classes.Dialog
                 'options': '1. Join in the fruit massacre.\n2. "Nope."\n3. Kill the ninja and begin a fruit uprising.'
             },
             'red_riding_hood': {
-                'request': '"Wow grandma, what big teeth you have!"\n "All the better to eat you with."',
+                'request': '"Wow grandma, what big teeth you have!"\n "All the better to eat yo.. eat with."',
                 'options': '1. "That\'s clearly a wolf little girl"\n2. Pull up a chair and watch.\n3. "That cave looks like a nice private eating spot."'
             },
             'squirrell': {
