@@ -14,8 +14,8 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         
     doSound: () ->
         
-        @soundController.music = @game.add.audio 'circus_music', 0.5, true
-        @soundController.music.play();
+        @soundManager.music = @game.add.audio 'circus_music', 0.5, true
+        @soundManager.music.play();
     
     spawnRandomNPCs: () ->
     	for i in [0...100]

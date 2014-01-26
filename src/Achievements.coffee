@@ -6,7 +6,7 @@ class Pigvane.Classes.Achievements
         @achievementList = {
             'free': {
                 'name': 'The First One\'s Free',
-                'img': ''
+                'img': 'first_free'
             },
             'cat_playable': {
                 'name': 'Even Cats Can Play',
@@ -169,22 +169,22 @@ class Pigvane.Classes.Achievements
             
             'human_end': {
                 'name': 'Loneliness'
-                'img': ''
+                'img': 'achievement_finish_human'
             },
             
             'cat_end': {
                 'name': 'Indifference'
-                'img': ''
+                'img': 'achievement_cats_can_play'
             },
             
             'wind_end': {
                 'name': 'Concordance'
-                'img': ''
+                'img': 'achievement_finish_wind'
             },
             
             'pig_end': {
                 'name': 'Greed'
-                'img': ''
+                'img': 'achievement_finish_pig'
             }
         }
             

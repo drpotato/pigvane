@@ -64,6 +64,12 @@ class Pigvane.States.Preloader
         @game.load.image 'achievement_kill_pig_owner', 'res/KillPigOwner.png'
         @game.load.image 'achievement_kill_sick_pig', 'res/KillSickPig.png'
         @game.load.image 'achievement_sunshine_rainbows', 'res/sunshineRainbows.png'
+        @game.load.image 'achievement_finish_wind', 'res/concordance.png'
+        @game.load.image 'achievement_first_free', 'res/FirstOneFree.png'
+        @game.load.image 'achievement_finish_pig', 'res/greed.png'
+        @game.load.image 'achievement_finish_human', 'res/Loneliness.png'
+        @game.load.image 'achievement_pacifist', 'res/pacifist.png'
+        
         
         
         

@@ -7,10 +7,10 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
         # @spawnRandomNPCs()
         
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'npc_oldman', 'old_man_kill', 'old_man_help', 'old_man')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 200, 600, 'npc_pig_girl','pig_owner_kill', 'pig_owner_kill', 'pig_owner')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 300, 600, 'npc_monk', 'monk_kill', 'monk_help', 'monk')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 400, 600, 'npc_ice_cream_girl', 'kid_help', 'kid_help', 'ice_cream_kid')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 3200, 384, 'npc_oldman', 4, 'old_man_kill', 'old_man_help', 'old_man')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 4192, 160, 'npc_pig_girl', 2, 'pig_owner_kill', 'pig_owner_kill', 'girl_with_pig')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 512, 512, 'npc_monk', 2, 'monk_kill', 'monk_help', 'monk')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 5568, 288, 'npc_ice_cream_girl', 2, 'kid_help', 'kid_help', 'ice_cream_kid')
         
         Pigvane.Main.dlc = new Pigvane.Classes.DLC(@game)
         
