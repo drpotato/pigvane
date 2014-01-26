@@ -3,7 +3,7 @@ class Pigvane.States.Main
     constructor: (@game) ->
         Pigvane.levelController = @
 
-        @currentLevelIndex = 0
+        @currentLevelIndex = 0  
         @nextLevelIndex = 1
         
     preload: (@game) ->
