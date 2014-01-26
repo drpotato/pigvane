@@ -15,9 +15,13 @@ class Pigvane.States.Main
         @map = @game.add.tilemap 'test'
         @tileset = @game.add.tileset 'blocks'
 
-        @tileset.setCollisionRange 0, 1, true, true, true, true
+        @tileset.setCollisionRange 0, 8, true, true, true, true
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
+        @paraLayer1 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
+
+        @paraLayer2 = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
+
+        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 2
         @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#fff"
