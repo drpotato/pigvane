@@ -5,7 +5,7 @@ class Pigvane.Classes.End
         @endings = [
             {
             'img': '',
-            'msg': 'Here your journey ends\n and once again nobody is there for you.\n Not one soul even acknowledged you.\n\n Did you really make a difference, or did you just think you did?'
+            'msg': 'Here your journey ends\n and yet again, nobody is there for you.\n Not one soul even acknowledged you.\n\n Did you really make a difference, or did you just think you did?'
             },{
             'img': '',
             'msg': 'Right and wrong...\n Just words from different perspectives.\n In the end, did any of it matter? \n\n Probably not'
