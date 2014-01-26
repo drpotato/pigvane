@@ -6,7 +6,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         
         # @spawnRandomNPCs()
         
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 'kill_1', 'dialog_template')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 100, 600, 'hat_npc', 1, 'kill_1', 'dialog_template')
         
     doSound: () ->
         @soundManager.music = @soundManager.add 'circus_music', 1, true

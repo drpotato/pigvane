@@ -20,7 +20,8 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
         #@soundManager.music = @soundManager.add('city_music', 0.75, true)
         #@soundManager.music.play()
-        
+    
+    repositionParallax: () ->
     
     spawnRandomNPCs: () ->
     	for i in [0...50]

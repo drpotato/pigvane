@@ -89,7 +89,7 @@ class Pigvane.Classes.Dialog
         
                 textSprite = Pigvane.Main.game.add.sprite()
         
-                text = Pigvane.Main.game.add.text(40, 40, Pigvane.Main.dialog.dialogList[dialogName]['options'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 550 })
+                text = Pigvane.Main.game.add.bitmapText(40, 40, Pigvane.Main.dialog.dialogList[dialogName]['options'], {'font': '30px Arial', 'fill': 'black', 'wordWrap': true, 'wordWrapWidth': 550 })
                 textSprite.addChild(text)
                 textSprite.fixedToCamera = true
                 

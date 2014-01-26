@@ -23,4 +23,7 @@ class Pigvane.Classes.End
     
     start: () ->
         
-        @ending = @endings[@game.rnd.integerInRange(0, 5)]
+        if Pigvane.Main.dude.kills == 0 and Pigvane.Main.dude.specialKills == 0
+            Pigvane.Main.achievements.grant('pacifist')
+        
+        @ending = @endings[@game.rnd.integerInRange(0, 4)]
