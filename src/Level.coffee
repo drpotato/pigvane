@@ -142,6 +142,8 @@ class Pigvane.Classes.Level
         # s.to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true)
         # s.onComplete.add(Pigvane.levelController.changeToLevel, Pigvane.levelController)
         # s.start()
+        
+        Pigvane.Main.soundManager.music.stop()
         Pigvane.levelController.changeToLevel()
 
     envHit: (obj1, obj2) ->
