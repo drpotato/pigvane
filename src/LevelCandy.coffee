@@ -1,8 +1,9 @@
 class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
 
     constructor: (@game) ->
-        
         super(@game)
+
+    subPreload: () ->
         
         # @spawnRandomNPCs()
         
@@ -26,6 +27,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @config.tileset = 'candy-ts'
         @config.bgScroll1 = 'candy-bgScroll1'
         @config.bgScroll2 = 'candy-bgScroll2'
+        @config.nextLeveLX = 1000
 
     repositionParallax: () ->
         @bgScroll.tilePosition.y = 0

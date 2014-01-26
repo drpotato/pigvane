@@ -4,9 +4,11 @@ class Pigvane.States.Main
         Pigvane.levelController = @
 
         @currentLevelIndex = 0
-        
+        @nextLevelIndex = 1
         
     preload: (@game) ->
+        @game.state.add 'City', Pigvane.Classes.LevelCity, false
+        @game.state.add 'Candy', Pigvane.Classes.LevelCandy, false
         @loadLevel()
         # @levelCity = new Pigvane.Classes.LevelCity(@game)
         
@@ -17,12 +19,17 @@ class Pigvane.States.Main
     loadLevel: () ->
         switch @currentLevelIndex
             when 0
-                @currentLevel = new Pigvane.Classes.LevelCity @game
+                @game.state.start 'City'
             when 1
-                @currentLevel = new Pigvane.Classes.LevelCandy @game
+                console.log 'Hey'
+                @currentLevelIndex = 0
+                @game.state.start 'Candy'
             when 2
-                @currentLevel = new Pigvane.Classes.LevelForest @game
-            when 3
                 @currentLevel = new Pigvane.Classes.End @game
+
+    changeToLevel: () ->
+        # @game.state.remove 'City'
+        @currentLevelIndex = @nextLevelIndex
+        @loadLevel()
 
         
