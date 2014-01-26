@@ -6,7 +6,7 @@ class Pigvane.Classes.Achievements
         @achievementList = {
             'free': {
                 'name': 'The First One\'s Free',
-                'img': 'first_free'
+                'img': 'achievement_first_free'
             },
             'cat_playable': {
                 'name': 'Even Cats Can Play',

@@ -70,10 +70,6 @@ class Pigvane.States.Preloader
         @game.load.image 'achievement_finish_human', 'res/Loneliness.png'
         @game.load.image 'achievement_pacifist', 'res/pacifist.png'
         
-        
-        
-        
-        
         # NPCs
         # - City
         @game.load.spritesheet 'npc_oldman', 'res/oldman-large.png', 32, 32
@@ -83,6 +79,8 @@ class Pigvane.States.Preloader
         # - Candy
         @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-large.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-large.png', 32, 32
+        @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-large.png', 32, 32
+        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypiggreen-large.png', 32, 32
         
 
         # Music
