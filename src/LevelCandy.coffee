@@ -7,10 +7,10 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         
         # @spawnRandomNPCs()
         
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 3200, 384, 'npc_oldman', 4, 'old_man_kill', 'old_man_help', 'old_man')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 4192, 160, 'npc_pig_girl', 2, 'pig_owner_kill', 'pig_owner_kill', 'girl_with_pig')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 512, 512, 'npc_monk', 2, 'monk_kill', 'monk_help', 'monk')
-        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 5568, 288, 'npc_ice_cream_girl', 2, 'kid_help', 'kid_help', 'ice_cream_kid')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 3200, 384, 'npc_candy_crusher', 8, 'crusher_kill', 'crusher_help', 'candy_crusher')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 4192, 160, 'npc_kitty', 2, 'cat_kill', 'cat_help', 'cake_cat')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 512, 512, 'npc_fruit_ninja', 2, 'ninja_kill', 'ninja_help', 'fruit_ninja')
+        @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 5568, 288, 'npc_angry_pig', 2, 'sick_pig_help', 'sick_pig_help', 'angry_pig')
         
     doSound: () ->
         
