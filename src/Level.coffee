@@ -107,9 +107,14 @@ class Pigvane.Classes.Level
     update: ->
 
         if @dude.x > @config.nextLeveLX
-            console.log 'Hey'
-            Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
-            @fadeOut()
+            if Pigvane.levelController.currentLevelIndex is 0
+                Pigvane.levelController.currentLevelIndex = 1
+                @game.state.start 'Candy'
+            if Pigvane.levelController.currentLevelIndex is 1
+                Pigvane.levelController.currentLevelIndex = 2
+                @game.state.start 'End'
+            # Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
+            # @fadeOut()
 
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()

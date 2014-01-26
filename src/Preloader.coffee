@@ -82,7 +82,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-large.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-large.png', 32, 32
         @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-large.png', 32, 32
-        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig_green-large.png', 32, 32
+        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig-green-large.png', 32, 32
         
 
         # Music

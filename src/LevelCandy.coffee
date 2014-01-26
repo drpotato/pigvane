@@ -5,7 +5,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
 
     subPreload: () ->
         
-        # @spawnRandomNPCs()
+        @spawnRandomNPCs()
         
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 448, 512, 'npc_candy_crusher', 8, 'crusher_kill', 'crusher_help', 'candy_crusher')
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 1312, 512, 'npc_kitty', 2, 'cat_kill', 'cat_help', 'cake_cat')
@@ -27,7 +27,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @config.tileset = 'candy-ts'
         @config.bgScroll1 = 'candy-bgScroll1'
         @config.bgScroll2 = 'candy-bgScroll2'
-        @config.nextLeveLX = 9600
+        @config.nextLeveLX = 9000
         @config.vignette = "candy-vignette"
 
     repositionParallax: () ->

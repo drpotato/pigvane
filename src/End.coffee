@@ -21,6 +21,8 @@ class Pigvane.Classes.End
     preload: () ->
         @game.stage.backgroundColor = "#000000"
 
+        @game.world.camera.x = 0
+
         @game.add.bitmapText(300, 100, 'End', {
             'font': '128px pixelFont',
             'fill': 'white'
