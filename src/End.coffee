@@ -17,7 +17,24 @@ class Pigvane.Classes.End
             'msg': 'The end was always an inevitability.\nYour journey was full of choice,\nyet you remain the same. \n\nWhat does the journey matter if nothing has changed?'
             }
         ]
-    
+
+    preload: () ->
+        @game.stage.backgroundColor = "#000000"
+
+        @game.add.bitmapText(300, 100, 'End', {
+            'font': '128px pixelFont',
+            'fill': 'white'
+            })
+
+        @msg = @endings[@game.rnd.integerInRange(0,3)].msg
+
+        @game.add.bitmapText(250, 300, @msg, {
+            font: '16px pixelFont',
+            fill: 'white'
+            align: 'center'
+            width:  '896px'
+            })
+
     start: () ->
         
         if Pigvane.Main.dude.kills == 0 and Pigvane.Main.dude.specialKills == 0

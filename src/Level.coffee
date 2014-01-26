@@ -94,7 +94,7 @@ class Pigvane.Classes.Level
         @overlay = @game.add.sprite 0, 0, 'scanlines'
         @overlay.fixedToCamera = true 
 
-        @vignette = @game.add.sprite 0, 0, 'vignette'
+        @vignette = @game.add.sprite 0, 0, @config.vignette
         @vignette.fixedToCamera = true 
 
         @healthBar = new Pigvane.Classes.HealthOverlay @game
