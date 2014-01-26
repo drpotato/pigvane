@@ -82,13 +82,12 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-large.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-large.png', 32, 32
         @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-large.png', 32, 32
-        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypiggreen-large.png', 32, 32
+        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig_green-large.png', 32, 32
         
 
         # Music
         @game.load.audio 'circus_music', 'res/circus_music.mp3'
-        @game.load.audio 'forest_music', 'res/forest_music.mp3'
-        @game.load.audio 'ambient_forest_music', 'res/ambient_forest_music.mp3'
+        @game.load.audio 'city_music', 'res/city_music_1.mp3'
         
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'
