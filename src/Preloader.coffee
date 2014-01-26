@@ -34,7 +34,9 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'hat_npc', 'res/npc6-large.png', 32, 32
 
         @game.load.image 'scanlines', 'res/scanlines.png'
-        @game.load.image 'vignette', 'res/vignette.png'
+        
+        @game.load.image 'city-vignette', 'res/vignette.png'
+        @game.load.image 'candy-vignette', 'res/vignette.png'
 
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-large.png', 32, 32
@@ -101,7 +103,7 @@ class Pigvane.States.Preloader
         
         # Load title screen resources
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
-        # @game.load.image 'logo', 'res/ea.jpg'
+        @game.load.spritesheet 'logo', 'res/title-large.png', 896, 256
 
     create: () ->
         # Animate the preloadBar

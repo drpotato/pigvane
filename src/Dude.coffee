@@ -69,7 +69,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @velocity = 200
         @jumpVelocity = 300
         # More if running
-        @velocity = 700 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @velocity = 300 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 

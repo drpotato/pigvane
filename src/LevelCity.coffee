@@ -37,7 +37,8 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         @config.tileset = 'city-ts'
         @config.bgScroll1 = 'city-bgScroll1'
         @config.bgScroll2 = 'city-bgScroll2'
-        @config.nextLeveLX = 500
+        @config.nextLeveLX = 10000
+        @config.vignette = "city-vignette"
 
     initCollisions: () ->
         @tileset.setCollisionRange 0, 8, true, true, true, true
