@@ -39,12 +39,20 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-large.png', 32, 32
 
+        # Music
         @game.load.audio 'ambient_city_music', 'res/ambient_city_music.mp3'
         @game.load.audio 'ambient_candy_music', 'res/ambient_candy_music.mp3'
         @game.load.audio 'city_music', 'res/city_music_1.mp3'
         @game.load.audio 'circus_music', 'res/circus_music.mp3'
         @game.load.audio 'forest_music', 'res/forest_music.mp3'
         @game.load.audio 'ambient_forest_music', 'res/ambient_forest_music.mp3'
+        
+        # SFX
+        @game.load.audio 'sfx_jump', 'res/jump2.mp3'
+        @game.load.audio 'sfx_gunshot_player', 'res/PlayerGunshot.mp3'
+        @game.load.audio 'sfx_gunshot_enemy', 'res/EnemyGunshot.mp3'
+        @game.load.audio 'sfx_death_scream', 'res/DeathScream.mp3'
+        @game.load.audio 'sfx_collectable', 'res/Collectable.mp3'
 
         @game.load.bitmapFont 'pixelfont', 'res/pixelFont.png', 'res/pixelFont.xml'
         
@@ -60,4 +68,4 @@ class Pigvane.States.Preloader
         
     startMainMenu: () ->
         # Continue to the `MainMenu` state since all resources have been loaded
-        @game.state.start 'Main'
+        @game.state.start 'MainMenu'
