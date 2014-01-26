@@ -33,16 +33,15 @@ class Pigvane.Classes.Level
         # @bgScroll = @game.add.tilemapLayer 0, 0, 896, 672, @bgTileSet, @bgMap, 0
         # @bgScroll.scrollFactorX = 0.2
         
-        @bgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, 'bgScroll')
+        @bgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll1)
         @bgScroll.tilePosition.x = 0
         @bgScroll.tilePosition.y = -100
 
-        @bgbgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, 'bgbgScroll')
+        @bgbgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll2)
         @bgbgScroll.tilePosition.x = 0
         @bgbgScroll.tilePosition.y = -200
 
-        
-
+        @repositionParallax()
 
         # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @tileset, @map, 1
         # @paraLayer2.scrollFactorX = 0.5
