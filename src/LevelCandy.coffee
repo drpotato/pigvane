@@ -27,7 +27,7 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @config.tileset = 'candy-ts'
         @config.bgScroll1 = 'candy-bgScroll1'
         @config.bgScroll2 = 'candy-bgScroll2'
-        @config.nextLeveLX = 1000
+        @config.nextLeveLX = 9600
         @config.vignette = "candy-vignette"
 
     repositionParallax: () ->
