@@ -32,8 +32,17 @@ class Pigvane.States.Main
         @dude = new Pigvane.Classes.Dude @game, 100, 550
         @add.existing @dude
         
+        @npcController = new Pigvane.Classes.NPCController @game
+        
         # Add the achievements
         @achievements = new Pigvane.Classes.Achievements @game
+
+        @bullets = @add.group()
+
+        @bullets.createMultiple 60, 'bullet'
+        @bullets.setAll('anchor.x', 0.5);
+        @bullets.setAll('anchor.y', 0.5);
+        @bullets.setAll('outOfBoundsKill', true);
 
         @overlay = @add.sprite 0,0, 'scanlines'
         @overlay.fixedToCamera = true 
@@ -48,7 +57,9 @@ class Pigvane.States.Main
     update: ->
 
         # Make camera follow dude
-        # @world.camera.x = @dude.x-100
+        
+        @npcController.update()
+        
 
 
     # Some helper functions used throughout the game
