@@ -59,7 +59,7 @@ class Pigvane.Classes.Level
         @npcController = new Pigvane.Classes.NPCController @game
         
         # Add the achievements
-        @achievements = new Pigvane.Classes.Achievements @game
+        # @achievements = new Pigvane.Classes.Achievements @game
         
         # Add the dialog
         @dialog = new Pigvane.Classes.Dialog @game
@@ -106,9 +106,13 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
 
-        if @game.world.camera.x > @config.nextLeveLX
-            Pigvane.levelController.nextLevelIndex = 1
+        if @dude.x > @config.nextLeveLX
+            console.log 'Hey'
+            Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
             @fadeOut()
+
+        if Pigvane.Main.dlc? and @dude.x > 6240
+            Pigvane.Main.dlc.popup()
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
 
@@ -117,9 +121,11 @@ class Pigvane.Classes.Level
         @npcController.update()
 
     nextState: () ->
-        @game.state.start 'Candy', true, true
+        Pigvane.levelController.changeToLevel()
+        # @game.state.start 'Candy', true, true
 
     fadeOut: () ->
+
         # spr_bg = @game.add.graphics 0, 0
         # spr_bg.fixedToCamera = true
         # spr_bg.beginFill 0x000000, 1
@@ -135,28 +141,3 @@ class Pigvane.Classes.Level
 
     envHit: (obj1, obj2) ->
         obj1.kill()
-
-    unload: () ->
-        # @soundManager.destroy()
-        @background.destroy()
-        @map.destroy()
-        # @tileset.destroy()
-        @bgScroll.destroy()
-        @bgbgScroll.destroy()
-        @mainLayer.destroy()
-        @fgLayer.destroy()
-        @dude.destroy()
-        @npcController.npcs.destroy()
-        @npcController.npcDialogBoxes.destroy()
-        @npcController = null
-        @bullets.destroy()
-        @enemyBullets.destroy()
-        @dialog = null
-        @overlay.destroy()
-        @vignette.destroy()
-        @healthBar = null
-
-
-        
-
-        

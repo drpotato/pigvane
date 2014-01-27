@@ -3,7 +3,7 @@ class Pigvane.States.Main
     constructor: (@game) ->
         Pigvane.levelController = @
 
-        @currentLevelIndex = 0
+        @currentLevelIndex = 1
         @nextLevelIndex = 1
         
     preload: (@game) ->
@@ -21,6 +21,7 @@ class Pigvane.States.Main
         switch @currentLevelIndex
             when 0
                 @game.state.start 'City'
+                Pigvane.Main.achievements = new Pigvane.Classes.Achievements @game
             when 1
                 @game.state.start 'Candy'
             when 2

@@ -5,7 +5,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
 
     subPreload: () ->
         
-        # @spawnRandomNPCs()
+        @spawnRandomNPCs()
         
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 3200, 384, 'npc_oldman', 4, 'old_man_kill', 'old_man_help', 'old_man')
         @npcController.npcs.add new Pigvane.Classes.NPCSpecial(@game, 4192, 160, 'npc_pig_girl', 2, 'pig_owner_kill', 'pig_owner_help', 'girl_with_pig')
@@ -17,8 +17,6 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     doSound: () ->
         
         @soundManager.music = @game.add.audio 'city_music', 0.5, true
-        @music = @game.add.audio 'city_music', 0.5, true
-        @music.play()
         @soundManager.music.play();
         
         #@soundManager.music = @soundManager.add('city_music', 0.75, true)
@@ -39,7 +37,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         @config.tileset = 'city-ts'
         @config.bgScroll1 = 'city-bgScroll1'
         @config.bgScroll2 = 'city-bgScroll2'
-        @config.nextLeveLX = 10000
+        @config.nextLeveLX = 8200
         @config.vignette = "city-vignette"
 
     initCollisions: () ->
