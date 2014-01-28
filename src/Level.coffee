@@ -109,6 +109,7 @@ class Pigvane.Classes.Level
         if @dude.x > @config.nextLeveLX
             if Pigvane.levelController.currentLevelIndex is 0
                 Pigvane.levelController.currentLevelIndex = 1
+                Pigvane.Main.soundManager.music.stop()
                 @game.state.start 'Candy'
             if Pigvane.levelController.currentLevelIndex is 1
                 Pigvane.levelController.currentLevelIndex = 2
