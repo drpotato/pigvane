@@ -26,3 +26,5 @@ Icon
 .Trashes
 
 dev/
+
+node_modules/
