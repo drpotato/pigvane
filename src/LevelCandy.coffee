@@ -31,8 +31,8 @@ class Pigvane.Classes.LevelCandy extends Pigvane.Classes.Level
         @config.vignette = "candy-vignette"
 
     repositionParallax: () ->
-        @bgScroll.tilePosition.y = 0
-        @bgbgScroll.tilePosition.y = 0
+        @bgScroll1.tilePosition.y = 0
+        @bgScroll2.tilePosition.y = 0
 
     initCollisions: () ->
     	@tileset.setCollisionRange 0, 30, true, true, true, true

@@ -138,10 +138,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         
         @updateAchievements()
 
-        Pigvane.Main.bgScroll.tilePosition.x = @game.world.camera.x/2.5
-        Pigvane.Main.bgbgScroll.tilePosition.x = @game.world.camera.x/5
-        
-        return true
+        Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
+        Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
 
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
