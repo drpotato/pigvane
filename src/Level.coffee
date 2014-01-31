@@ -20,7 +20,7 @@ class Pigvane.Classes.Level
         @doSound()
         
         @config = {}
-        @setVariables()
+        @initConfig()
         
         @background = @game.add.sprite 0, 0, @config.background
         @background.fixedToCamera = true 

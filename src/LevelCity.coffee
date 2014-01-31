@@ -31,7 +31,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     repositionParallax: () ->
 
         
-    setVariables: () ->
+    initConfig: () ->
         @config.background = 'city-bg'
         @config.tilemap = 'city-tm'
         @config.tileset = 'city-ts'
