@@ -50,16 +50,6 @@ module.exports = function(grunt) {
                 }
             }
         },
-
-        docco: {
-            main: {
-                src: ['src/*.coffee'],
-                options: {
-                    output: 'docs/'
-                }
-            }
-        },
-
         watch: {
             img: {
                 files: ['src/res/public/upscale/**'],
@@ -102,7 +92,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-coffee');
-    grunt.loadNpmTasks('grunt-docco');
 
     // Default task(s).
     grunt.registerTask('dev', ['watch:img', 'watch:js', 'watch:statics']);

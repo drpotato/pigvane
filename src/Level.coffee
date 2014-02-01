@@ -20,7 +20,7 @@ class Pigvane.Classes.Level
         @doSound()
         
         @config = {}
-        @setVariables()
+        @initConfig()
         
         @background = @game.add.sprite 0, 0, @config.background
         @background.fixedToCamera = true 
@@ -31,21 +31,15 @@ class Pigvane.Classes.Level
 
         @initCollisions()
 
-        # @bgScroll = @game.add.tilemapLayer 0, 0, 896, 672, @bgTileSet, @bgMap, 0
-        # @bgScroll.scrollFactorX = 0.2
-        
-        @bgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll1)
-        @bgScroll.tilePosition.x = 0
-        @bgScroll.tilePosition.y = -100
+        @bgScroll1 = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll1)
+        @bgScroll1.tilePosition.x = 0
+        @bgScroll1.tilePosition.y = -100
 
-        @bgbgScroll = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll2)
-        @bgbgScroll.tilePosition.x = 0
-        @bgbgScroll.tilePosition.y = -200
+        @bgScroll2 = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll2)
+        @bgScroll2.tilePosition.x = 0
+        @bgScroll2.tilePosition.y = -200
 
         @repositionParallax()
-
-        # @paraLayer2 = @game.add.sprite 0, 0, 896, 672, @tileset, @map, 1
-        # @paraLayer2.scrollFactorX = 0.5
 
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
         @mainLayer.resizeWorld()
@@ -105,17 +99,10 @@ class Pigvane.Classes.Level
 
     # Called every frame
     update: ->
-
         if @dude.x > @config.nextLeveLX
-            if Pigvane.levelController.currentLevelIndex is 0
-                Pigvane.levelController.currentLevelIndex = 1
-                Pigvane.Main.soundManager.music.stop()
-                @game.state.start 'Candy'
-            if Pigvane.levelController.currentLevelIndex is 1
-                Pigvane.levelController.currentLevelIndex = 2
-                @game.state.start 'End'
-            # Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
-            # @fadeOut()
+            log Pigvane.levelController.currentLevelIndex
+            Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
+            @fadeOut()
 
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()
