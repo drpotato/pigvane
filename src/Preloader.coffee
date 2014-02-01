@@ -26,8 +26,6 @@ class Pigvane.States.Preloader
 
         @game.load.spritesheet 'lives', 'res/heart-large.png', 32, 32
 
-        @game.load.image 'achievement_background', 'res/achievement.png'
-
         @game.load.image 'dialog', 'res/dialogue.png'
 
         @game.load.spritesheet 'dude', 'res/testwalking-large.png', 32, 32
@@ -37,9 +35,12 @@ class Pigvane.States.Preloader
         
         @game.load.image 'city-vignette', 'res/vignette.png'
         @game.load.image 'candy-vignette', 'res/vignette.png'
+        @game.load.image 'aggro-vignette', 'res/vignette_blood.png'
 
         @game.load.spritesheet 'bullet', 'res/bullet-large.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-large.png', 32, 32
+
+        @game.load.image 'achievement_background', 'res/achievement.png'
         
         # Achievement Images
         @game.load.image 'achievement_3_lives', 'res/3lives.png'

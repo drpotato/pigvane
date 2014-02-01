@@ -55,7 +55,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @gunDrawn = false
 
-        @aggro = 1
+        @aggro = 0
+        @recentAggro = 0
+        @aggroUpdateTimer = 0
 
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
@@ -69,8 +71,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set resulting speed of body
         @vStep = 50
-        @velocity = 200
         @jumpVelocity = 600
+        @velocity = 300
         # More if running
         @velocity = 300 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
@@ -144,6 +146,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
 
+        if @game.time.now > @aggroUpdateTimer
+            @aggroUpdateTimer = @game.time.now + 1000
+            @recentAggro -= 2 if @recentAggro > 2
+            Pigvane.Main.aggroHelper.updateOverlay()
+
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
         if @gunDrawn is true
@@ -175,7 +182,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 callback = () ->
                     bullet.animations.stop()
-                    bullet.animations.play('repeat', 4, true)
+                    bullet.animations.play('repeat', 60, true)
                     bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
                 setTimeout callback, 17
@@ -189,8 +196,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
 
                 # Randomise velocity
-                # bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-                # bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+                bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
+                bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
 
                 # @game.world.camera.x += @game.rnd.integerInRange -20, 20
                 # @game.world.camera.y += @game.rnd.integerInRange -20, 20
@@ -198,6 +205,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80
             
+    incAggro: (aggro) ->
+        @aggro += aggro
+        @recentAggro += aggro
+        Pigvane.Main.aggroHelper.update()
+
     damage: () ->
         @health -=1
         if @health == 0
@@ -211,7 +223,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 
                 # Pigvane.Main.achievements.grant('3_lives')
                 
-                console.log @game.state.states
                 @game.state.start 'Restart'
 
         Pigvane.Main.healthBar.update()

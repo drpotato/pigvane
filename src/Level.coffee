@@ -79,6 +79,13 @@ class Pigvane.Classes.Level
         @enemyBullets.setAll 'anchor.y', 0.5
         @enemyBullets.setAll 'outOfBoundsKill', true
 
+        @enemyBullets.forEach( (obj) ->
+            obj.body.setSize 8, 8, 12, 12
+            obj.animations.add('shoot', [0,1,2])
+            obj.animations.add('repeat', [1,2])
+
+            )
+
         # @enemyBullets.forEach( (obj) ->
         #     obj.animations.add('shoot', [0,1,2,3])
         #     obj.animations.add('repeat', [2,3])
@@ -93,6 +100,8 @@ class Pigvane.Classes.Level
         @vignette.fixedToCamera = true 
 
         @healthBar = new Pigvane.Classes.HealthOverlay @game
+
+        @aggroHelper = new Pigvane.Classes.aggroHelper @game
         
         @game.world.camera.follow @dude, 1
 

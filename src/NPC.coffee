@@ -18,6 +18,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         @health = 3
 
         @updateTimer = 0
+        @shootTimer = 0
 
         @gunDuration = 0
 
@@ -29,7 +30,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
         @game.physics.collide @, Pigvane.Main.mainLayer
 
-        if @game.time.now > @updateTimer
+        if @game.time.now > @updateTimer and @firing is false
             @body.velocity.x = @game.rnd.integerInRange(-20, 20)
             @animations.play 'walk', 2, true
             if @body.velocity.x < 0
@@ -39,28 +40,36 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @scale.x = 1
                 @facing = 'right'
 
+            @updateTimer = @game.time.now + @game.rnd.integerInRange(40, 60)*100
+
+        if @game.time.now > @shootTimer
+
             if Math.abs( @body.x - Pigvane.Main.dude.x ) < 200
-                @body.velocity.x = 0
-                @animations.stop()
-                @animations.frame = 4
-                @gunDuration++
-                if @body.x - Pigvane.Main.dude.x > 0
-                    @scale.x = -1
-                    @facing = 'left'
-                else 
-                    @scale.x = 1
-                    @facing = 'right'
+                    
+                if @game.rnd.integerInRange(-25,50)+Pigvane.Main.dude.aggro > 40
+                    @body.velocity.x = 0
+                    @animations.stop()
+                    @animations.frame = 4
+                    @gunDuration++
+                    if @body.x - Pigvane.Main.dude.x > 0
+                        @scale.x = -1
+                        @facing = 'left'
+                    else 
+                        @scale.x = 1
+                        @facing = 'right'
 
                 if @gunDuration > 1
                     @fire()
+                    @firing = true
                     Pigvane.Main.soundManager.sfxGunshotEnemy.play()
 
 
             else
                 @gunDuration = 0
+                @firing = false
 
 
-            @updateTimer = @game.time.now + @game.rnd.integerInRange(40, 60)*100
+            @shootTimer = @game.time.now + @game.rnd.integerInRange(5, 6)*100
 
     fire: () ->
 
@@ -72,13 +81,13 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             # Reset it to the dude's position
             bullet.reset @x, @y
 
-            bullet.animations.frame = 1
+            bullet.animations.frame = 0
             # bullet.animations.play('shoot', 60)
 
             callback = () ->
                 bullet.animations.stop()
-                bullet.animations.play('repeat', 4, true)
-                bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+                bullet.animations.play('repeat', 30, true)
+                bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
             setTimeout callback, 17
             
@@ -91,13 +100,11 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
             bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
 
-
-
-        
     hit: () ->
         
         if @health > 0
             @health -= 1
+            Pigvane.Main.dude.incAggro(1)
         
             if @health <= 0
                 @die()
