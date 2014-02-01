@@ -26,5 +26,5 @@ Icon
 .Trashes
 
 dev/
-
+.SyncIgnore
 node_modules/
