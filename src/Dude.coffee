@@ -61,6 +61,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
+
+        @game.physics.collide(Pigvane.Main.bullets, Pigvane.Main.mainLayer, @envHit)
+
         if @game.input.keyboard.isDown Phaser.Keyboard.D
             Pigvane.Main.dlc.popup()
 
@@ -160,35 +163,34 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.time.now > @nextBullet
 
             # See if there is a free bullet 
-            bullet = Pigvane.Main.bullets.getFirstExists false
+            bullet = Pigvane.Main.bullets.getFirstExists( false )
 
             # If there is one
             if bullet
                 # Reset it to the dude's position
                 bullet.reset @x, @y
 
-                bullet.animations.frame = 1
-                # bullet.animations.play('shoot', 60)
+                bullet.animations.frame = 0
+                # bullet.animations.play('repeat', 4, true)
 
                 callback = () ->
                     bullet.animations.stop()
                     bullet.animations.play('repeat', 4, true)
-                    bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+                    bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
                 setTimeout callback, 17
                 # Change velocity and position of bullet based on the way the dude is facing.  
-                # Also knockback dude.
-                
+                # Also knockback dude.x
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    @body.velocity.x += 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
+                    @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
 
                 # Randomise velocity
-                bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-                bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+                # bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
+                # bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
 
                 # @game.world.camera.x += @game.rnd.integerInRange -20, 20
                 # @game.world.camera.y += @game.rnd.integerInRange -20, 20
@@ -217,6 +219,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     respawn: () ->
         @x = @game.world.camera.x + 50
         @y = 500
+
+    envHit: (obj1, obj2) ->
+        obj1.kill()   
         
     updateAchievements: () ->
         

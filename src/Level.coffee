@@ -60,14 +60,15 @@ class Pigvane.Classes.Level
 
         @bullets = @game.add.group()
 
-        @bullets.createMultiple 200, 'bullet'
+        @bullets.createMultiple 1000, 'bullet'
         @bullets.setAll 'anchor.x', 0.5
         @bullets.setAll 'anchor.y', 0.5
         @bullets.setAll 'outOfBoundsKill', true
 
         @bullets.forEach( (obj) ->
-            obj.animations.add('shoot', [0,1,2,3])
-            obj.animations.add('repeat', [2,3])
+            obj.body.setSize 8, 8, 12, 12
+            obj.animations.add('shoot', [0,1,2])
+            obj.animations.add('repeat', [1,2])
 
             )
 
@@ -108,8 +109,6 @@ class Pigvane.Classes.Level
             Pigvane.Main.dlc.popup()
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
-
-        # @game.physics.collide(@bullets, @mainLayer, @envHit) Don't know why this is not working
         
         @npcController.update()
 
@@ -134,5 +133,4 @@ class Pigvane.Classes.Level
         Pigvane.Main.soundManager.music.stop()
         Pigvane.levelController.changeToLevel()
 
-    envHit: (obj1, obj2) ->
-        obj1.kill()
+
