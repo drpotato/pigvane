@@ -9,7 +9,8 @@ module.exports = function(grunt) {
                 files: [
                     {cwd: 'src/', expand: true, src: ['*.html'], dest: 'dev/'},
                     {cwd: 'src/res/public/noupscale', expand: true, src: ['**'], dest: 'dev/res/'},
-                    {cwd: 'src/res/public/upscale', expand: true, src: ['**.json'], dest: 'dev/res/'},
+                    {cwd: 'src/res/public/2x', expand: true, src: ['**.json'], dest: 'dev/res/'},
+                    {cwd: 'src/res/public/4x', expand: true, src: ['**.json'], dest: 'dev/res/'},
                     {cwd: 'src/res/public/sounds', expand: true, src: ['**'], dest: 'dev/res/'}
                     
                 ],
@@ -24,10 +25,10 @@ module.exports = function(grunt) {
         },
 
         responsive_images: {
-            main: {
+            twotimes: {
                 options: {
                     sizes: [{
-                        name: 'large',
+                        name: '2x',
                         width: '200%',
                         height: '200%',
                         filter: 'Point'
@@ -37,7 +38,24 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['**.png'],
-                    cwd: 'src/res/public/upscale',
+                    cwd: 'src/res/public/2x',
+                    dest: 'dev/res/'
+                }]
+            },
+            fourtimes: {
+                options: {
+                    sizes: [{
+                        name: '4x',
+                        width: '400%',
+                        height: '400%',
+                        filter: 'Point'  
+                    }]
+                },
+
+                files: [{
+                    expand: true,
+                    src: ['**.png'],
+                    cwd: 'src/res/public/4x',
                     dest: 'dev/res/'
                 }]
             }
@@ -51,9 +69,17 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            img: {
-                files: ['src/res/public/upscale/**'],
-                tasks: ['responsive_images:main'],
+            twotimes: {
+                files: ['src/res/public/2x/**'],
+                tasks: ['responsive_images:twotimes'],
+                options: {
+                    livereload: true,
+                    atBegin: true
+                }
+            },
+            fourtimes: {
+                files: ['src/res/public/4x/**'],
+                tasks: ['responsive_images:fourtimes'],
                 options: {
                     livereload: true,
                     atBegin: true

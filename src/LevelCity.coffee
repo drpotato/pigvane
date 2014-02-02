@@ -17,7 +17,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     doSound: () ->
         
         @soundManager.music = @game.add.audio 'city_music', 0.5, true
-        @soundManager.music.play();
+        # @soundManager.music.play()
         
         #@soundManager.music = @soundManager.add('city_music', 0.75, true)
         #@soundManager.music.play()
@@ -41,5 +41,5 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         @config.vignette = "city-vignette"
 
     initCollisions: () ->
-        @tileset.setCollisionRange 0, 8, true, true, true, true
+        @tileset.setCollisionRange 0, 2, true, true, true, true
         

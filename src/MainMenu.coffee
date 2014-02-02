@@ -4,14 +4,11 @@ class Pigvane.States.MainMenu
 
     preload: () ->
         # Add background + logo to current state
-        @bg = @add.sprite -52, 0, 'menuBG'
+        @bg = @add.sprite -40, 40, 'menuBG'
 
-        @logo = @add.sprite 5, 112, 'logo' 
+        @logo = @add.sprite 516, 152, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 2, true
-
-        
-
         
         # Allows us to fade in background
         # @background.alpha = 0
@@ -20,9 +17,9 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @startText = @game.add.text(240, 600, 'Press Enter to Play', {
-            'font': '20px Emulogic',
-            'fill': 'white'
+        @startText = @game.add.text(745, 600, '> Press Enter to Play', {
+            font: '20px Emulogic',
+            fill: 'white'
             })
 
     update: () ->
