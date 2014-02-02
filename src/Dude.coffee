@@ -175,7 +175,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # If there is one
             if bullet
                 # Reset it to the dude's position
-                bullet.reset @x, @y
+                bullet.reset @x, @y-5
 
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
@@ -196,8 +196,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
 
                 # Randomise velocity
-                bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-                bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+                bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
+                bullet.body.velocity.y += @game.rnd.integerInRange(0, -40)
 
                 # @game.world.camera.x += @game.rnd.integerInRange -20, 20
                 # @game.world.camera.y += @game.rnd.integerInRange -20, 20
