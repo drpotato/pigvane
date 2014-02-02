@@ -8,7 +8,7 @@ class Pigvane.States.MainMenu
 
         @logo = @add.sprite 516, 152, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
-        @logo.animations.play 'dropthebass', 2, true
+        @logo.animations.play 'dropthebass', 1, true
         
         # Allows us to fade in background
         # @background.alpha = 0
@@ -17,21 +17,71 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @startText = @game.add.text(745, 600, '> Press Enter to Play', {
+        @cursor = @add.text(735, 600, '>', {
             font: '20px Emulogic',
-            fill: 'white'
+            fill: 'white',
+            strokeThickness: 5,
+            stroke: '3C033A'
             })
 
+        @options = [
+            ['Press Enter to Play', @fadeOut],
+            ['Help', @help]
+        ]
+
+        text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
+
+        console.log text
+
+        @startText = @add.text(765, 600, text, {
+            font: '20px Emulogic',
+            fill: 'white',
+            strokeThickness: 5,
+            stroke: '3C033A'
+            })
+
+        # @input.keyboard.addKey( Phaser.Keyboard.DOWN ).onDown.add()
+        @input.keyboard.addCallbacks @, @keyDown
+
+        @cursorPosition = 0
+
+        @blinkTimer = 0
+
     update: () ->
-        if @input.keyboard.isDown 13
-            if !@fadedOut?
-                @fadedOut = true
-                @fadeOut()
+        if @time.now > @blinkTimer
+            @blinkTimer = @time.now + 1000
+            @cursor.visible = !@cursor.visible
+
+    keyDown: (e) ->
+        switch e.keyCode
+            when Phaser.Keyboard.DOWN
+                @updateCursor('down')
+            when Phaser.Keyboard.UP
+                @updateCursor('up')
+            when Phaser.Keyboard.ENTER
+                @selectOption()
+
+    selectOption: () ->
+        @options[@cursorPosition][1].call(this)
+
+    updateCursor: (direction) ->
+        switch direction
+            when 'down'
+                @cursorPosition++
+                if @cursorPosition >= @options.length
+                    @cursorPosition = 0
+            when 'up'
+                @cursorPosition--
+                if @cursorPosition < 0
+                    @cursorPosition = @options.length-1
+
+        @cursor.y = 600 + 32 * @cursorPosition
 
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
         # tween = @add.tween(@logo).to {alpha: 0}, 1000, Phaser.Easing.Linear.None, true
-        tween = @add.tween(@startText).to({alpha: 0}, 1000,Phaser.Easing.Linear.None, true)
+        @add.tween(@startText).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
+        tween = @add.tween(@cursor).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
 
         # Once the animation completes
         tween.onComplete.add @startGame, this
