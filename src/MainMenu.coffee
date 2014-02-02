@@ -16,8 +16,8 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @restartText = @game.add.bitmapText(300, 600, 'Press Enter to Play', {
-            'font': '30px pixelFont',
+        @startText = @game.add.text(240, 600, 'Press Enter to Play', {
+            'font': '20px Emulogic',
             'fill': 'white'
             })
 
@@ -30,7 +30,7 @@ class Pigvane.States.MainMenu
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
         # tween = @add.tween(@logo).to {alpha: 0}, 1000, Phaser.Easing.Linear.None, true
-        tween = @add.tween(@restartText).to {alpha: 0}, 1000, Phaser.Easing.Linear.None, true
+        tween = @add.tween(@startText).to({alpha: 0}, 1000,Phaser.Easing.Linear.None, true)
 
         # Once the animation completes
         tween.onComplete.add @startGame, this

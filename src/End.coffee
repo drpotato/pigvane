@@ -23,15 +23,15 @@ class Pigvane.Classes.End
 
         @game.world.camera.x = 0
 
-        @game.add.bitmapText(300, 100, 'End', {
-            'font': '128px pixelFont',
-            'fill': 'white'
+        @game.add.text(300, 100, 'End', {
+            font: '128px Emulogic',
+            fill: 'white'
             })
 
         @msg = @endings[@game.rnd.integerInRange(0,3)].msg
 
-        @game.add.bitmapText(250, 300, @msg, {
-            font: '16px pixelFont',
+        @game.add.text(250, 300, @msg, {
+            font: '16px Emulogic',
             fill: 'white'
             align: 'center'
             width:  '896px'

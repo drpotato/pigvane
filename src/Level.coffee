@@ -44,7 +44,7 @@ class Pigvane.Classes.Level
         @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
         @mainLayer.resizeWorld()
 
-        @game.stage.backgroundColor = "#222034"
+        @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 100, 400

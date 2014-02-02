@@ -96,8 +96,6 @@ class Pigvane.States.Preloader
         @game.load.audio 'sfx_gunshot_enemy', 'res/EnemyGunshot.mp3'
         @game.load.audio 'sfx_death_scream', 'res/DeathScream.mp3'
         @game.load.audio 'sfx_collectable', 'res/Collectable.mp3'
-
-        @game.load.bitmapFont 'pixelfont', 'res/pixelFont.png', 'res/pixelFont.xml'
         
         # Load title screen resources
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
