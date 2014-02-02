@@ -46,7 +46,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
             if Math.abs( @body.x - Pigvane.Main.dude.x ) < 200
                     
-                if @game.rnd.integerInRange(-25,50)+Pigvane.Main.dude.aggro > 40
+                if @game.rnd.integerInRange(0,75)+Pigvane.Main.dude.aggro > 65
                     @body.velocity.x = 0
                     @animations.stop()
                     @animations.frame = 4
@@ -69,7 +69,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @firing = false
 
 
-            @shootTimer = @game.time.now + @game.rnd.integerInRange(5, 6)*100
+            @shootTimer = @game.time.now + @game.rnd.integerInRange(8, 13)*100
 
     fire: () ->
 

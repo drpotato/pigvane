@@ -7,12 +7,12 @@ class Pigvane.Classes.HealthOverlay
         @livesTitle = 'Lives :'
         livesLeft = Pigvane.Main.dude.lives
         
-        @livesText = @game.add.text(0, 0, @livesTitle, {font: '28px Emulogic'});
+        @livesText = @game.add.text(0, 0, @livesTitle, {font: '18px Emulogic'});
 
         @hearts = @game.add.group()
         # @hearts.fixedToCamera = true
         @hearts.x = 120
-        @hearts.y = 10
+        @hearts.y = 5
 
         @heartsArray = []
 
@@ -32,7 +32,7 @@ class Pigvane.Classes.HealthOverlay
         sprite.addChild(@livesText);
         @healthTitle = 'Health : ';
         healthLeft = Pigvane.Main.dude.health;
-        @healthText = @game.add.text(0,30,@healthTitle + healthLeft, {font: '28px Emulogic'});
+        @healthText = @game.add.text(0,25,@healthTitle + healthLeft, {font: '18px Emulogic'});
         sprite.addChild(@healthText);
         #position the cameraOffset of my Sprite
         sprite.cameraOffset.x = 10;
