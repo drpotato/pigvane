@@ -4,10 +4,14 @@ class Pigvane.States.MainMenu
 
     preload: () ->
         # Add background + logo to current state
-        # @background = @add.sprite 80, 120, 'titlepage'
-        @logo = @add.sprite 0, 100, 'logo' 
+        @bg = @add.sprite -52, 0, 'menuBG'
+
+        @logo = @add.sprite 5, 112, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 2, true
+
+        
+
         
         # Allows us to fade in background
         # @background.alpha = 0
