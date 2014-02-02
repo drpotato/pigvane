@@ -9,9 +9,9 @@ class Pigvane.Classes.aggroHelper
         @updateOverlay()
 
     updateOverlay: ->
-        if Pigvane.Main.dude.recentAggro > 25
-            @overlay.alpha = 1
-        else if Pigvane.Main.dude.recentAggro > 5
-            @overlay.alpha = 1*(Pigvane.Main.dude.recentAggro-5)/20
+        # if Pigvane.Main.dude.recentAggro > 25
+        #     @overlay.alpha = 1
+        # else if Pigvane.Main.dude.recentAggro > 5
+        #     @overlay.alpha = 1*(Pigvane.Main.dude.recentAggro-5)/20
 
 

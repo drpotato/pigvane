@@ -74,7 +74,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @jumpVelocity = 600
         @velocity = 300
         # More if running
-        @velocity = 300 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
@@ -127,7 +127,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
-            Pigvane.Main.soundManager.sfxGunshotPlayer.play()
+            # Pigvane.Main.soundManager.sfxGunshotPlayer.play()
         # If not, update his facing, and display the correct animation
         else
            @facing = facing

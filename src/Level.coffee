@@ -22,33 +22,33 @@ class Pigvane.Classes.Level
         @config = {}
         @initConfig()
         
-        @background = @game.add.sprite 0, 0, @config.background
-        @background.fixedToCamera = true 
+        # @background = @game.add.sprite 0, 0, @config.background
+        # @background.fixedToCamera = true 
 
         # Add the map and tileset that we loaded earlier 
-        @map = @game.add.tilemap @config.tilemap
-        @tileset = @game.add.tileset @config.tileset
+        @map = @add.tilemap @config.tilemap
+        @tileset = @add.tileset @config.tileset
 
         @initCollisions()
 
-        @bgScroll1 = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll1)
+        @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
         @bgScroll1.tilePosition.x = 0
-        @bgScroll1.tilePosition.y = -100
+        # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @game.add.tileSprite(0, 0, 500*32, 1024, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
         @bgScroll2.tilePosition.x = 0
-        @bgScroll2.tilePosition.y = -200
+        # @bgScroll2.tilePosition.y = -200
 
-        @repositionParallax()
+        # @repositionParallax()
 
-        @mainLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 0
+        @mainLayer = @add.tilemapLayer 0, 0, 1920, 1080, @tileset, @map
         @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
         @dude = new Pigvane.Classes.Dude @game, 100, 400
-        @game.add.existing @dude
+        @add.existing @dude
         
         @npcController = new Pigvane.Classes.NPCController @game
         
@@ -58,7 +58,7 @@ class Pigvane.Classes.Level
         # Add the dialog
         @dialog = new Pigvane.Classes.Dialog @game
 
-        @bullets = @game.add.group()
+        @bullets = @add.group()
 
         @bullets.createMultiple 1000, 'bullet'
         @bullets.setAll 'anchor.x', 0.5
@@ -72,7 +72,7 @@ class Pigvane.Classes.Level
 
             )
 
-        @enemyBullets = @game.add.group()
+        @enemyBullets = @add.group()
 
         @enemyBullets.createMultiple 20, 'enemyBullet'
         @enemyBullets.setAll 'anchor.x', 0.5
@@ -91,13 +91,13 @@ class Pigvane.Classes.Level
         #     obj.animations.add('repeat', [2,3])
         #     )
 
-        @fgLayer = @game.add.tilemapLayer 0, 0, 896, 672, @tileset, @map, 1
+        # @fgLayer = @add.tilemapLayer 0, 0, 1920, 1080, @tileset, @map, 1
 
-        @overlay = @game.add.sprite 0, 0, 'scanlines'
-        @overlay.fixedToCamera = true 
+        # @overlay = @add.sprite 0, 0, 'scanlines'
+        # @overlay.fixedToCamera = true 
 
-        @vignette = @game.add.sprite 0, 0, @config.vignette
-        @vignette.fixedToCamera = true 
+        # @vignette = @add.sprite 0, 0, @config.vignette
+        # @vignette.fixedToCamera = true 
 
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
@@ -127,14 +127,14 @@ class Pigvane.Classes.Level
 
     fadeOut: () ->
 
-        # spr_bg = @game.add.graphics 0, 0
+        # spr_bg = @add.graphics 0, 0
         # spr_bg.fixedToCamera = true
         # spr_bg.beginFill 0x000000, 1
         # spr_bg.drawRect 0, 0, @game.width*10, @game.height*10
         # spr_bg.alpha = 0
         # spr_bg.endFill()
 
-        # s = this.game.add.tween spr_bg
+        # s = this.add.tween spr_bg
         # s.to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true)
         # s.onComplete.add(Pigvane.levelController.changeToLevel, Pigvane.levelController)
         # s.start()
