@@ -233,8 +233,8 @@ class Pigvane.Classes.Achievements
             textSprite = @game.add.sprite(0, 0)
             textSprite.fixedToCamera = true
             
-            textTitle = @game.add.bitmapText(100, 10, 'Achievement Unlocked!', {'font': '16pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
-            textName = @game.add.bitmapText(100, 40, achievementData['name'], {'font': '12pt pixelFont', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
+            textTitle = @game.add.text(100, 10, 'Achievement Unlocked!', {'font': '8px Emulogic', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
+            textName = @game.add.text(100, 40, achievementData['name'], {'font': '8px Emulogic', 'fill': 'white', 'wordWrap': true, 'wordWrapWidth': 100 })
             textSprite.addChild(textTitle)
             textSprite.addChild(textName)
             

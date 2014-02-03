@@ -47,7 +47,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @facing = 'right'
 
-        @body.gravity.y = 10
+        @body.gravity.y = 20
         
         @lives = 3
         
@@ -55,21 +55,26 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @gunDrawn = false
 
-        @aggro = 1
+        @aggro = 0
+        @recentAggro = 0
+        @aggroUpdateTimer = 0
 
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
+
+        @game.physics.collide(Pigvane.Main.bullets, Pigvane.Main.mainLayer, @envHit)
+
         if @game.input.keyboard.isDown Phaser.Keyboard.D
             Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
         @vStep = 50
-        @velocity = 200
-        @jumpVelocity = 300
+        @jumpVelocity = 600
+        @velocity = 300
         # More if running
-        @velocity = 300 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
@@ -122,7 +127,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
-            Pigvane.Main.soundManager.sfxGunshotPlayer.play()
+            # Pigvane.Main.soundManager.sfxGunshotPlayer.play()
         # If not, update his facing, and display the correct animation
         else
            @facing = facing
@@ -138,10 +143,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         
         @updateAchievements()
 
-        Pigvane.Main.bgScroll.tilePosition.x = @game.world.camera.x/2.5
-        Pigvane.Main.bgbgScroll.tilePosition.x = @game.world.camera.x/5
-        
-        return true
+        Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
+        Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
+
+        if @game.time.now > @aggroUpdateTimer
+            @aggroUpdateTimer = @game.time.now + 1000
+            @recentAggro -= 2 if @recentAggro > 2
+            Pigvane.Main.aggroHelper.updateOverlay()
 
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
@@ -162,35 +170,34 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.time.now > @nextBullet
 
             # See if there is a free bullet 
-            bullet = Pigvane.Main.bullets.getFirstExists false
+            bullet = Pigvane.Main.bullets.getFirstExists( false )
 
             # If there is one
             if bullet
                 # Reset it to the dude's position
-                bullet.reset @x, @y
+                bullet.reset @x, @y-5
 
-                bullet.animations.frame = 1
-                # bullet.animations.play('shoot', 60)
+                bullet.animations.frame = 0
+                # bullet.animations.play('repeat', 4, true)
 
                 callback = () ->
                     bullet.animations.stop()
-                    bullet.animations.play('repeat', 4, true)
-                    bullet.animations.frame = if bullet.x % 2 == 0 then 2 else 3
+                    bullet.animations.play('repeat', 60, true)
+                    bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
                 setTimeout callback, 17
                 # Change velocity and position of bullet based on the way the dude is facing.  
-                # Also knockback dude.
-                
+                # Also knockback dude.x
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
-                    @body.velocity.x += 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
+                    @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
 
                 # Randomise velocity
-                bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
-                bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
+                bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
+                bullet.body.velocity.y += @game.rnd.integerInRange(0, -40)
 
                 # @game.world.camera.x += @game.rnd.integerInRange -20, 20
                 # @game.world.camera.y += @game.rnd.integerInRange -20, 20
@@ -198,6 +205,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80
             
+    incAggro: (aggro) ->
+        @aggro += aggro
+        @recentAggro += aggro
+        Pigvane.Main.aggroHelper.update()
+
     damage: () ->
         @health -=1
         if @health == 0
@@ -211,7 +223,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 
                 # Pigvane.Main.achievements.grant('3_lives')
                 
-                console.log @game.state.states
                 @game.state.start 'Restart'
 
         Pigvane.Main.healthBar.update()
@@ -219,6 +230,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     respawn: () ->
         @x = @game.world.camera.x + 50
         @y = 500
+
+    envHit: (obj1, obj2) ->
+        obj1.kill()   
         
     updateAchievements: () ->
         

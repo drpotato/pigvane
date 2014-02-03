@@ -3,17 +3,24 @@
 <head>
 	<title>Pigvane</title>
 </head>
+<link rel="shortcut icon" href="/res/favicon.png" />
 <style type="text/css">
 
 	body {
 		/*background-color: rgb(34, 32, 52);*/
 		background-color: "#fff";
+		overflow: hidden;
 	}
 
 
 	@font-face {
-		font-family: 'District Pro Thin';
+		font-family: 'District';
 		src: url('res/DistProTh.otf');
+	}
+
+	@font-face {
+		font-family: 'Emulogic';
+		src: url('res/Emulogic.ttf');
 	}
 
 
@@ -29,10 +36,10 @@
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		width: 896px;
-		height: 672px;
-		margin-left: -448px;
-		margin-top: -336px;
+		width: 1920px;
+		height: 1080px;
+		margin-left: -960px;
+		margin-top: -540px;
 
 		/*-webkit-filter: saturate(0.2) brightness(0.25);*/
 
@@ -40,12 +47,12 @@
 
 
 	h1 {
-		font-family: 'District Pro Thin'
+		font-family: 'Emulogic'
 	}
 
 	#description {
 		width: 270px;
-		font-family: 'District Pro Thin';
+		font-family: 'District';
 		font-size: 17px;
 		line-height: 140%;
 	}
@@ -68,11 +75,12 @@
 		Classes: {}
 	}
 </script>
-<script src="phaser.js"></script>
-<script src="app.js"></script>
 <body>
 
 <div id="description">
+<script src="phaser.js"></script>
+<script src="app.js"></script>
+
 	<h1>Pigvane</h1>
 	<p>
 		Pigvane may be a game. But it has cats. And pigs. So we win.

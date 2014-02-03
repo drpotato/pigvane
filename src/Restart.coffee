@@ -5,13 +5,13 @@ class Pigvane.States.Restart
     preload: () ->
         @game.stage.backgroundColor = '#000'
 
-        @text = @game.add.bitmapText 200, 250, 'You Died', {
-            'font': '120px pixelFont',
+        @text = @game.add.text 200, 250, 'You Died', {
+            'font': '60px Emulogic',
             'fill': 'white'
         }
 
-        @restartText = @game.add.bitmapText(300, 600, 'Please click to restart', {
-            'font': '30px pixelFont',
+        @restartText = @game.add.text(300, 600, 'Please click to restart', {
+            'font': '18px Emulogic',
             'fill': 'white'
             })
 
