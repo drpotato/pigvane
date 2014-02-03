@@ -37,6 +37,16 @@ class Pigvane.States.MainMenu
             font: '20px Emulogic',
             fill: 'white',
             strokeThickness: 5,
+            stroke: '3C033A',
+            align: 'center'
+            })
+
+        twitterText = '@freelyfred - lead dev\n@xxNxT - lead artist\n@dr__potato - project manager, dev'
+
+        @twitter = @add.text(10, 980, twitterText, {
+            font: '13px Emulogic',
+            fill: '444',
+            strokeThickness: 0,
             stroke: '3C033A'
             })
 
