@@ -13,8 +13,8 @@ class Pigvane.Classes.CameraController
         yDude = @dude.body.y + @dude.body.height/2
 
 
-        if (@dude.body.x - @camera.x > 128 or @camera.x - @dude.body.x > 128)
-            @camera.x += xDude - xCamera
+        if (xDude - xCamera > 128 or xCamera - xDude > 128)
+            @camera.x += (xDude - xCamera) / 30
 
         if (@dude.body.y - @camera.y > 128 or @camera.y - @dude.body.y > 128)
-            @camera.y += yDude - yCamera
+            @camera.y += (yDude - yCamera) / 30
