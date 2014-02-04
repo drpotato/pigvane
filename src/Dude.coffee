@@ -5,22 +5,22 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Used in collisions
         @name = 'dude'
-        
+
         # Has the dude moved?
         @moved = false
-        
+
         # Generic NPC kills
         @kills
-        
+
         # Special NPC Kills
         @specialKills = 0
-        
+
         # Special NPC helps
         @helps = 0
-        
+
         # Special NPC ignores
         @ignores = 0
-        
+
         # Is a cat?
         @cat = true
 
@@ -29,7 +29,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.add 'jump', [4,5,6,7,8,9]
         @animations.add 'drawn', [10,11,12,13]
         # @animations.add 'left', [12,13,14,15]
-        
+
         @animations.play 'right', 16, true
 
         # Set collision size
@@ -48,9 +48,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @facing = 'right'
 
         @body.gravity.y = 20
-        
+
         @lives = 3
-        
+
         @health = 10
 
         @gunDrawn = false
@@ -77,7 +77,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
-        @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X 
+        @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X
 
         facing = @facing
 
@@ -94,18 +94,18 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @canceledJump = false
             soundCallback = () ->
                 Pigvane.Main.soundManager.sfxJump.play()
-                
+
             setTimeout soundCallback, 150
-            
+
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
             @canceledJump = true
-            
+
         # Determine if cat.
         if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
             @cat = false
 
-        
+
         if @facing is 'right'
             @scale.x = 1
         else if @facing is 'left'
@@ -113,7 +113,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         if @game.input.keyboard.isDown Phaser.Keyboard.V
             @damage()
-        
+
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
@@ -140,7 +140,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @animations.play 'drawn', 16, true
             else
                 @animations.play 'right', 16, true
-        
+
         @updateAchievements()
 
         Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
@@ -169,7 +169,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If it's been 80 ms since last bullet
         if @game.time.now > @nextBullet
 
-            # See if there is a free bullet 
+            # See if there is a free bullet
             bullet = Pigvane.Main.bullets.getFirstExists( false )
 
             # If there is one
@@ -186,14 +186,17 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                     bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
                 setTimeout callback, 17
-                # Change velocity and position of bullet based on the way the dude is facing.  
+                # Change velocity and position of bullet based on the way the dude is facing.
                 # Also knockback dude.x
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
+                    @game.world.camera.x -= 5
+
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
+                    @game.world.camera.x += 5
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
@@ -204,7 +207,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80
-            
+
     incAggro: (aggro) ->
         @aggro += aggro
         @recentAggro += aggro
@@ -220,9 +223,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             Pigvane.Main.healthBar.removeLife()
             if @lives == 0
                 # @kill()
-                
+
                 # Pigvane.Main.achievements.grant('3_lives')
-                
+
                 @game.state.start 'Restart'
 
         Pigvane.Main.healthBar.update()
@@ -232,13 +235,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @y = 500
 
     envHit: (obj1, obj2) ->
-        obj1.kill()   
-        
+        obj1.kill()
+
     updateAchievements: () ->
-        
+
         if !@moved and @body.velocity.x != 0
             @moved = true
             Pigvane.Main.achievements.grant('first_steps')
-            
+
         if @specialKills == 1
             Pigvane.Main.achievements.grant('kill_1')
