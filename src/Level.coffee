@@ -103,7 +103,9 @@ class Pigvane.Classes.Level
 
         @aggroHelper = new Pigvane.Classes.aggroHelper @game
         
-        @game.world.camera.follow @dude, 1
+        # @game.world.camera.follow @dude, 1
+
+        @cameraController = new Pigvane.Classes.CameraController @game
 
         @subPreload()
 
@@ -120,6 +122,8 @@ class Pigvane.Classes.Level
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
         
         @npcController.update()
+
+        @cameraController.update()
 
     nextState: () ->
         Pigvane.levelController.changeToLevel()
