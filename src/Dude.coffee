@@ -191,12 +191,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 if @facing is 'right'
                     bullet.body.velocity.x = 1000
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
-                    @game.world.camera.x -= 5
 
                 else if @facing is 'left'
                     bullet.body.velocity.x = -1000
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
-                    @game.world.camera.x += 5
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
@@ -207,6 +205,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80
+
+            Pigvane.Main.cameraController.shakeScreen()
 
     incAggro: (aggro) ->
         @aggro += aggro
