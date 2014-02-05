@@ -1,6 +1,5 @@
 class Pigvane.Classes.CameraController
-    constructor: (game) ->
-        @game = game
+    constructor: (@game) ->
         @camera = @game.world.camera
         @dude = Pigvane.Main.dude
         @screenShakeTimer = 0
