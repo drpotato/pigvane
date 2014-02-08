@@ -26,7 +26,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     
     spawnRandomNPCs: () ->
         for i in [0...50]
-            @npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 400, 'hat_npc')
+            @npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 800, 'hat_npc')
 
     repositionParallax: () ->
 
@@ -34,12 +34,12 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     initConfig: () ->
         @config.background = 'city-bg'
         @config.tilemap = 'city-tm'
-        @config.tileset = 'city-ts'
+        @config.tileset = 'citytiles'
         @config.bgScroll1 = 'city-bgScroll1'
         @config.bgScroll2 = 'city-bgScroll2'
         @config.nextLeveLX = 8200
         @config.vignette = "city-vignette"
 
     initCollisions: () ->
-        @tileset.setCollisionRange 0, 2, true, true, true, true
+        @map.setCollisionBetween 0, 2
         

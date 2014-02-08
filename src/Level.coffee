@@ -27,7 +27,7 @@ class Pigvane.Classes.Level
 
         # Add the map and tileset that we loaded earlier 
         @map = @add.tilemap @config.tilemap
-        @tileset = @add.tileset @config.tileset
+        @map.addTilesetImage @config.tileset
 
         @initCollisions()
 
@@ -41,13 +41,13 @@ class Pigvane.Classes.Level
 
         # @repositionParallax()
 
-        @mainLayer = @add.tilemapLayer 0, 0, 1920, 1080, @tileset, @map
+        @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
 
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 100, 400
+        @dude = new Pigvane.Classes.Dude @game, 400, 400
         @add.existing @dude
         
         @npcController = new Pigvane.Classes.NPCController @game
@@ -66,7 +66,7 @@ class Pigvane.Classes.Level
         @bullets.setAll 'outOfBoundsKill', true
 
         @bullets.forEach( (obj) ->
-            obj.body.setSize 8, 8, 12, 12
+            # obj.body.setRectangle 8, 8, 12, 12 # Broken as of 1.1.4
             obj.animations.add('shoot', [0,1,2])
             obj.animations.add('repeat', [1,2])
 
@@ -80,7 +80,7 @@ class Pigvane.Classes.Level
         @enemyBullets.setAll 'outOfBoundsKill', true
 
         @enemyBullets.forEach( (obj) ->
-            obj.body.setSize 8, 8, 12, 12
+            # obj.body.setRectangle 8, 8, 12, 12 # Broken as of 1.1.4
             obj.animations.add('shoot', [0,1,2])
             obj.animations.add('repeat', [1,2])
 
@@ -96,9 +96,6 @@ class Pigvane.Classes.Level
         # @overlay = @add.sprite 0, 0, 'scanlines'
         # @overlay.fixedToCamera = true 
 
-        # @vignette = @add.sprite 0, 0, @config.vignette
-        # @vignette.fixedToCamera = true 
-
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
         @aggroHelper = new Pigvane.Classes.aggroHelper @game
@@ -111,6 +108,7 @@ class Pigvane.Classes.Level
 
     # Called every frame
     update: ->
+
         if @dude.x > @config.nextLeveLX
             log Pigvane.levelController.currentLevelIndex
             Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
@@ -120,6 +118,11 @@ class Pigvane.Classes.Level
             Pigvane.Main.dlc.popup()
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
+        @game.physics.collide(@bullets, @mainLayer, (obj1, obj2) -> 
+            obj1.visible = false
+            obj1.kill()
+            )
+
         
         @npcController.update()
 

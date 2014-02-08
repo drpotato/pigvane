@@ -13,7 +13,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         @facing = 'left'
 
-        @body.gravity.y = 10
+        @body.gravity.y = 500
         
         @health = 3
 

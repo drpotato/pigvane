@@ -31,8 +31,6 @@ class Pigvane.States.MainMenu
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
-        console.log text
-
         @startText = @add.text(765, 600, text, {
             font: '20px Emulogic',
             fill: 'white',

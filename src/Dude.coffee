@@ -1,7 +1,7 @@
 class Pigvane.Classes.Dude extends Phaser.Sprite
     constructor: (@game, x, y) ->
         # Make sure sprite is actually created
-        super game, x, y, 'dude'
+        super @game, x, y, 'dude'
 
         # Used in collisions
         @name = 'dude'
@@ -21,7 +21,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Special NPC ignores
         @ignores = 0
 
-        # Is a cat?
+        # Is a cat? <3
         @cat = true
 
         # Set up animations
@@ -33,7 +33,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.play 'right', 16, true
 
         # Set collision size
-        @body.setSize 32, 32, 0, 0
+        # @body.setRectangle 60, 60, 0, 0 # Broken in 1.1.4
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
@@ -47,7 +47,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @facing = 'right'
 
-        @body.gravity.y = 20
+        @body.gravity.y = 500
 
         @lives = 3
 
@@ -64,14 +64,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
 
-        @game.physics.collide(Pigvane.Main.bullets, Pigvane.Main.mainLayer, @envHit)
-
+        
         if @game.input.keyboard.isDown Phaser.Keyboard.D
             Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
         @vStep = 50
-        @jumpVelocity = 600
+        @jumpVelocity = 500
         @velocity = 300
         # More if running
         @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
@@ -89,7 +88,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @body.velocity.x += @vStep
             facing = 'right'
 
-        if @cursors.up.isDown and @body.touching.down
+        if @cursors.up.isDown and @body.onFloor()
             @body.velocity.y = -@jumpVelocity
             @canceledJump = false
             soundCallback = () ->
