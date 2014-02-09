@@ -28,8 +28,14 @@ class Pigvane.Classes.weaponHandler
             stroke: '3C033A'
             })
         @overlay.fixedToCamera = true
+        @overlay.visible = false
         @upgrade()
-        
+
+        @drawn = false
+    
+    toggleOverlay: ->
+        @drawn = !@drawn
+        @overlay.visible = @drawn    
 
     getCurrentWeapon: () ->
         return @weapons[@currentWeapon]
@@ -37,6 +43,7 @@ class Pigvane.Classes.weaponHandler
     upgrade: () ->
         @currentWeapon++
         @overlay.setText @getCurrentWeapon().name
+        Pigvane.Main.dude.addText('New Weapon!', 'white', 20)
         if @weapons[@currentWeapon+1]?
             @threshold = @weapons[@currentWeapon+1].threshold
         else 

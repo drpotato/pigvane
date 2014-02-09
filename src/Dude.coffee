@@ -138,10 +138,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # Pigvane.Main.soundManager.sfxGunshotPlayer.play()
         # If not, update his facing, and display the correct animation
         else
-           @facing = facing
-
-
-        
+           @facing = facing        
 
         @updateAchievements()
 
@@ -152,11 +149,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
+        Pigvane.Main.weaponHandler.toggleOverlay()
         if @gunDrawn is true
             # @animations.play 'drawn', 16, true
-            @animations.frame = 10
+            # @animations.frame = 10
         else
-            @animations.frame = 0
+            # @animations.frame = 0
             # @animations.play 'right', 16, true
 
     hitByNPC: (obj1, obj2) ->
@@ -235,6 +233,18 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     respawn: () ->
         @x = @game.world.camera.x + 50
         @y = 500
+
+    addText: (text, colour='white', size=10) ->
+        text = @game.add.text(@x-10, @y, text, {
+            font: size+'px Emulogic',
+            fill: colour,
+            strokeThickness: 5,
+            stroke: '3C033A'
+            })
+
+        tween = @game.add.tween(text).to({y: text.y-100, alpha: 0}, 500, Phaser.Easing.Linear.None, true)
+
+        tween.onComplete.add -> text.destroy()
 
     updateAchievements: () ->
 
