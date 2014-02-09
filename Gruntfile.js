@@ -11,7 +11,8 @@ module.exports = function(grunt) {
                     {cwd: 'src/res/public/noupscale', expand: true, src: ['**'], dest: 'dev/res/'},
                     {cwd: 'src/res/public/2x', expand: true, src: ['**.json'], dest: 'dev/res/'},
                     {cwd: 'src/res/public/4x', expand: true, src: ['**.json'], dest: 'dev/res/'},
-                    {cwd: 'src/res/public/sounds', expand: true, src: ['**'], dest: 'dev/res/'}
+                    {cwd: 'src/res/public/sounds', expand: true, src: ['**'], dest: 'dev/res/'},
+                    {cwd: 'src/res/public/tilemap', expand: true, src: ['*-2x.*','*.json'], dest: 'dev/res'}
                     
                 ],
                 nonull: true
@@ -40,7 +41,21 @@ module.exports = function(grunt) {
                     src: ['**.png'],
                     cwd: 'src/res/public/2x',
                     dest: 'dev/res/'
-                }]
+                },
+                {
+                    expand: true,
+                    src: ['res/public/tilemap/*.png'],
+                    filter: function (src) {
+                        if (src.indexOf('2x') === -1) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    },
+                    cwd: 'src/',
+                    dest: 'src/'
+                }
+                ]
             },
             fourtimes: {
                 options: {
@@ -70,7 +85,7 @@ module.exports = function(grunt) {
         },
         watch: {
             twotimes: {
-                files: ['src/res/public/2x/**'],
+                files: ['src/res/public/2x/**', 'src/res/public/tilemap/**'],
                 tasks: ['responsive_images:twotimes'],
                 options: {
                     livereload: true,
@@ -102,7 +117,7 @@ module.exports = function(grunt) {
                 }
             },
             statics: {
-                files: ['src/res/public/**', 'src/*.html'],
+                files: ['src/res/public/**', 'src/*.html', 'src/res/public/tilemap/**'],
                 tasks: ['copy:main'],
                 options: {
                     livereload: true,
