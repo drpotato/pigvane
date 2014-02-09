@@ -28,7 +28,7 @@ class Pigvane.States.Preloader
 
         @game.load.image 'dialog', 'res/dialogue.png'
 
-        @game.load.spritesheet 'dude', 'res/testwalking-2x.png', 32, 32
+        @game.load.spritesheet 'dude', 'res/char-blue-2x.png', 48, 48
         @game.load.spritesheet 'hat_npc', 'res/npc6-2x.png', 32, 32
 
         @game.load.image 'scanlines', 'res/scanlines.png'   

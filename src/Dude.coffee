@@ -26,8 +26,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set up animations
         @animations.add 'right',[0,1,2,3]
-        @animations.add 'jump', [4,5,6,7,8,9]
-        @animations.add 'drawn', [10,11,12,13]
+        # @animations.add 'jump', [4,5,6,7,8,9]
+        # @animations.add 'drawn', [10,11,12,13]
         # @animations.add 'left', [12,13,14,15]
 
         @animations.play 'right', 16, true
