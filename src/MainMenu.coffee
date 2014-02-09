@@ -6,9 +6,9 @@ class Pigvane.States.MainMenu
         # Add background + logo to current state
         @bg = @add.sprite -40, 40, 'menuBG'
 
-        @logo = @add.sprite 516, 152, 'logo' 
+        @logo = @add.sprite 518, 150, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
-        @logo.animations.play 'dropthebass', 0.5, true
+        @logo.animations.play 'dropthebass', 1.5, true
         
         # Allows us to fade in background
         # @background.alpha = 0
@@ -19,7 +19,7 @@ class Pigvane.States.MainMenu
         
         @insertCoinText = @add.text(820, 500, "Insert Coin(s)", {
             font: '20px Emulogic',
-            fill: 'white',
+            fill: 'DBB4A5',
             strokeThickness: 5,
             stroke: '3C033A',
             align: 'center'
@@ -28,7 +28,7 @@ class Pigvane.States.MainMenu
         
         @cursor = @add.text(735, 700, '>', {
             font: '20px Emulogic',
-            fill: 'white',
+            fill: 'DBB4A5',
             strokeThickness: 5,
             stroke: '3C033A'
             })
@@ -42,7 +42,7 @@ class Pigvane.States.MainMenu
 
         @startText = @add.text(765, 700, text, {
             font: '20px Emulogic',
-            fill: 'white',
+            fill: 'DBB4A5',
             strokeThickness: 5,
             stroke: '3C033A',
             align: 'center'
@@ -52,7 +52,7 @@ class Pigvane.States.MainMenu
 
         @twitter = @add.text(10, 980, twitterText, {
             font: '13px Emulogic',
-            fill: '444',
+            fill: '8D5074',
             strokeThickness: 0,
             stroke: '3C033A'
             })
@@ -66,8 +66,9 @@ class Pigvane.States.MainMenu
 
     update: () ->
         if @time.now > @blinkTimer
-            @blinkTimer = @time.now + 1000
-            @cursor.visible = !@cursor.visible
+            @blinkTimer = @time.now + 400
+            #@cursor.visible = !@cursor.visible
+            #I don't think that this should blink - it's distracting.
             @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
