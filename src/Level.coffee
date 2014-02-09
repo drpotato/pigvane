@@ -31,11 +31,11 @@ class Pigvane.Classes.Level
 
         @initCollisions()
 
-        @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
+        # @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
+        # @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
@@ -83,24 +83,14 @@ class Pigvane.Classes.Level
             # obj.body.setRectangle 8, 8, 12, 12 # Broken as of 1.1.4
             obj.animations.add('shoot', [0,1,2])
             obj.animations.add('repeat', [1,2])
-
             )
 
-        # @enemyBullets.forEach( (obj) ->
-        #     obj.animations.add('shoot', [0,1,2,3])
-        #     obj.animations.add('repeat', [2,3])
-        #     )
-
-        # @fgLayer = @add.tilemapLayer 0, 0, 1920, 1080, @tileset, @map, 1
-
-        # @overlay = @add.sprite 0, 0, 'scanlines'
-        # @overlay.fixedToCamera = true 
-
+        # @fgLayer = @add.tileSprite(0, 0, 8000, 1000, @config.fgScroll)
+        
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
         @aggroHelper = new Pigvane.Classes.aggroHelper @game
         
-        # @game.world.camera.follow @dude, 1
 
         @cameraController = new Pigvane.Classes.CameraController @game
 
@@ -130,23 +120,3 @@ class Pigvane.Classes.Level
 
     nextState: () ->
         Pigvane.levelController.changeToLevel()
-        # @game.state.start 'Candy', true, true
-
-    fadeOut: () ->
-
-        # spr_bg = @add.graphics 0, 0
-        # spr_bg.fixedToCamera = true
-        # spr_bg.beginFill 0x000000, 1
-        # spr_bg.drawRect 0, 0, @game.width*10, @game.height*10
-        # spr_bg.alpha = 0
-        # spr_bg.endFill()
-
-        # s = this.add.tween spr_bg
-        # s.to({ alpha: 1 }, 1000, Phaser.Easing.Linear.None, true)
-        # s.onComplete.add(Pigvane.levelController.changeToLevel, Pigvane.levelController)
-        # s.start()
-        
-        Pigvane.Main.soundManager.music.stop()
-        Pigvane.levelController.changeToLevel()
-
-

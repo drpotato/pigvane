@@ -16,12 +16,13 @@ class Pigvane.States.Preloader
         # @game.load.image 'city-bg', 'res/coolbackestround.png'
         @game.load.image 'city-bgScroll1', 'res/bg1-4x.png'
         @game.load.image 'city-bgScroll2', 'res/bg2-4x.png'
+        @game.load.image 'city-fg', 'res/foreground-4x.png'
 
-        @game.load.tilemap 'candy-tm', 'res/candyland-level.json', null, Phaser.Tilemap.TILED_JSON
+        # @game.load.tilemap 'candy-tm', 'res/candyland-level.json', null, Phaser.Tilemap.TILED_JSON
         # @game.load.tileset 'candy-ts', 'res/candylandtiles-2x.png', 32, 32
-        @game.load.image 'candy-bg', 'res/candybase-2x.png'
-        @game.load.image 'candy-bgScroll1', 'res/candycanes3-2x.png'
-        @game.load.image 'candy-bgScroll2', 'res/candycanes1-2x.png'
+        # @game.load.image 'candy-bg', 'res/candybase-2x.png'
+        # @game.load.image 'candy-bgScroll1', 'res/candycanes3-2x.png'
+        # @game.load.image 'candy-bgScroll2', 'res/candycanes1-2x.png'
 
         @game.load.spritesheet 'lives', 'res/heart-2x.png', 32, 32
 
@@ -29,12 +30,6 @@ class Pigvane.States.Preloader
 
         @game.load.spritesheet 'dude', 'res/char-blue-2x.png', 48, 48
         @game.load.spritesheet 'hat_npc', 'res/npc6-2x.png', 32, 32
-
-        @game.load.image 'scanlines', 'res/scanlines.png'   
-        
-        @game.load.image 'city-vignette', 'res/vignette.png'
-        @game.load.image 'candy-vignette', 'res/vignette.png'
-        @game.load.image 'aggro-vignette', 'res/vignette_blood.png'
 
         @game.load.spritesheet 'bullet', 'res/bullet-2x.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-2x.png', 32, 32
@@ -79,7 +74,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_monk', 'res/monk-2x.png', 32, 32
         @game.load.spritesheet 'npc_ice_cream_girl', 'res/icecreamgirl-2x.png', 32, 32
         # - Candy
-        @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-2x.png', 64, 32
+        # @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-2x.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-2x.png', 32, 32
         @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-2x.png', 32, 32
         @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig-green-2x.png', 32, 32

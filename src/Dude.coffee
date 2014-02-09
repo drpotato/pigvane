@@ -26,9 +26,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set up animations
         @animations.add 'right',[0,1,2,3]
-        # @animations.add 'jump', [4,5,6,7,8,9]
-        # @animations.add 'drawn', [10,11,12,13]
-        # @animations.add 'left', [12,13,14,15]
 
         @animations.play 'right', 16, true
 
@@ -63,7 +60,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     update: () ->
         @game.physics.collide @, Pigvane.Main.mainLayer
-
         
         if @game.input.keyboard.isDown Phaser.Keyboard.D
             Pigvane.Main.dlc.popup()
@@ -72,6 +68,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @vStep = 50
         @jumpVelocity = 500
         @velocity = 300
+
         # More if running
         @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
@@ -81,28 +78,32 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         facing = @facing
 
         # Series of ifs to change dude velocity if arrow keys are pressed
-        if @cursors.left.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x >= 0 )
-            @body.velocity.x -= @vStep
-            facing = 'left'
-        else if @cursors.right.isDown and ( Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x <= 0 )
-            @body.velocity.x += @vStep
-            facing = 'right'
+        if @cursors.left.isDown
+            if Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x >= 0
+                @body.velocity.x -= @vStep
+                facing = 'left'
+        else if @cursors.right.isDown
+            if Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x <= 0
+                @body.velocity.x += @vStep
+                facing = 'right'
 
-        if @cursors.up.isDown and @body.onFloor()
-            @body.velocity.y = -@jumpVelocity
-            @canceledJump = false
-            soundCallback = () ->
-                Pigvane.Main.soundManager.sfxJump.play()
+        if @cursors.up.isDown
+            if @body.onFloor()
+                @body.velocity.y = -@jumpVelocity
+                @canceledJump = false
+                soundCallback = () ->
+                    Pigvane.Main.soundManager.sfxJump.play()
 
-            setTimeout soundCallback, 150
+                setTimeout soundCallback, 150
 
         if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
             @body.velocity.y = 0
             @canceledJump = true
 
         # Determine if cat.
-        if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
-            @cat = false
+        if @cat is true
+            if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
+                @cat = false
 
 
         if @facing is 'right'
@@ -112,7 +113,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         if @game.input.keyboard.isDown Phaser.Keyboard.V
             @damage()
-
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
@@ -142,8 +142,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @updateAchievements()
 
-        Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
-        Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
+        # Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
+        # Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
 
         if @game.time.now > @aggroUpdateTimer
             @aggroUpdateTimer = @game.time.now + 1000
@@ -198,9 +198,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
                 bullet.body.velocity.y += @game.rnd.integerInRange(0, -40)
-
-                # @game.world.camera.x += @game.rnd.integerInRange -20, 20
-                # @game.world.camera.y += @game.rnd.integerInRange -20, 20
 
             # Next bullet can only be fired 80ms from now
             @nextBullet = @game.time.now + 80

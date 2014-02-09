@@ -37,6 +37,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         @config.tileset = 'citytiles'
         @config.bgScroll1 = 'city-bgScroll1'
         @config.bgScroll2 = 'city-bgScroll2'
+        @config.fgScroll = 'city-fg'
         @config.nextLeveLX = 8200
         @config.vignette = "city-vignette"
 
