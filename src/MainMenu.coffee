@@ -8,7 +8,7 @@ class Pigvane.States.MainMenu
 
         @logo = @add.sprite 516, 152, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
-        @logo.animations.play 'dropthebass', 1, true
+        @logo.animations.play 'dropthebass', 0.5, true
         
         # Allows us to fade in background
         # @background.alpha = 0
@@ -17,7 +17,16 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @cursor = @add.text(735, 600, '>', {
+        @insertCoinText = @add.text(820, 500, "Insert Coin(s)", {
+            font: '20px Emulogic',
+            fill: 'white',
+            strokeThickness: 5,
+            stroke: '3C033A',
+            align: 'center'
+            })
+
+        
+        @cursor = @add.text(735, 700, '>', {
             font: '20px Emulogic',
             fill: 'white',
             strokeThickness: 5,
@@ -25,13 +34,13 @@ class Pigvane.States.MainMenu
             })
 
         @options = [
-            ['Press Enter to Play', @fadeOut],
+            ['Press Start to Play', @fadeOut],
             ['Help', @help]
         ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
-        @startText = @add.text(765, 600, text, {
+        @startText = @add.text(765, 700, text, {
             font: '20px Emulogic',
             fill: 'white',
             strokeThickness: 5,
@@ -59,6 +68,7 @@ class Pigvane.States.MainMenu
         if @time.now > @blinkTimer
             @blinkTimer = @time.now + 1000
             @cursor.visible = !@cursor.visible
+            @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
         switch e.keyCode
@@ -83,7 +93,7 @@ class Pigvane.States.MainMenu
                 if @cursorPosition < 0
                     @cursorPosition = @options.length-1
 
-        @cursor.y = 600 + 32 * @cursorPosition
+        @cursor.y = 700 + 32 * @cursorPosition
 
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
