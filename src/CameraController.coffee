@@ -4,7 +4,10 @@ class Pigvane.Classes.CameraController
         @dude = Pigvane.Main.dude
         @screenShakeTimer = 0
 
+        Pigvane.Main.onUpdate.add @update, @
+
     update: () ->
+
 
         xCamera = @camera.x + @game.width/2 + if @dude.facing == 'left' then 400 else -400
         yCamera = @camera.y + @game.height/2
@@ -25,6 +28,8 @@ class Pigvane.Classes.CameraController
 
         # if (@dude.body.y - @camera.y > 128 or @camera.y - @dude.body.y > 128)
         @camera.y += (yDude - yCamera) / 15
+
+        return true
 
 
     shakeScreen: () ->

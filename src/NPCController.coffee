@@ -3,12 +3,15 @@ class Pigvane.Classes.NPCController
         
         @npcs = @game.add.group()
         @npcDialogBoxes = @game.add.group()
+
+        Pigvane.Main.onUpdate.add @update, @
         
     update: () ->
         
         @game.physics.overlap Pigvane.Main.bullets, @npcs, @collisionHandler
         @game.physics.overlap Pigvane.Main.dude, @npcDialogBoxes, @dialogHandler
         
+        return true
     
     collisionHandler: (obj1, obj2) ->
         

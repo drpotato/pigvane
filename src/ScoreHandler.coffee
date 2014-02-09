@@ -18,6 +18,8 @@ class Pigvane.Classes.scoreHandler
 
         @scoreText.setText(Pigvane.score)
 
+        return true
+
         # If you want the score to follow him
         # @scoreText.x = Pigvane.Main.dude.x-150
         # @scoreText.y = Pigvane.Main.dude.y-96

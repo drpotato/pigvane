@@ -6,6 +6,8 @@ class Pigvane.Classes.Level
         # Set up cross Class communication as we cannot access parent classes in js
         Pigvane.Main = @
 
+        @onUpdate = new Phaser.Signal()
+
         @gameWidth = 5
         
         # Create a sound manager and add music
@@ -114,10 +116,7 @@ class Pigvane.Classes.Level
             obj1.kill()
             )
 
-        
-        @npcController.update()
-
-        @cameraController.update()
+        @onUpdate.dispatch()
 
     nextState: () ->
         Pigvane.levelController.changeToLevel()
