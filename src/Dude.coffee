@@ -25,9 +25,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @cat = true
 
         # Set up animations
-        @animations.add 'right',[0,1,2,3]
+        @animations.add 'walk', [0,1,2,3,4,5,6,7]
 
-        @animations.play 'right', 16, true
+        @animations.play 'walk', 16, true
 
         # Set collision size
         # @body.setRectangle 60, 60, 0, 0 # Broken in 1.1.4
@@ -115,6 +115,14 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.input.keyboard.isDown Phaser.Keyboard.V
             @damage()
 
+        if @body.velocity.x is 0 and @body.velocity.y is 0
+            @animations.stop()
+        else
+            if @gunDrawn is true
+                @animations.play 'walk', 16, true
+            else
+                @animations.play 'walk', 16, true
+
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
             if Math.abs( @body.velocity.x ) < 50
@@ -133,18 +141,9 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
            @facing = facing
 
 
-        if @body.velocity.x is 0 and @body.velocity.y is 0
-            @animations.stop()
-        else
-            if @gunDrawn is true
-                @animations.play 'drawn', 16, true
-            else
-                @animations.play 'right', 16, true
+        
 
         @updateAchievements()
-
-        # Pigvane.Main.bgScroll1.tilePosition.x = @game.world.camera.x/2.5
-        # Pigvane.Main.bgScroll2.tilePosition.x = @game.world.camera.x/5
 
         if @game.time.now > @aggroUpdateTimer
             @aggroUpdateTimer = @game.time.now + 1000
