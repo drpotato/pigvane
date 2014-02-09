@@ -108,9 +108,9 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
             if @health <= 0
                 @die()
+                return 'kill'
     
     die: () ->
-        # @animations.frame = ?
         Pigvane.Main.scoreHandler.add(10)
         @kill()
         @destroy()
