@@ -33,11 +33,11 @@ class Pigvane.Classes.Level
 
         @initCollisions()
 
-        # @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
+        @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        # @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
@@ -87,7 +87,7 @@ class Pigvane.Classes.Level
             obj.animations.add('repeat', [1,2])
             )
 
-        # @fgLayer = @add.tileSprite(0, 0, 8000, 1000, @config.fgScroll)
+        @fgScroll = @add.tileSprite(0, 0, 8000, 2000, @config.fgScroll)
         
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
@@ -117,6 +117,10 @@ class Pigvane.Classes.Level
             obj1.visible = false
             obj1.kill()
             )
+
+        @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
+        @bgScroll2.tilePosition.x = @game.world.camera.x/5
+        @fgScroll.tilePosition.x = @game.world.camera.x/0.5
 
         @onUpdate.dispatch()
 
