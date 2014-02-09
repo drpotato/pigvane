@@ -15,6 +15,7 @@ class Pigvane.Classes.NPCSpecial extends Pigvane.Classes.NPC
     die: () ->
         
         Pigvane.Main.dude.specialKills += 1
+        Pigvane.Main.scoreHandler.add(200)
         
         if @deathAchievement?
             # @animations.frame = ?

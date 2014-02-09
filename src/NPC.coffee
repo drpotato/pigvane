@@ -111,6 +111,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     
     die: () ->
         # @animations.frame = ?
+        Pigvane.Main.scoreHandler.add(10)
         @kill()
         @destroy()
         Pigvane.Main.dude.kills += 1

@@ -7,6 +7,8 @@ height = 1080
 # Creates the game instance, notice ommitance of states `preload`, `create`, and `update`
 Pigvane.game = new Phaser.Game width, height, Phaser.WEBGL, 'game'
 
+Pigvane.score = 0
+
 # Add the states from the Pigvane.States object
 # The last boolean value determines which will run on startup
 Pigvane.game.state.add 'Boot', 			Pigvane.States.Boot, 		true

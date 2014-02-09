@@ -47,7 +47,7 @@ class Pigvane.Classes.Level
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
-        @dude = new Pigvane.Classes.Dude @game, 400, 400
+        @dude = new Pigvane.Classes.Dude @game, 1000, 400
         @add.existing @dude
         
         @npcController = new Pigvane.Classes.NPCController @game
@@ -90,7 +90,8 @@ class Pigvane.Classes.Level
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
         @aggroHelper = new Pigvane.Classes.aggroHelper @game
-        
+
+        @scoreHandler = new Pigvane.Classes.scoreHandler @game
 
         @cameraController = new Pigvane.Classes.CameraController @game
 
