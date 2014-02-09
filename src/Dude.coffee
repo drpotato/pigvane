@@ -174,7 +174,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # If there is one
             if bullet
                 # Reset it to the dude's position
-                bullet.reset @x, @y-5
+                bullet.reset @x, @y
 
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
