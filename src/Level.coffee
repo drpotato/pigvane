@@ -32,11 +32,11 @@ class Pigvane.Classes.Level
         @initCollisions()
 
         @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
-        @bgScroll1.tilePosition.x = 0
+        # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
         @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
-        @bgScroll2.tilePosition.x = 0
+        # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
         # @repositionParallax()

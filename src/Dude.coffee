@@ -233,9 +233,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @x = @game.world.camera.x + 50
         @y = 500
 
-    envHit: (obj1, obj2) ->
-        obj1.kill()
-
     updateAchievements: () ->
 
         if !@moved and @body.velocity.x != 0
