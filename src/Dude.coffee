@@ -48,6 +48,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @lives = 3
 
+        @maxHealth = 10
         @health = 10
 
         @gunDrawn = false

@@ -3,15 +3,11 @@ class Pigvane.Classes.HealthOverlay
         #Created a Sprite with fixedToCamera = true
         sprite = @game.add.sprite(0,0);
         sprite.fixedToCamera = true;
-        #addChild of my text at x:0, y:0
-        @livesTitle = 'Lives :'
+
         livesLeft = Pigvane.Main.dude.lives
         
-        @livesText = @game.add.text(0, 0, @livesTitle, {font: '18px Emulogic'});
-
         @hearts = @game.add.group()
-        # @hearts.fixedToCamera = true
-        @hearts.x = 120
+        @hearts.x = 15
         @hearts.y = 5
 
         @heartsArray = []
@@ -29,22 +25,19 @@ class Pigvane.Classes.HealthOverlay
             @hearts.add heartContainer
             @heartsArray.push heartContainer
 
-        sprite.addChild(@livesText);
-        @healthTitle = 'Health : ';
-        healthLeft = Pigvane.Main.dude.health;
-        @healthText = @game.add.text(0,25,@healthTitle + healthLeft, {font: '18px Emulogic'});
-        sprite.addChild(@healthText);
-        #position the cameraOffset of my Sprite
+        # sprite.addChild(@livesText);
+
         sprite.cameraOffset.x = 10;
         sprite.cameraOffset.y = 10;
+
+        @healthBar = @game.add.sprite 15, 40, 'healthBar'
+        @healthBar.cropEnabled = true
+        @healthBar.crop = new Phaser.Rectangle 0, 0, 128, 32
+        @healthBar.fixedToCamera = true
         
     update: () ->
-        healthLeft = Pigvane.Main.dude.health
-        @healthText.setText( @healthTitle + healthLeft )
-        # livesLeft = Pigvane.Main.dude.lives
-        # @livesText.content = @livesTitle + livesLeft
+        @healthBar.crop.width = (Pigvane.Main.dude.health/Pigvane.Main.dude.maxHealth) * 128
 
     removeLife: () ->
         toDestroy = @heartsArray.pop()
         toDestroy.destroy()
-        # @hearts.getAt(@hearts.length-1).destroy()
