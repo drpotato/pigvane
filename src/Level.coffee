@@ -97,6 +97,8 @@ class Pigvane.Classes.Level
 
         @cameraController = new Pigvane.Classes.CameraController @game
 
+        @weaponHandler = new Pigvane.Classes.weaponHandler @game
+
         @subPreload()
 
     # Called every frame

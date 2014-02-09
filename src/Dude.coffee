@@ -179,6 +179,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
+                
+                currentWeapon = Pigvane.Main.weaponHandler.getCurrentWeapon()
 
                 callback = () ->
                     bullet.animations.stop()
@@ -189,19 +191,22 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Change velocity and position of bullet based on the way the dude is facing.
                 # Also knockback dude.x
                 if @facing is 'right'
-                    bullet.body.velocity.x = 1000
+                    bullet.body.velocity.x = currentWeapon.velocity
                     @body.velocity.x -= 100 if Math.abs( @body.velocity.x - 100 ) <= @velocity
 
                 else if @facing is 'left'
-                    bullet.body.velocity.x = -1000
+                    bullet.body.velocity.x = -currentWeapon.velocity
                     @body.velocity.x += 100 if Math.abs( @body.velocity.x + 100 ) <= @velocity
 
                 # Randomise velocity
                 bullet.body.velocity.x += @game.rnd.integerInRange(-10, 10)
-                bullet.body.velocity.y += @game.rnd.integerInRange(0, -40)
+                if @body.onFloor()
+                    bullet.body.velocity.y += @game.rnd.integerInRange(10, -10)
+                else
+                    bullet.body.velocity.y += @game.rnd.integerInRange(20, -40)
 
-            # Next bullet can only be fired 80ms from now
-            @nextBullet = @game.time.now + 80
+                # Next bullet can only be fired 80ms from now
+                @nextBullet = @game.time.now + currentWeapon.fireRate
 
             Pigvane.Main.cameraController.shakeScreen()
 

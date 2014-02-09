@@ -12,11 +12,14 @@ class Pigvane.Classes.scoreHandler
 
         @scoreText.fixedToCamera = true
 
+        @onScoreUpdate = new Phaser.Signal()
+
         # Pigvane.Main.onUpdate.add @update, @
 
     update: () ->
 
         @scoreText.setText(Pigvane.score)
+        @onScoreUpdate.dispatch()
 
         return true
 
@@ -29,8 +32,6 @@ class Pigvane.Classes.scoreHandler
 
         @addFloatingText('+'+add)
         @update()
-
-        
 
     set: (score) ->
         Pigvane.score = score
