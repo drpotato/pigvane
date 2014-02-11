@@ -46,6 +46,8 @@ class Pigvane.Classes.Level
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
 
+        @platforms = @createPlatforms()
+
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
@@ -100,6 +102,18 @@ class Pigvane.Classes.Level
         @weaponHandler = new Pigvane.Classes.weaponHandler @game
 
         @subPreload()
+
+    createPlatforms: () ->
+        @platformGroup = @add.group()
+
+        for pair in Pigvane.platformData
+            if pair[3]?
+                type = pair[3]
+            else 
+                type = "platform"
+            sprite = @game.add.sprite pair[0], pair[1], type
+            @platformGroup.add sprite
+
 
     # Called every frame
     update: ->
