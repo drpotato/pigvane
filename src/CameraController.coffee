@@ -10,7 +10,7 @@ class Pigvane.Classes.CameraController
 
 
         xCamera = @camera.x + @game.width/2 + if @dude.facing == 'left' then 400 else -400
-        yCamera = @camera.y + @game.height/2
+        # yCamera = @camera.y + @game.height/2
 
         xDude = @dude.body.x + @dude.body.width/2
         yDude = @dude.body.y + @dude.body.height/2
@@ -27,7 +27,7 @@ class Pigvane.Classes.CameraController
         @camera.x += (xDude - xCamera) / 15
 
         # if (@dude.body.y - @camera.y > 128 or @camera.y - @dude.body.y > 128)
-        @camera.y += (yDude - yCamera) / 15
+        # @camera.y += (yDude - yCamera) / 15
 
         return true
 
