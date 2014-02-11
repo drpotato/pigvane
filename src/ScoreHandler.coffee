@@ -1,7 +1,17 @@
 class Pigvane.Classes.scoreHandler
     constructor: (@game) ->
 
+        @recentScore = 0
+        @recentTimer = 0
+
         @scoreText = @game.add.text(1700,5, "0", {
+            font: '40px Emulogic',
+            fill: 'white',
+            strokeThickness: 5,
+            stroke: '3C033A'
+            })
+
+        @recentScoreText = @game.add.text(1700,55, "", {
             font: '40px Emulogic',
             fill: 'white',
             strokeThickness: 5,
@@ -11,14 +21,26 @@ class Pigvane.Classes.scoreHandler
         @scoreFloaters = @game.add.group()
 
         @scoreText.fixedToCamera = true
+        @recentScoreText.fixedToCamera = true
 
         @onScoreUpdate = new Phaser.Signal()
 
-        # Pigvane.Main.onUpdate.add @update, @
+        Pigvane.Main.onUpdate.add @update, @
 
     update: () ->
 
+        if @recentScore == 0
+            @recentScoreText.setText("")
+
+        if @recentTimer < @game.time.now && @recentScore > 0
+
+            Pigvane.score += 1
+            @recentScore -= 1
+
         @scoreText.setText(Pigvane.score)
+
+        @recentScoreText.setText(@recentScore)
+
         @onScoreUpdate.dispatch()
 
         return true
@@ -28,9 +50,11 @@ class Pigvane.Classes.scoreHandler
         # @scoreText.y = Pigvane.Main.dude.y-96
 
     add: (add) ->
-        Pigvane.score += add
+        @recentScore += add
+        @recentTimer = @game.time.now + 2000
 
-        @addFloatingText('+'+add)
+        # Removed floating score for now...
+        # @addFloatingText('+'+add)
         @update()
 
     set: (score) ->

@@ -9,7 +9,7 @@ class Pigvane.Classes.CameraController
     update: () ->
 
 
-        xCamera = @camera.x + @game.width/2 + if @dude.facing == 'left' then 400 else -400
+        xCamera = @camera.x + @game.width/2 + if @dude.facing == 'left' then 150 else -150
         # yCamera = @camera.y + @game.height/2
 
         xDude = @dude.body.x + @dude.body.width/2
