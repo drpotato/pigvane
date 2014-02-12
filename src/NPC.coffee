@@ -69,12 +69,14 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @firing = false
 
 
-            @shootTimer = @game.time.now + @game.rnd.integerInRange(8, 13)*100
+            @shootTimer = @game.time.now + @game.rnd.integerInRange(3, 8)*100
 
     fire: () ->
 
         # See if there is a free bullet 
         bullet = Pigvane.Main.enemyBullets.getFirstExists false
+
+        bulletVelocity = 1000
 
         # If there is one
         if bullet
@@ -90,11 +92,17 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 bullet.animations.frame = if bullet.x % 2 == 0 then 1 else 2
 
             setTimeout callback, 17
-            
+
+            deltaX = @body.x - Pigvane.Main.dude.body.x
+            deltaY = @body.y - Pigvane.Main.dude.body.y
+
+            bullet.body.velocity.y = deltaY * bulletVelocity / deltaX
+
             if @facing is 'right'
-                bullet.body.velocity.x = 1000
+                bullet.body.velocity.x = bulletVelocity
             else if @facing is 'left'
-                bullet.body.velocity.x = -1000
+                bullet.body.velocity.x = -bulletVelocity
+
 
             # Randomise velocity
             bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
