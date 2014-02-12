@@ -46,7 +46,7 @@ class Pigvane.Classes.Level
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
 
-        @platforms = @createPlatforms()
+        @createPlatforms()
 
         @game.stage.backgroundColor = "#b2dcef"
 
@@ -104,14 +104,15 @@ class Pigvane.Classes.Level
         @subPreload()
 
     createPlatforms: () ->
-        @platformGroup = @add.group()
+        @platformGroup = @game.add.group()
 
         for pair in Pigvane.platformData
-            if pair[3]?
-                type = pair[3]
+            if pair[2]?
+                type = 'platform.'+pair[2]
             else 
-                type = "platform"
-            sprite = @game.add.sprite pair[0], pair[1], type
+                type = 'platform.1'
+            console.log 'Sup', type
+            sprite = @game.add.sprite(pair[0]*48, pair[1]*48, type)
             @platformGroup.add sprite
 
 

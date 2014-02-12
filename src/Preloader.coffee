@@ -23,6 +23,10 @@ class Pigvane.States.Preloader
         # @game.load.image 'candy-bg', 'res/candybase-2x.png'
         # @game.load.image 'candy-bgScroll1', 'res/candycanes3-2x.png'
         # @game.load.image 'candy-bgScroll2', 'res/candycanes1-2x.png'
+        
+        @game.load.image 'platform.1', 'res/platform1-2x.png'
+        @game.load.image 'platform.2', 'res/platform2-2x.png'
+        @game.load.image 'platform.3', 'res/platform3-2x.png'
 
         @game.load.spritesheet 'lives', 'res/heart-2x.png', 32, 32
         @game.load.image 'healthBar', 'res/healthbar-2x.png'
