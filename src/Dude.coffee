@@ -109,7 +109,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
                 @cat = false
 
-
         if @facing is 'right'
             @scale.x = 1
         else if @facing is 'left'
