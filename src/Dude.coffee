@@ -44,7 +44,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @facing = 'right'
 
-        @body.gravity.y = 500
+        @body.gravity.y = 1000
 
         @lives = 3
 
@@ -57,6 +57,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @recentAggro = 0
         @aggroUpdateTimer = 0
 
+        @body.bounce.y = 0.01
+
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->
@@ -67,7 +69,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set resulting speed of body
         @vStep = 50
-        @jumpVelocity = 500
+        @jumpVelocity = 600
         @velocity = 300
 
         # More if running
@@ -97,9 +99,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 setTimeout soundCallback, 150
 
-        if @cursors.up.isUp and @canceledJump is false and @body.velocity.y <= 0
-            @body.velocity.y = 0
-            @canceledJump = true
+        if @canceledJump is false
+            if @cursors.up.isUp and @body.velocity.y <= 0
+                @body.velocity.y = 0
+                @canceledJump = true
 
         # Determine if cat.
         if @cat is true
