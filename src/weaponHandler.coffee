@@ -7,13 +7,13 @@ class Pigvane.Classes.weaponHandler
             {
                 name: 'Pistol',
                 damage: 5,
-                fireRate: 500,
+                fireRate: 250,
                 velocity: 800
             },
             {   
                 name: 'Minigun',
                 damage: 10,
-                fireRate: 80,
+                fireRate: 120,
                 velocity: 1500,
                 threshold: 200
             }

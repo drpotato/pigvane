@@ -68,12 +68,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
-        @vStep = 50
+        @vStep = 15
         @jumpVelocity = 600
-        @velocity = 300
+        @velocity = 200
 
         # More if running
         @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @vStep = 50 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
         @velocity = 100 if @game.input.keyboard.isDown Phaser.Keyboard.X
@@ -83,10 +84,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Series of ifs to change dude velocity if arrow keys are pressed
         if @cursors.left.isDown
             if Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x >= 0
+                @body.velocity.x = 0 if @body.velocity.x >= 0
                 @body.velocity.x -= @vStep
                 facing = 'left'
         else if @cursors.right.isDown
             if Math.abs( @body.velocity.x ) + @vStep <= @velocity or @body.velocity.x <= 0
+                @body.velocity.x = 0 if @body.velocity.x <= 0
                 @body.velocity.x += @vStep
                 facing = 'right'
 
@@ -127,12 +130,12 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
-            if Math.abs( @body.velocity.x ) < 50
+            if Math.abs( @body.velocity.x ) < 30
                 @body.velocity.x = 0
             if @body.velocity.x > 0
-                @body.velocity.x -= 50
+                @body.velocity.x -= 30
             else if @body.velocity.x < 0
-                @body.velocity.x += 50
+                @body.velocity.x += 30
 
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
