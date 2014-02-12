@@ -1,7 +1,7 @@
 
 # Set up game width and height
-width = 1920
-height = 1080
+width = 1280
+height = 1024
 
 # The global Pigvane variable is set in index.html to avoide out-of-order assignment issues.  
 # Creates the game instance, notice ommitance of states `preload`, `create`, and `update`

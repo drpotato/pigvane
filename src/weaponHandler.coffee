@@ -21,7 +21,7 @@ class Pigvane.Classes.weaponHandler
 
         @currentWeapon = -1
         
-        @overlay = @game.add.text(5, 1050, "", {
+        @overlay = @game.add.text(5, 994, "", {
             font: '20px Emulogic',
             fill: 'white',
             strokeThickness: 5,

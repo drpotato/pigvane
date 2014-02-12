@@ -6,7 +6,7 @@ class Pigvane.States.Preloader
     preload: () ->
 
         # Set up preloadBar using built-in methods
-        @preloadBar = @add.sprite 640, 500, 'preload'
+        @preloadBar = @add.sprite 320, 464, 'preload'
         @load.setPreloadSprite @preloadBar
 
         # Load game resources

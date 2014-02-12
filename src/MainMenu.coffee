@@ -4,9 +4,9 @@ class Pigvane.States.MainMenu
 
     preload: () ->
         # Add background + logo to current state
-        @bg = @add.sprite -40, 40, 'menuBG'
+        @bg = @add.sprite -360, 12, 'menuBG'
 
-        @logo = @add.sprite 518, 150, 'logo' 
+        @logo = @add.sprite 198, 122, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
         
@@ -17,7 +17,7 @@ class Pigvane.States.MainMenu
         # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
         # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
         
-        @insertCoinText = @add.text(820, 500, "Insert Coin(s)", {
+        @insertCoinText = @add.text(490, 500, "Insert Coin(s)", {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -26,7 +26,7 @@ class Pigvane.States.MainMenu
             })
 
         
-        @cursor = @add.text(735, 700, '>', {
+        @cursor = @add.text(375, 700, '>', {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -40,7 +40,7 @@ class Pigvane.States.MainMenu
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
-        @startText = @add.text(765, 700, text, {
+        @startText = @add.text(450, 700, text, {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -50,7 +50,7 @@ class Pigvane.States.MainMenu
 
         twitterText = '@freelyfred - lead dev\n@xxNxT - lead artist\n@dr__potato - project manager, dev'
 
-        @twitter = @add.text(10, 980, twitterText, {
+        @twitter = @add.text(10, 944, twitterText, {
             font: '13px Emulogic',
             fill: '8D5074',
             strokeThickness: 0,
