@@ -4,14 +4,14 @@ class Pigvane.Classes.scoreHandler
         @recentScore = 0
         @recentTimer = 0
 
-        @scoreText = @game.add.text(1700,5, "0", {
+        @scoreText = @game.add.text(1100,5, "0", {
             font: '40px Emulogic',
             fill: 'white',
             strokeThickness: 5,
             stroke: '3C033A'
             })
 
-        @recentScoreText = @game.add.text(1000,15, "", {
+        @recentScoreText = @game.add.text(1100,55, "", {
             font: '40px Emulogic',
             fill: 'white',
             strokeThickness: 5,
@@ -29,17 +29,32 @@ class Pigvane.Classes.scoreHandler
 
     update: () ->
 
-        if @recentScore == 0
-            @recentScoreText.setText("")
+        if @recentScore > 0
+            recentScoreString = "+" + @recentScore
+        else if @recentScore < 0
+            recentScoreString = @recentScore
+        else
+            recentScoreString = ""
 
-        if @recentTimer < @game.time.now && @recentScore > 0
+        if @recentTimer < @game.time.now
 
-            Pigvane.score += 1
-            @recentScore -= 1
+            if @recentScore > 0
+
+                Pigvane.score += 1
+                @recentScore -= 1
+
+            else if @recentScrore < 0
+
+                Pigvane.score -= 1
+                @receentScore += 1
+
 
         @scoreText.setText(Pigvane.score)
+        @scoreText.x = 1266 - @scoreText.text.length * 46
 
-        @recentScoreText.setText(@recentScore)
+        
+        @recentScoreText.setText(recentScoreString)
+        @recentScoreText.x = 1266 - @recentScoreText.text.length * 46
 
         @onScoreUpdate.dispatch()
 
@@ -54,7 +69,7 @@ class Pigvane.Classes.scoreHandler
         @recentTimer = @game.time.now + 2000
 
         # Removed floating score for now...
-        # @addFloatingText('+'+add)
+        # @addFloatingText('+' + add)
         @update()
 
     set: (score) ->
@@ -62,10 +77,15 @@ class Pigvane.Classes.scoreHandler
         @update()
 
     remove: (remove) ->
-        Pigvane.score -= remove
-        if Pigvane.score < 0
-            Pigvane.score = 0
-        @addFloatingText('-'+remove, 'red')
+        # Pigvane.score -= remove
+        # if Pigvane.score < 0
+        #     Pigvane.score = 0
+        # @addFloatingText('-'+remove, 'red')
+
+        @recentTimer = @game.time.now + 2000
+
+        @recentScore -= remove
+
         @update()
 
     addFloatingText: (text, colour='green') ->
