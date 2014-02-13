@@ -13,10 +13,11 @@ class Pigvane.States.Preloader
         
         @game.load.tilemap 'city-tm', 'res/citylevel.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image 'citytiles', 'res/citytiles-2x.png'
-        # @game.load.image 'city-bg', 'res/coolbackestround.png'
-        @game.load.image 'city-bgScroll1', 'res/bg1-4x.png'
-        @game.load.image 'city-bgScroll2', 'res/bg2-4x.png'
-        @game.load.image 'city-fg', 'res/foreground-4x.png'
+        @game.load.image 'city-bg', 'res/coolbackestround.png'
+        @game.load.image 'city-bgScroll1', 'res/newbg1-2x.png'
+        @game.load.image 'city-bgScroll2', 'res/bg2-2x.png'
+        @game.load.image 'city-fg', 'res/foreground-2x.png'
+
 
         # @game.load.tilemap 'candy-tm', 'res/candyland-level.json', null, Phaser.Tilemap.TILED_JSON
         # @game.load.tileset 'candy-ts', 'res/candylandtiles-2x.png', 32, 32
@@ -28,7 +29,7 @@ class Pigvane.States.Preloader
         @game.load.image 'platform.2', 'res/platform2-2x.png'
         @game.load.image 'platform.3', 'res/platform3-2x.png'
 
-        @game.load.spritesheet 'lives', 'res/heart-2x.png', 32, 32
+        @game.load.spritesheet 'lives', 'res/heart-2x.png', 128, 128
         @game.load.image 'healthBar', 'res/healthbar-2x.png'
 
         @game.load.image 'dialog', 'res/dialogue.png'
@@ -82,12 +83,12 @@ class Pigvane.States.Preloader
         # @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-2x.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-2x.png', 32, 32
         @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-2x.png', 32, 32
-        @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig-green-2x.png', 32, 32
+        # @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig-green-2x.png', 32, 32
         
 
         # Music
-        @game.load.audio 'circus_music', 'res/circus_music.mp3'
-        @game.load.audio 'city_music', 'res/city_music_1.mp3'
+        # @game.load.audio 'circus_music', 'res/circus_music.mp3'
+        # @game.load.audio 'city_music', 'res/city_music_1.mp3'
         
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'
