@@ -1,0 +1,7 @@
+{
+	"highscores": [
+		["Fred", 90000], 
+		["Chris", 1],
+		["Oscar", -1000]
+	]
+}

@@ -13,7 +13,7 @@ class Pigvane.States.Preloader
         
         @game.load.tilemap 'city-tm', 'res/citylevel.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image 'citytiles', 'res/citytiles-2x.png'
-        @game.load.image 'city-bg', 'res/coolbackestround.png'
+        # @game.load.image 'city-bg', 'res/coolbackestround.png'
         @game.load.image 'city-bgScroll1', 'res/newbg1-2x.png'
         @game.load.image 'city-bgScroll2', 'res/bg2-2x.png'
         @game.load.image 'city-fg', 'res/foreground-2x.png'

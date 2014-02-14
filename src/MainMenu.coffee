@@ -28,7 +28,8 @@ class Pigvane.States.MainMenu
 
         @options = [
             ['Press Start to Play', @fadeOut],
-            ['Controls', @help]
+            ['Controls', @help],
+            ['High Scores', @highscore]
         ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
@@ -98,6 +99,9 @@ class Pigvane.States.MainMenu
 
     help: () ->
         @game.state.start 'Help'
+
+    highscore: () ->
+        @game.state.start 'HighScore'
 
     startGame: () ->
         # Go to the main game!
