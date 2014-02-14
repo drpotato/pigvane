@@ -10,13 +10,6 @@ class Pigvane.States.MainMenu
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
         
-        # Allows us to fade in background
-        # @background.alpha = 0
-
-        # Fade in background and logo
-        # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
-        # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
-        
         @insertCoinText = @add.text(490, 500, "Insert Coin(s)", {
             font: '20px Emulogic',
             fill: 'DBB4A5',
