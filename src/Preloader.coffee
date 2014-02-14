@@ -72,6 +72,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_pig_girl', 'res/piggirl-2x.png', 64, 32
         @game.load.spritesheet 'npc_monk', 'res/monk-2x.png', 32, 32
         @game.load.spritesheet 'npc_ice_cream_girl', 'res/icecreamgirl-2x.png', 32, 32
+        @game.load.spritesheet 'npc_ninja_master', 'res/ninjamaster-2x.png', 48, 48
         # - Candy
         # @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-2x.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-2x.png', 32, 32

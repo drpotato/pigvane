@@ -69,7 +69,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         # Set resulting speed of body
         @vStep = 15
-        @jumpVelocity = 650
+        @jumpVelocity = 550
         @velocity = 300
 
         # More if running

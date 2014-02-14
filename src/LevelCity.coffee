@@ -26,7 +26,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
     
     spawnRandomNPCs: () ->
         for i in [0...50]
-            @npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 800, 'hat_npc')
+            @npcController.npcs.add new Pigvane.Classes.NPC(@game, @game.world.randomX, 800, 'npc_ninja_master')
 
     repositionParallax: () ->
 
