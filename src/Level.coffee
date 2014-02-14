@@ -118,11 +118,6 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
 
-        if @dude.x > @config.nextLeveLX
-            log Pigvane.levelController.currentLevelIndex
-            Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
-            @fadeOut()
-
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()
 
