@@ -24,10 +24,10 @@ class Pigvane.Classes.CameraController
 
 
         # if (xDude - xCamera > 128 or xCamera - xDude > 128)
-        @camera.x += (xDude - xCamera) / 5
+        @camera.x += (xDude - xCamera) / 15
 
         # if (@dude.body.y - @camera.y > 128 or @camera.y - @dude.body.y > 128)
-        # @camera.y += (yDude - yCamera) / 5
+        # @camera.y += (yDude - yCamera) / 15
 
         return true
 
