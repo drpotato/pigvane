@@ -89,7 +89,7 @@ class Pigvane.Classes.Level
             obj.animations.add('repeat', [1,2])
             )
 
-        @fgScroll = @add.tileSprite(0, 0, 8000, 2000, @config.fgScroll)
+        # @fgScroll = @add.tileSprite(0, 0, 8000, 2000, @config.fgScroll)
         
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
@@ -135,7 +135,7 @@ class Pigvane.Classes.Level
 
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
-        @fgScroll.tilePosition.x = @game.world.camera.x/0.5
+        # @fgScroll.tilePosition.x = @game.world.camera.x/0.5
 
         @onUpdate.dispatch()
 
