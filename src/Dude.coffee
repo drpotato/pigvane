@@ -98,7 +98,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @body.velocity.y = -@jumpVelocity
                 @canceledJump = false
                 soundCallback = () ->
-                    Pigvane.Main.soundManager.sfxJump.play()
+                    # Pigvane.Main.soundManager.sfxJump.play()
 
                 setTimeout soundCallback, 150
 

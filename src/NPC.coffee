@@ -61,7 +61,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 if @gunDuration > 1
                     @fire()
                     @firing = true
-                    Pigvane.Main.soundManager.sfxGunshotEnemy.play()
+                    # Pigvane.Main.soundManager.sfxGunshotEnemy.play()
 
 
             else
