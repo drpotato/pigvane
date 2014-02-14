@@ -103,7 +103,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             else if @facing is 'left'
                 bullet.body.velocity.x = -bulletVelocity
 
-            bullet.body.velocity.y = deltaY * bullet.body.velocity.x / deltaX
+            # bullet.body.velocity.y = deltaY * bullet.body.velocity.x / deltaX
 
             # Randomise velocity
             bullet.body.velocity.x += @game.rnd.integerInRange(-100, 100)
