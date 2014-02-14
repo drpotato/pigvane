@@ -37,7 +37,7 @@ class Pigvane.Classes.Level
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 500, 8000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
@@ -111,7 +111,6 @@ class Pigvane.Classes.Level
                 type = 'platform.'+pair[2]
             else 
                 type = 'platform.1'
-            console.log 'Sup', type
             sprite = @game.add.sprite(pair[0]*48, pair[1]*48, type)
             @platformGroup.add sprite
 
@@ -119,19 +118,12 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
 
-        if @dude.x > @config.nextLeveLX
-            log Pigvane.levelController.currentLevelIndex
-            Pigvane.levelController.nextLevelIndex = Pigvane.levelController.currentLevelIndex + 1
-            @fadeOut()
-
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
-        @game.physics.collide(@bullets, @mainLayer, (obj1, obj2) -> 
-            obj1.visible = false
-            obj1.kill()
-            )
+        @game.physics.collide(@bullets, @mainLayer, @destroyBullet)
+        # @game.physics.collide(@enemyBullets, @mainLayer, @destroyBullet)
 
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
@@ -141,3 +133,8 @@ class Pigvane.Classes.Level
 
     nextState: () ->
         Pigvane.levelController.changeToLevel()
+
+    destroyBullet: (obj1, obj2) ->
+        obj1.visible = false
+        obj1.kill()
+
