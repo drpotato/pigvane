@@ -28,7 +28,7 @@ class Pigvane.States.MainMenu
 
         @options = [
             ['Press Start to Play', @fadeOut],
-            ['Help', @help]
+            ['Controls', @help]
         ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
@@ -50,7 +50,6 @@ class Pigvane.States.MainMenu
             stroke: '3C033A'
             })
 
-        # @input.keyboard.addKey( Phaser.Keyboard.DOWN ).onDown.add()
         @input.keyboard.addCallbacks @, @keyDown
 
         @cursorPosition = 0
@@ -98,6 +97,9 @@ class Pigvane.States.MainMenu
         # Once the animation completes
         tween.onComplete.add @startGame, this
         # @startGame()
+
+    help: () ->
+        @game.state.start 'Help'
 
     startGame: () ->
         # Go to the main game!
