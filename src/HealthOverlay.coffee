@@ -16,9 +16,6 @@ class Pigvane.Classes.HealthOverlay
             heartContainer = @game.add.sprite(0,0)
             heart = @game.add.sprite(60*i, 0, 'lives')
 
-            heart.animations.add('main', [0,1,2,3])
-            heart.animations.play('main', 4, true)
-
             heartContainer.addChild heart
             heartContainer.fixedToCamera = true
             

@@ -29,7 +29,7 @@ class Pigvane.States.Preloader
         @game.load.image 'platform.2', 'res/platform2-2x.png'
         @game.load.image 'platform.3', 'res/platform3-2x.png'
 
-        @game.load.spritesheet 'lives', 'res/heart-2x.png', 128, 128
+        @game.load.image 'lives', 'res/heart-2x.png', 128, 128
         @game.load.image 'healthBar', 'res/healthbar-2x.png'
 
         @game.load.image 'dialog', 'res/dialogue.png'
