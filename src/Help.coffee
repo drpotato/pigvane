@@ -19,3 +19,8 @@ class Pigvane.States.Help
             fill: 'white',
             align: 'center'
             })
+
+        @input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(@exit, @)
+
+    exit: () ->
+        @game.state.start('MainMenu')

@@ -103,6 +103,8 @@ class Pigvane.Classes.Level
 
         @subPreload()
 
+        @input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(@exit, @)
+
     createPlatforms: () ->
         @platformGroup = @game.add.group()
 
@@ -138,3 +140,5 @@ class Pigvane.Classes.Level
         obj1.visible = false
         obj1.kill()
 
+    exit: () ->
+        @game.state.start('MainMenu')

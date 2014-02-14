@@ -59,8 +59,6 @@ class Pigvane.States.MainMenu
     update: () ->
         if @time.now > @blinkTimer
             @blinkTimer = @time.now + 400
-            #@cursor.visible = !@cursor.visible
-            #I don't think that this should blink - it's distracting.
             @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
@@ -91,12 +89,12 @@ class Pigvane.States.MainMenu
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
         # tween = @add.tween(@logo).to {alpha: 0}, 1000, Phaser.Easing.Linear.None, true
-        @add.tween(@startText).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
-        tween = @add.tween(@cursor).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
+        # @add.tween(@startText).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
+        # tween = @add.tween(@cursor).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
 
         # Once the animation completes
-        tween.onComplete.add @startGame, this
-        # @startGame()
+        # tween.onComplete.add @startGame, this
+        @startGame()
 
     help: () ->
         @game.state.start 'Help'
