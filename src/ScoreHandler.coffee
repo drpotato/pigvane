@@ -12,7 +12,7 @@ class Pigvane.Classes.scoreHandler
             })
 
         @recentScoreText = @game.add.text(1100,55, "", {
-            font: '40px Emulogic',
+            font: '20px Emulogic',
             fill: 'white',
             strokeThickness: 5,
             stroke: '3C033A'
