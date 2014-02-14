@@ -36,25 +36,17 @@ class Pigvane.Classes.scoreHandler
         else
             recentScoreString = ""
 
-        if @recentTimer < @game.time.now
-
-            if @recentScore > 0
-
-                Pigvane.score += 1
-                @recentScore -= 1
-
-            else if @recentScrore < 0
-
-                Pigvane.score -= 1
-                @receentScore += 1
+        if @recentTimer < @game.time.now && @recentScore > 0
+                Pigvane.score += 2
+                @recentScore -= 2
 
 
         @scoreText.setText(Pigvane.score)
-        @scoreText.x = 1266 - @scoreText.text.length * 46
+        @scoreText.x = 1266 - @scoreText.content.length * 46
 
-        
         @recentScoreText.setText(recentScoreString)
-        @recentScoreText.x = 1266 - @recentScoreText.text.length * 46
+        @recentScoreText.x = 1266 - @recentScoreText.content.length * 46
+
 
         @onScoreUpdate.dispatch()
 
