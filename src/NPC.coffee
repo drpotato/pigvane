@@ -22,6 +22,10 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         @gunDuration = 0
 
+        @runVelocity = 200
+
+        @alerted = false
+
     addAnimations: () ->
         @animations.add 'walk', [0,1,2,3]
         @animations.play 'walk', 2, true
@@ -30,9 +34,24 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
         @game.physics.collide @, Pigvane.Main.mainLayer
 
+        dude = Pigvane.Main.dude
+
         if @game.time.now > @updateTimer and @firing is false
-            @body.velocity.x = @game.rnd.integerInRange(-20, 20)
-            @animations.play 'walk', 2, true
+            if !dude.gunDrawn && @alerted == false
+                runVelocity = 20
+                @body.velocity.x = @game.rnd.integerInRange(-40, 40)
+                @animations.play 'walk', 2, true
+            else if (Math.abs( @body.x - dude.x ) < 800 && Math.abs( @body.y - dude.y ) < 200 ) || @alerted == true
+                runVelocity = @runVelocity
+                if dude.x < @x
+                    @body.velocity.x = -runVelocity
+                else if dude.x > @x
+                    @body.velocity.x = runVelocity
+                @body.velocity.x += @game.rnd.integerInRange(-40, 40)
+                @alerted = true
+                @animations.play 'walk', 4, true
+            # @body.velocity.y += @game.rnd.integerInRange(0, -10)
+            
             if @body.velocity.x < 0
                 @scale.x = -1
                 @facing = 'left'
@@ -40,28 +59,34 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @scale.x = 1
                 @facing = 'right'
 
-            @updateTimer = @game.time.now + @game.rnd.integerInRange(40, 60)*100
+
+            @updateTimer = @game.time.now + @game.rnd.integerInRange(5, 9)*100
 
         if @game.time.now > @shootTimer
 
-            if Math.abs( @body.x - Pigvane.Main.dude.x ) < 200
+            if Math.abs( @body.x - dude.x ) < 200 && Math.abs( @body.y - dude.y ) < 50
+                p = @game.rnd.integerInRange(0,50)
+                if dude.gunDrawn
+                    p = p*2
                     
-                if @game.rnd.integerInRange(0,75)+Pigvane.Main.dude.aggro > 65
-                    @body.velocity.x = 0
-                    @animations.stop()
-                    @animations.frame = 4
-                    @gunDuration++
-                    if @body.x - Pigvane.Main.dude.x > 0
-                        @scale.x = -1
-                        @facing = 'left'
-                    else 
-                        @scale.x = 1
-                        @facing = 'right'
+                if p > 25
+                #     @body.velocity.x = 0
+                #     @animations.stop()
+                #     @animations.frame = 4
+                #     @gunDuration++
+                #     if @body.x - Pigvane.Main.dude.x > 0
+                #         @scale.x = -1
+                #         @facing = 'left'
+                #     else 
+                #         @scale.x = 1
+                #         @facing = 'right'
 
-                if @gunDuration > 1
+                # if @gunDuration > 1
+                #     @fire()
+                #     @firing = true
+                #     # Pigvane.Main.soundManager.sfxGunshotEnemy.play()
                     @fire()
                     @firing = true
-                    # Pigvane.Main.soundManager.sfxGunshotEnemy.play()
 
 
             else

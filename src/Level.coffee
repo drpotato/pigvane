@@ -32,7 +32,7 @@ class Pigvane.Classes.Level
         @map = @add.tilemap @config.tilemap
         @map.addTilesetImage @config.tileset
 
-        @initCollisions()
+        @map.setCollisionBetween 0, 2
         
         @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
@@ -41,8 +41,6 @@ class Pigvane.Classes.Level
         @bgScroll2 = @add.tileSprite(0, 400, 8000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
-
-        # @repositionParallax()
 
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
@@ -112,6 +110,8 @@ class Pigvane.Classes.Level
 
         @subPreload()
 
+        @NPCspawntimer = 0
+
         @input.keyboard.addKey(Phaser.Keyboard.ESC).onDown.add(@exit, @)
 
     createPlatforms: () ->
@@ -128,12 +128,16 @@ class Pigvane.Classes.Level
     createFloor: () ->
         @floorGroup = @game.add.group()
 
-        for i in [0...10]
+        for i in [0...20]
             sprite = @game.add.sprite(i*(8*48), 19*48, 'floor')
 
 
     # Called every frame
     update: ->
+
+        if @game.time.now > @NPCspawntimer
+            @spawnRandomNPCs(5)
+            @NPCspawntimer = @game.time.now + 5000
 
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()
@@ -141,7 +145,6 @@ class Pigvane.Classes.Level
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
         @game.physics.collide(@bullets, @mainLayer, @destroyBullet)
         # @game.physics.collide(@enemyBullets, @mainLayer, @destroyBullet)
-        
         
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
@@ -155,6 +158,13 @@ class Pigvane.Classes.Level
     destroyBullet: (obj1, obj2) ->
         obj1.visible = false
         obj1.kill()
+
+    spawnRandomNPCs: (number=10) ->
+        console.log @game.camera
+        rightBound = @game.camera.x + 1280
+        for i in [0...number]
+            x = @game.rnd.integerInRange(rightBound, rightBound + 1000)
+            @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, 800, 'npc_ninja_master')
 
     exit: () ->
         @game.state.start('MainMenu')
