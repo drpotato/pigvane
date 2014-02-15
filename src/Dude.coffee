@@ -230,7 +230,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 # Pigvane.Main.achievements.grant('3_lives')
 
-                @game.state.start 'Restart'
+                @game.state.start 'HighScore'
 
         Pigvane.Main.healthBar.update()
 
