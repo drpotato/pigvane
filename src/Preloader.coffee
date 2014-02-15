@@ -18,6 +18,7 @@ class Pigvane.States.Preloader
         @game.load.image 'city-bgScroll1', 'res/newbg1-2x.png'
         @game.load.image 'city-bgScroll2', 'res/bg2-2x.png'
         @game.load.image 'city-fg', 'res/foreground-2x.png'
+        @game.load.image 'floor', 'res/floorforeground-2x.png'
         
         # Platforms
         @game.load.image 'platform.1', 'res/platform1-2x.png'

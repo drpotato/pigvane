@@ -49,6 +49,8 @@ class Pigvane.Classes.Level
 
         @createPlatforms()
 
+        @createFloor()
+
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
@@ -122,6 +124,12 @@ class Pigvane.Classes.Level
                 type = 'platform.1'
             sprite = @game.add.sprite(pair[0]*48, pair[1]*48, type)
             @platformGroup.add sprite
+
+    createFloor: () ->
+        @floorGroup = @game.add.group()
+
+        for i in [0...10]
+            sprite = @game.add.sprite(i*(8*48), 19*48, 'floor')
 
 
     # Called every frame
