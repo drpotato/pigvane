@@ -25,7 +25,6 @@ $.ajax
     async: false
     datatype: 'json'
     success: (data) -> 
-        console.log 'Sahp'
         Pigvane.highscores = data.highscores
 
     error: (error) ->

@@ -52,8 +52,14 @@ class Pigvane.Classes.Level
         @game.stage.backgroundColor = "#b2dcef"
 
         # Add the main guy 
+        
+        @gun = new Pigvane.Classes.Gun @game, 100, 100
+        @game.add.existing @gun
+
         @dude = new Pigvane.Classes.Dude @game, 1000, 400
         @add.existing @dude
+
+        @gun.bringToTop()
         
         @npcController = new Pigvane.Classes.NPCController @game
         

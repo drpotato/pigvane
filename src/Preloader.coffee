@@ -11,6 +11,7 @@ class Pigvane.States.Preloader
 
         # Load game resources
         
+        # Tilemap and bg
         @game.load.tilemap 'city-tm', 'res/citylevel.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image 'citytiles', 'res/citytiles-2x.png'
         @game.load.image 'city-bg', 'res/cloudlayer-2x.png'
@@ -18,21 +19,32 @@ class Pigvane.States.Preloader
         @game.load.image 'city-bgScroll2', 'res/bg2-2x.png'
         @game.load.image 'city-fg', 'res/foreground-2x.png'
         
+        # Platforms
         @game.load.image 'platform.1', 'res/platform1-2x.png'
         @game.load.image 'platform.2', 'res/platform2-2x.png'
         @game.load.image 'platform.3', 'res/platform3-2x.png'
 
+        # Health
         @game.load.image 'lives', 'res/heart-2x.png', 128, 128
         @game.load.image 'healthBar', 'res/healthbar-2x.png'
 
+        # Dialog Box
         @game.load.image 'dialog', 'res/dialogue.png'
 
+        # Main Dude
         @game.load.spritesheet 'dude', 'res/char-blue-2x.png', 48, 48
         @game.load.spritesheet 'hat_npc', 'res/npc6-2x.png', 32, 32
 
+        # Bullets + guns
         @game.load.spritesheet 'bullet', 'res/bullet-2x.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-2x.png', 32, 32
 
+        @game.load.image 'gun_pistol', 'res/gun2-2x.png'
+        @game.load.image 'gun_shotgun', 'res/gun4-2x.png'
+        @game.load.image 'gun_smg', 'res/gun1-2x.png'
+        @game.load.image 'gun_minigun', 'res/gun3-2x.png'
+
+        # Achievement
         @game.load.image 'achievement_background', 'res/achievement.png'
         
         # Achievement Images
