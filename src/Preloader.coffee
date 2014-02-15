@@ -86,7 +86,8 @@ class Pigvane.States.Preloader
         
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'
-        @game.load.audio 'sfx_gunshot_player', 'res/PlayerGunshot.mp3'
+        @game.load.audio 'sfx_gunshot_player', 'res/gun.wav'
+        @game.load.audio 'sfx_gunshot_player_pistol', 'res/pistol_shot.wav'
         @game.load.audio 'sfx_gunshot_enemy', 'res/EnemyGunshot.mp3'
         @game.load.audio 'sfx_death_scream', 'res/DeathScream.mp3'
         @game.load.audio 'sfx_collectable', 'res/Collectable.mp3'

@@ -140,7 +140,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
-            # Pigvane.Main.soundManager.sfxGunshotPlayer.play()
+            
         # If not, update his facing, and display the correct animation
         else
            @facing = facing        
@@ -209,6 +209,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 # Next bullet can only be fired 80ms from now
                 @nextBullet = @game.time.now + currentWeapon.fireRate
+
+                Pigvane.Main.soundManager.sfxGunshotPlayerPistol.play()
 
             Pigvane.Main.cameraController.shakeScreen()
 
