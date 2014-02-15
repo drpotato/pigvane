@@ -30,7 +30,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.play 'walk', 16, true
 
         # Set collision size
-        # @body.setRectangle 60, 60, 0, 0 # Broken in 1.1.4
+        @body.setRectangle 18, 48, 16, 0 # Broken in 1.1.4
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world
@@ -147,7 +147,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         else
            @facing = facing        
 
-        @updateAchievements()
+        # @updateAchievements()
 
         if @game.time.now > @aggroUpdateTimer
             @aggroUpdateTimer = @game.time.now + 1000
