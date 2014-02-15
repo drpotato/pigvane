@@ -38,7 +38,7 @@ class Pigvane.Classes.Level
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @add.tileSprite(0, 500, 8000, 1000, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 400, 8000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
