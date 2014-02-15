@@ -59,6 +59,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @body.bounce.y = 0.01
 
+        @gun = Pigvane.Main.gun
+
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->
@@ -155,12 +157,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
         Pigvane.Main.weaponHandler.toggleOverlay()
-        if @gunDrawn is true
-            # @animations.play 'drawn', 16, true
-            # @animations.frame = 10
-        else
-            # @animations.frame = 0
-            # @animations.play 'right', 16, true
+        @gun.visible = @gunDrawn
 
     hitByNPC: (obj1, obj2) ->
         obj2.kill()
@@ -177,7 +174,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             # If there is one
             if bullet
                 # Reset it to the dude's position
-                bullet.reset @x, @y
+                bullet.reset @x, @y+10
 
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
