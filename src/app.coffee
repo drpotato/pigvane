@@ -42,3 +42,6 @@ Pigvane.game.state.add 'Main',          Pigvane.States.Main,        false
 Pigvane.game.state.add 'Restart',       Pigvane.States.Restart,     false
 Pigvane.game.state.add 'Help',          Pigvane.States.Help,        false
 Pigvane.game.state.add 'HighScore',     Pigvane.States.HighScore,   false
+
+String.prototype.replaceAt = (index, character) ->
+    return this.substr(0, index) + character + this.substr(index+character.length)

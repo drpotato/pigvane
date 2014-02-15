@@ -53,6 +53,8 @@ class Pigvane.States.MainMenu
 
         @input.keyboard.addCallbacks @, @keyDown
 
+        @capture = true
+
         @cursorPosition = 0
 
         @blinkTimer = 0
@@ -63,13 +65,14 @@ class Pigvane.States.MainMenu
             @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
-        switch e.keyCode
-            when Phaser.Keyboard.DOWN
-                @updateCursor('down')
-            when Phaser.Keyboard.UP
-                @updateCursor('up')
-            when Phaser.Keyboard.ENTER
-                @selectOption()
+        if @capture == true
+            switch e.keyCode
+                when Phaser.Keyboard.DOWN
+                    @updateCursor('down')
+                when Phaser.Keyboard.UP
+                    @updateCursor('up')
+                when Phaser.Keyboard.ENTER
+                    @selectOption()
 
     selectOption: () ->
         @options[@cursorPosition][1].call(this)
@@ -101,6 +104,7 @@ class Pigvane.States.MainMenu
         @game.state.start 'Help'
 
     highscore: () ->
+        @capture = false
         @game.state.start 'HighScore'
 
     startGame: () ->
