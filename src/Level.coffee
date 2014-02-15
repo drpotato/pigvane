@@ -24,15 +24,15 @@ class Pigvane.Classes.Level
         @config = {}
         @initConfig()
         
-        # @background = @game.add.sprite 0, 0, @config.background
-        # @background.fixedToCamera = true 
+        @background = @game.add.sprite 0, 0, @config.background
+        @background.fixedToCamera = true 
 
         # Add the map and tileset that we loaded earlier 
         @map = @add.tilemap @config.tilemap
         @map.addTilesetImage @config.tileset
 
         @initCollisions()
-
+        
         @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
@@ -126,7 +126,8 @@ class Pigvane.Classes.Level
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
         @game.physics.collide(@bullets, @mainLayer, @destroyBullet)
         # @game.physics.collide(@enemyBullets, @mainLayer, @destroyBullet)
-
+        
+        
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
         # @fgScroll.tilePosition.x = @game.world.camera.x/0.5
