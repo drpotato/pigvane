@@ -25,7 +25,7 @@ class Pigvane.Classes.Level
         @config = {}
         @initConfig()
         
-        @background = @game.add.sprite 0, 0, @config.background
+        @background = @game.add.tileSprite 0, 0, 8000, 1000, @config.background
         @background.fixedToCamera = true 
 
         # Add the map and tileset that we loaded earlier 
@@ -148,6 +148,7 @@ class Pigvane.Classes.Level
         
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
+        @background.tilePosition.x += 0.2
         # @fgScroll.tilePosition.x = @game.world.camera.x/0.5
 
         @onUpdate.dispatch()
