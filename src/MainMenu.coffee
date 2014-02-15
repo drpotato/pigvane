@@ -6,6 +6,8 @@ class Pigvane.States.MainMenu
         # Add background + logo to current state
         @bg = @add.sprite -360, 12, 'menuBG'
 
+        @game.stage.backgroundColor = "#222"
+
         @logo = @add.sprite 198, 122, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
