@@ -49,7 +49,7 @@ class Pigvane.States.Preloader
         @game.load.image 'achievement_background', 'res/achievement.png'
         
         # Achievement Images
-        @game.load.image 'achievement_3_lives', 'res/achievement/3lives.png'
+        # @game.load.image 'achievement_3_lives', 'res/achievement/3lives.png'
         @game.load.image 'achievement_cats_can_play', 'res/achievement/catCanPlay.png'
         @game.load.image 'achievement_city_complete', 'res/achievement/CityComplete.png'
         @game.load.image 'achievement_copyright_violation', 'res/achievement/Copyright Violation.png'
