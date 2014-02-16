@@ -54,7 +54,7 @@ class Pigvane.Classes.weaponHandler
     upgrade: () ->
         @currentWeapon++
         @overlay.setText @getCurrentWeapon().name
-        Pigvane.Main.gun.loadTexture(@getCurrentWeapon().sprite)
+        Pigvane.Main.gun.loadTexture(Pigvane.Main.config.prefix+@getCurrentWeapon().sprite)
         Pigvane.Main.dude.addText('New Weapon!', 'white', 20)
         if @weapons[@currentWeapon+1]?
             @threshold = @weapons[@currentWeapon+1].threshold

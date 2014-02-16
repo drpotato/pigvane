@@ -1,7 +1,7 @@
 class Pigvane.Classes.Dude extends Phaser.Sprite
     constructor: (@game, x, y) ->
         # Make sure sprite is actually created
-        super @game, x, y, 'dude'
+        super @game, x, y, Pigvane.Main.config.prefix+'dude'
 
         # Used in collisions
         @name = 'dude'
@@ -32,7 +32,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @animations.play 'walk', 16, true
 
         # Set collision size
-        @body.setRectangle 18, 48, 16, 0 # Broken in 1.1.4
+        # @body.setRectangle 18, 48, 16, 0 # Broken in 1.1.4
         @anchor.setTo(0.5,0.5)
 
         # Stop it walking out of the world

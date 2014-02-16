@@ -12,18 +12,59 @@ class Pigvane.States.Preloader
         # Load game resources
         
         # Tilemap and bg
-        @game.load.tilemap 'city-tm', 'res/citylevel.json', null, Phaser.Tilemap.TILED_JSON
-        @game.load.image 'citytiles', 'res/citytiles-2x.png'
-        @game.load.image 'city-bg', 'res/cloudlayer-2x.png'
-        @game.load.image 'city-bgScroll1', 'res/bg1-2x.png'
-        @game.load.image 'city-bgScroll2', 'res/bg2-2x.png'
-        @game.load.image 'city-fg', 'res/foreground-2x.png'
-        @game.load.image 'floor', 'res/floorforeground-2x.png'
+        @game.load.image 'tiles', 'res/citytiles-2x.png'
+        # @game.load.image    'lvl1-fg',          'res/level1/foreground-2x.png'
+
+        # LEVEL 1
+        @game.load.tilemap  'lvl1-tm',          'res/level1.json', null, Phaser.Tilemap.TILED_JSON
+        @game.load.image    'lvl1-bg',          'res/level1/cloudlayer-2x.png'
+        @game.load.image    'lvl1-bgScroll1',   'res/level1/bg1-2x.png'
+        @game.load.image    'lvl1-bgScroll2',   'res/level1/bg2-2x.png'
+        @game.load.image    'lvl1-floor',       'res/level1/floorforeground-2x.png'
+        @game.load.image    'lvl1-gun_pistol',  'res/level1/gun2-2x.png'
+        @game.load.image    'lvl1-gun_shotgun', 'res/level1/gun4-2x.png'
+        @game.load.image    'lvl1-gun_smg',     'res/level1/gun1-2x.png'
+        @game.load.image    'lvl1-gun_minigun', 'res/level1/gun3-2x.png'
+        @game.load.image    'lvl1-platform.1',  'res/level1/platform1-2x.png'
+        @game.load.image    'lvl1-platform.2',  'res/level1/platform2-2x.png'
+        @game.load.image    'lvl1-platform.3',  'res/level1/platform3-2x.png'
+        @game.load.spritesheet 'lvl1-dude',     'res/level1/char-blue-2x.png', 48, 48
+        @game.load.spritesheet 'lvl1-npc',      'res/level1/ninjamaster-2x.png', 48, 48
+
+        # LEVEL 2
+        @game.load.tilemap  'lvl2-tm',          'res/level2.json', null, Phaser.Tilemap.TILED_JSON
+        @game.load.image    'lvl2-bg',          'res/level2/level2-cloudlayer-2x.png'
+        @game.load.image    'lvl2-bgScroll1',   'res/level2/level2-bg1-2x.png'
+        @game.load.image    'lvl2-bgScroll2',   'res/level2/level2-bg2-2x.png'
+        @game.load.image    'lvl2-floor',       'res/level2/level2-floorforeground-2x.png'
+        @game.load.image    'lvl2-gun_pistol',  'res/level2/gun2-pink-2x.png'
+        @game.load.image    'lvl2-gun_shotgun', 'res/level2/gun4-pink-2x.png'
+        @game.load.image    'lvl2-gun_smg',     'res/level2/gun1-pink-2x.png'
+        @game.load.image    'lvl2-gun_minigun', 'res/level2/gun3-pink-2x.png'
+        @game.load.image    'lvl2-platform.1',  'res/level2/level2-platform1-2x.png'
+        @game.load.image    'lvl2-platform.2',  'res/level2/level2-platform2-2x.png'
+        @game.load.image    'lvl2-platform.3',  'res/level2/level2-platform3-2x.png'
+        @game.load.spritesheet 'lvl2-dude',     'res/level2/char-pink-2x.png', 48, 48
+        @game.load.spritesheet 'lvl2-npc',      'res/level2/ninjamaster-pink-2x.png', 48, 48
+        
+        # LEVEL 3
+        @game.load.tilemap  'lvl3-tm',          'res/level3.json', null, Phaser.Tilemap.TILED_JSON
+        @game.load.image    'lvl3-bg',          'res/level3/level3-cloudlayer-2x.png'
+        @game.load.image    'lvl3-bgScroll1',   'res/level3/level3-bg1-2x.png'
+        @game.load.image    'lvl3-bgScroll2',   'res/level3/level3-bg2-2x.png'
+        @game.load.image    'lvl3-floor',       'res/level3/level3-floorforeground-2x.png'
+        @game.load.image    'lvl3-gun_pistol',  'res/level3/gun2-red-2x.png'
+        @game.load.image    'lvl3-gun_shotgun', 'res/level3/gun4-red-2x.png'
+        @game.load.image    'lvl3-gun_smg',     'res/level3/gun1-red-2x.png'
+        @game.load.image    'lvl3-gun_minigun', 'res/level3/gun3-red-2x.png'
+        @game.load.image    'lvl3-platform.1',  'res/level3/level3-platform1-2x.png'
+        @game.load.image    'lvl3-platform.2',  'res/level3/level3-platform2-2x.png'
+        @game.load.image    'lvl3-platform.3',  'res/level3/level3-platform3-2x.png'
+        @game.load.spritesheet 'lvl3-dude',     'res/level3/char-red-2x.png', 48, 48
+        @game.load.spritesheet 'lvl3-npc',      'res/level3/ninjamaster-red-2x.png', 48, 48
         
         # Platforms
-        @game.load.image 'platform.1', 'res/platform1-2x.png'
-        @game.load.image 'platform.2', 'res/platform2-2x.png'
-        @game.load.image 'platform.3', 'res/platform3-2x.png'
+        
 
         # Health
         @game.load.image 'lives', 'res/heart-2x.png', 128, 128
@@ -32,52 +73,9 @@ class Pigvane.States.Preloader
         # Dialog Box
         @game.load.image 'dialog', 'res/dialogue.png'
 
-        # Main Dude
-        @game.load.spritesheet 'dude', 'res/char-blue-2x.png', 48, 48
-        @game.load.spritesheet 'hat_npc', 'res/npc6-2x.png', 32, 32
-
         # Bullets + guns
         @game.load.spritesheet 'bullet', 'res/bullet-2x.png', 32, 32
         @game.load.spritesheet 'enemyBullet', 'res/bullet-2x.png', 32, 32
-
-        @game.load.image 'gun_pistol', 'res/gun2-2x.png'
-        @game.load.image 'gun_shotgun', 'res/gun4-2x.png'
-        @game.load.image 'gun_smg', 'res/gun1-2x.png'
-        @game.load.image 'gun_minigun', 'res/gun3-2x.png'
-
-        # Achievement
-        @game.load.image 'achievement_background', 'res/achievement.png'
-        
-        # Achievement Images
-        # @game.load.image 'achievement_3_lives', 'res/achievement/3lives.png'
-        @game.load.image 'achievement_cats_can_play', 'res/achievement/catCanPlay.png'
-        @game.load.image 'achievement_city_complete', 'res/achievement/CityComplete.png'
-        @game.load.image 'achievement_copyright_violation', 'res/achievement/Copyright Violation.png'
-        @game.load.image 'achievement_dlc', 'res/achievement/DLC.png'
-        @game.load.image 'achievement_first_steps', 'res/achievement/first steps.png'
-        @game.load.image 'achievement_first_blood', 'res/achievement/FirstBlood.png'
-        @game.load.image 'achievement_help_candy_crusher', 'res/achievement/HelpCandyCrusher.png'
-        @game.load.image 'achievement_help_cat', 'res/achievement/HelpCat.png'
-        @game.load.image 'achievement_help_fruit_ninja', 'res/achievement/HelpFruitNinja.png'
-        @game.load.image 'achievement_help_kid', 'res/achievement/HelpKid.png'
-        @game.load.image 'achievement_help_monk', 'res/achievement/HelpMonk.png'
-        @game.load.image 'achievement_help_old_man', 'res/achievement/HelpOldMan.png'
-        @game.load.image 'achievement_help_pig_owner', 'res/achievement/HelpPigOwner.png'
-        @game.load.image 'achievement_help_sick_pig', 'res/achievement/HelpSickPig.png'
-        @game.load.image 'achievement_kill_candy_crusher', 'res/achievement/KillCandyCrusher.png'
-        @game.load.image 'achievement_kill_cat', 'res/achievement/KillCat.png'
-        @game.load.image 'achievement_kill_fruit_ninja', 'res/achievement/KillFruitNinja.png'
-        @game.load.image 'achievement_kill_kid', 'res/achievement/KillKid.png'
-        @game.load.image 'achievement_kill_monk', 'res/achievement/KillMonk.png'
-        @game.load.image 'achievement_kill_old_man', 'res/achievement/KillOldMan.png'
-        @game.load.image 'achievement_kill_pig_owner', 'res/achievement/KillPigOwner.png'
-        @game.load.image 'achievement_kill_sick_pig', 'res/achievement/KillSickPig.png'
-        @game.load.image 'achievement_sunshine_rainbows', 'res/achievement/sunshineRainbows.png'
-        @game.load.image 'achievement_finish_wind', 'res/achievement/concordance.png'
-        @game.load.image 'achievement_first_free', 'res/achievement/FirstOneFree.png'
-        @game.load.image 'achievement_finish_pig', 'res/achievement/greed.png'
-        @game.load.image 'achievement_finish_human', 'res/achievement/Loneliness.png'
-        @game.load.image 'achievement_pacifist', 'res/achievement/pacifist.png'
         
         # NPCs
         # - City
@@ -85,7 +83,6 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_pig_girl', 'res/piggirl-2x.png', 64, 32
         @game.load.spritesheet 'npc_monk', 'res/monk-2x.png', 32, 32
         @game.load.spritesheet 'npc_ice_cream_girl', 'res/icecreamgirl-2x.png', 32, 32
-        @game.load.spritesheet 'npc_ninja_master', 'res/ninjamaster-2x.png', 48, 48
         # - Candy
         # @game.load.spritesheet 'npc_candy_crusher', 'res/candycrusher-2x.png', 64, 32
         @game.load.spritesheet 'npc_kitty', 'res/kitty-2x.png', 32, 32
