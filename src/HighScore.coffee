@@ -57,8 +57,8 @@ class Pigvane.States.HighScore
             @signals.LEFT = @input.keyboard.addKey(Phaser.Keyboard.LEFT)
             @signals.RIGHT = @input.keyboard.addKey(Phaser.Keyboard.RIGHT)
             
-            @signals.UP.onDown.add(@incrementCursor, @)
-            @signals.DOWN.onDown.add(@decrementCursor, @)
+            @signals.UP.onDown.add(@decrementCursor, @)
+            @signals.DOWN.onDown.add(@incrementCursor, @)
             @signals.LEFT.onDown.add(@moveCursor, @)  
             @signals.RIGHT.onDown.add(@moveCursor, @)
 
