@@ -168,4 +168,5 @@ class Pigvane.Classes.Level
             @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, 'npc_ninja_master')
 
     exit: () ->
+        @soundManager.music.stop()
         @game.state.start('MainMenu')
