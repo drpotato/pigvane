@@ -60,18 +60,6 @@ $.ajax
     error: (error) ->
         console.log error
 
-$.ajax
-    url: 'retrieve_scores'
-    async: false
-    datatype: 'json'
-    success: (data) -> 
-        Pigvane.highscores = JSON.parse(data)
-
-
-    error: (error) ->
-        console.log 'Fucked up', error
-    
-
 
 # Add the states from the Pigvane.States object
 # The last boolean value determines which will run on startup

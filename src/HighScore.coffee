@@ -29,22 +29,37 @@ class Pigvane.States.HighScore
         @renderScores()
 
     renderScores: () ->
+
+        $.ajax
+            url: 'retrieve_scores'
+            async: false
+            datatype: 'json'
+            success: (data) -> 
+                Pigvane.highscores = JSON.parse(data)
+
+
+            error: (error) ->
+                console.log 'Fucked up', error
+
         @highScoresPlayers = ""
         @highScores = ""
 
-        for entry in Pigvane.highscores
-            console.log "Adding: " + entry.name + ": " + entry.score
-            @highScoresPlayers += entry.name + ")\n"
-            @highScores += entry.score + "\n"
+        if Pigvane.highscores.length != 0
 
-        console.log @highScoresPlayers
-        console.log @highscores
+            for entry in Pigvane.highscores
+                console.log "Adding: " + entry.name + ": " + entry.score
+                @highScoresPlayers += entry.name + "\n"
+                @highScores += entry.score + "\n"
 
-        @highScorePlayersText.setText @highScoresPlayers
-        @highScoreText.setText @highScores
+            console.log @highScoresPlayers
+            console.log @highscores
 
-        @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
+            @highScorePlayersText.setText @highScoresPlayers
+            @highScoreText.setText @highScores
 
+            @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
+        else
+            @scoreThreshold = 0
 
 
     create: () ->
@@ -74,7 +89,6 @@ class Pigvane.States.HighScore
 
             @cursorPosition = 0
 
-            @insertScore(@newScore.position, "", @newScore.score)
             @renderScores()
 
             @blink = true
@@ -138,29 +152,34 @@ class Pigvane.States.HighScore
             v.onDown.removeAll()
             delete @signals[k]
 
-        @updateScore(@newScore.position, @newScore.player, @newScore.score)
-        @renderScores()
+        console.log "Player Name: " + @newScore.player
+        console.log "Player Score: " + @newScore.score
+
+        @insertScore(@newScore.player, @newScore.score)
         @exit()
 
 
     updateCursorPosition: () ->
-        @newHighScoreCursor.x = 560 + 20*@cursorPosition
+        @newHighScoreCursor.x = 560 + 22 * @cursorPosition
 
     updateNewHighScoreText: () ->
         @newHighScorePlayer.setText(@newScore.player)
 
-    insertScore: (index, text = "", score = 0) ->
+    insertScore: (text, score) ->
         $.ajax
             url: 'enter_score?name=' + text + '&score=' + score
             async: false
 
-    updateScore: (index, text, score = 0) ->
-        Pigvane.highscores[index] = {'name':text, 'score':score}
-
     findPosition: (score) ->
-        for entry, i in Pigvane.highscores
-            if score > entry.score
-                return i
+
+        if Pigvane.highscores.length == 0
+            return 0
+
+        for index in [0..Pigvane.highscores.length]
+            if score > Pigvane.highscores[index].score
+
+                console.log "Return Index: " + index
+                return index
 
     exit: () ->
         @game.state.start('MainMenu')
