@@ -176,7 +176,7 @@ class Pigvane.Classes.Level
     nextLevel: () ->
         @soundManager.music.stop()
         Pigvane.currentLevel++
-        if Pigvane.currentLevel <= 3
+        if Pigvane.currentLevel <= 5
             @game.state.start('Level'+Pigvane.currentLevel)
         else
             @cameraController.reset()
