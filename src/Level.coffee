@@ -174,6 +174,7 @@ class Pigvane.Classes.Level
             @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, @config.prefix+'npc')
 
     nextLevel: () ->
+        @soundManager.music.stop()
         Pigvane.currentLevel++
         @game.state.start('Level'+Pigvane.currentLevel)
 
