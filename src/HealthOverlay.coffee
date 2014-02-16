@@ -33,7 +33,7 @@ class Pigvane.Classes.HealthOverlay
         @healthBar.fixedToCamera = true
         
     update: () ->
-        @healthBar.crop.width = (Pigvane.Main.dude.health/Pigvane.Main.dude.maxHealth) * 128
+        @healthBar.crop.width = (Pigvane.Main.dude.health/Pigvane.Main.dude.maxHealth) * 512
 
     removeLife: () ->
         toDestroy = @heartsArray.pop()
