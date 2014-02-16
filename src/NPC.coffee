@@ -26,6 +26,10 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         @alerted = false
 
+        @edgeUpdateTimer = 0
+        @getLeftEdgy = false
+        @getRightEdgy = false
+
     addAnimations: () ->
         @animations.add 'walk', [0,1,2,3]
         @animations.play 'walk', 2, true
@@ -36,21 +40,47 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         dude = Pigvane.Main.dude
 
+        if @game.time.now > @edgeUpdateTimer
+            if Pigvane.Main.map.getTile( Math.floor(@x/48)-1, Math.ceil(@y/48) ) == null
+                @body.velocity.x = 0
+                @getLeftEdgy = true
+            else if Pigvane.Main.map.getTile( Math.floor(@x/48)+1, Math.ceil(@y/48) ) == null
+                @body.velocity.x = 0
+                @getRightEdgy = true
+            else
+                @getLeftEdgy = false
+                @getRightEdgy = false
+
+            @edgeUpdateTimer = @game.time.now + 50          
+
         if @game.time.now > @updateTimer and @firing is false
             if !dude.gunDrawn && @alerted == false
                 runVelocity = 20
-                @body.velocity.x = @game.rnd.integerInRange(-40, 40)
+                if @getLeftEdgy == false && @getRightEdgy == false
+                    @body.velocity.x = @game.rnd.integerInRange(-40, 40)
+                else if @getRightEdgy == true
+                    @body.velocity.x = @game.rnd.integerInRange(-40, 0)
+                else if @getLeftEdgy == true
+                    @body.velocity.x = @game.rnd.integerInRange(40, 0)
+                
                 @animations.play 'walk', 2, true
             else if (Math.abs( @body.x - dude.x ) < 800 && Math.abs( @body.y - dude.y ) < 200 ) || @alerted == true
                 runVelocity = @runVelocity
+                @body.velocity.x = @game.rnd.integerInRange(-40, 40)                
                 if dude.x < @x
-                    @body.velocity.x = -runVelocity
+                    if @getLeftEdgy == true
+                        @body.velocity.x = 10
+                    else
+                        @body.velocity.x += -runVelocity
+
                 else if dude.x > @x
-                    @body.velocity.x = runVelocity
-                @body.velocity.x += @game.rnd.integerInRange(-40, 40)
+                    if @getRightEdgy == true
+                        @body.velocity.x = -10
+                    else
+                        @body.velocity.x += runVelocity
+               
                 @alerted = true
                 @animations.play 'walk', 4, true
-            # @body.velocity.y += @game.rnd.integerInRange(0, -10)
             
             if @body.velocity.x < 0
                 @scale.x = -1
