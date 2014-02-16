@@ -143,7 +143,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
            @facing = facing        
 
         if @health < 4 and !@heartbeat and !Pigvane.Main.soundManager.sfxHeartbeat.isPlaying
-            Pigvane.Main.soundManager.sfxHeartbeat.play()
+            Pigvane.Main.soundManager.sfxHeartbeat.play('', 1, true)
             @heartbeat = true
         else if @health > 3 and @heartbeat and Pigvane.Main.soundManager.sfxHeartbeat.isPlaying
             Pigvane.Main.soundManager.sfxHeartbeat.stop()
