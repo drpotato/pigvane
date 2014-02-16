@@ -9,7 +9,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         @addAnimations()
 
         # Stop it walking out of the world
-        # @body.collideWorldBounds = true
+        @body.collideWorldBounds = true
 
         @facing = 'left'
 
