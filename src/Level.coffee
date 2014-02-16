@@ -65,9 +65,6 @@ class Pigvane.Classes.Level
         
         @npcController = new Pigvane.Classes.NPCController @game
         
-        # Add the achievements
-        # @achievements = new Pigvane.Classes.Achievements @game
-        
         # Add the dialog
         @dialog = new Pigvane.Classes.Dialog @game
 

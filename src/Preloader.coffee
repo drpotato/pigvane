@@ -45,40 +45,6 @@ class Pigvane.States.Preloader
         @game.load.image 'gun_smg', 'res/gun1-2x.png'
         @game.load.image 'gun_minigun', 'res/gun3-2x.png'
 
-        # Achievement
-        @game.load.image 'achievement_background', 'res/achievement.png'
-        
-        # Achievement Images
-        # @game.load.image 'achievement_3_lives', 'res/achievement/3lives.png'
-        @game.load.image 'achievement_cats_can_play', 'res/achievement/catCanPlay.png'
-        @game.load.image 'achievement_city_complete', 'res/achievement/CityComplete.png'
-        @game.load.image 'achievement_copyright_violation', 'res/achievement/Copyright Violation.png'
-        @game.load.image 'achievement_dlc', 'res/achievement/DLC.png'
-        @game.load.image 'achievement_first_steps', 'res/achievement/first steps.png'
-        @game.load.image 'achievement_first_blood', 'res/achievement/FirstBlood.png'
-        @game.load.image 'achievement_help_candy_crusher', 'res/achievement/HelpCandyCrusher.png'
-        @game.load.image 'achievement_help_cat', 'res/achievement/HelpCat.png'
-        @game.load.image 'achievement_help_fruit_ninja', 'res/achievement/HelpFruitNinja.png'
-        @game.load.image 'achievement_help_kid', 'res/achievement/HelpKid.png'
-        @game.load.image 'achievement_help_monk', 'res/achievement/HelpMonk.png'
-        @game.load.image 'achievement_help_old_man', 'res/achievement/HelpOldMan.png'
-        @game.load.image 'achievement_help_pig_owner', 'res/achievement/HelpPigOwner.png'
-        @game.load.image 'achievement_help_sick_pig', 'res/achievement/HelpSickPig.png'
-        @game.load.image 'achievement_kill_candy_crusher', 'res/achievement/KillCandyCrusher.png'
-        @game.load.image 'achievement_kill_cat', 'res/achievement/KillCat.png'
-        @game.load.image 'achievement_kill_fruit_ninja', 'res/achievement/KillFruitNinja.png'
-        @game.load.image 'achievement_kill_kid', 'res/achievement/KillKid.png'
-        @game.load.image 'achievement_kill_monk', 'res/achievement/KillMonk.png'
-        @game.load.image 'achievement_kill_old_man', 'res/achievement/KillOldMan.png'
-        @game.load.image 'achievement_kill_pig_owner', 'res/achievement/KillPigOwner.png'
-        @game.load.image 'achievement_kill_sick_pig', 'res/achievement/KillSickPig.png'
-        @game.load.image 'achievement_sunshine_rainbows', 'res/achievement/sunshineRainbows.png'
-        @game.load.image 'achievement_finish_wind', 'res/achievement/concordance.png'
-        @game.load.image 'achievement_first_free', 'res/achievement/FirstOneFree.png'
-        @game.load.image 'achievement_finish_pig', 'res/achievement/greed.png'
-        @game.load.image 'achievement_finish_human', 'res/achievement/Loneliness.png'
-        @game.load.image 'achievement_pacifist', 'res/achievement/pacifist.png'
-        
         # NPCs
         # - City
         @game.load.spritesheet 'npc_oldman', 'res/oldman-2x.png', 32, 32

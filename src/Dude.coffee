@@ -23,9 +23,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @heartbeat = false
 
-        # Is a cat? <3
-        @cat = true
-
         # Set up animations
         @animations.add 'walk', [0,1,2,3,4,5,6,7]
 
@@ -112,11 +109,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @body.velocity.y = 0
                 @canceledJump = true
 
-        # Determine if cat.
-        if @cat is true
-            if @cursors.up.isDown or @cursors.right.isDown or @cursors.left.isDown or @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR or @game.input.keyboard.isDown Phaser.Keyboard.X
-                @cat = false
-
         if @facing is 'right'
             @scale.x = 1
         else if @facing is 'left'
@@ -149,8 +141,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If not, update his facing, and display the correct animation
         else
            @facing = facing        
-
-        # @updateAchievements()
 
         if @health < 4 and !@heartbeat and !Pigvane.Main.soundManager.sfxHeartbeat.isPlaying
             Pigvane.Main.soundManager.sfxHeartbeat.play()
@@ -237,8 +227,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             if @lives == 0
                 # @kill()
 
-                # Pigvane.Main.achievements.grant('3_lives')
-
                 @game.state.start 'HighScore'
 
         Pigvane.Main.healthBar.update()
@@ -258,12 +246,3 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         tween = @game.add.tween(text).to({y: text.y-100, alpha: 0}, 500, Phaser.Easing.Linear.None, true)
 
         tween.onComplete.add -> text.destroy()
-
-    updateAchievements: () ->
-
-        if !@moved and @body.velocity.x != 0
-            @moved = true
-            Pigvane.Main.achievements.grant('first_steps')
-
-        if @specialKills == 1
-            Pigvane.Main.achievements.grant('kill_1')
