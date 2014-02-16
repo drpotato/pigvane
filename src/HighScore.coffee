@@ -140,6 +140,7 @@ class Pigvane.States.HighScore
 
         @updateScore(@newScore.position, @newScore.player, @newScore.score)
         @renderScores()
+        @exit()
 
 
     updateCursorPosition: () ->
@@ -149,16 +150,16 @@ class Pigvane.States.HighScore
         @newHighScorePlayer.setText(@newScore.player)
 
     insertScore: (index, text = "", score = 0) ->
-          $.ajax
+        $.ajax
             url: 'enter_score?name=' + text + '&score=' + score
             async: false
 
-    updateScore: (index, text = "", score = 0) ->
-        Pigvane.highscores[index] = [text, score]
+    updateScore: (index, text, score = 0) ->
+        Pigvane.highscores[index] = {'name':text, 'score':score}
 
     findPosition: (score) ->
-        for test, i in Pigvane.highscores
-            if score > test[1]
+        for entry, i in Pigvane.highscores
+            if score > entry.score
                 return i
 
     exit: () ->
