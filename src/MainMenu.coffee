@@ -44,7 +44,7 @@ class Pigvane.States.MainMenu
             align: 'center'
             })
 
-        twitterText = '@freelyfred - lead dev\n@xxNxT - lead artist\n@dr__potato - dev, sound'
+        twitterText = '@freelyfred - programming lead\n@xxNxT - art & game design\n@dr__potato - programming, audio'
 
         @twitter = @add.text(10, 900, twitterText, {
             font: '30px Emulogic',
