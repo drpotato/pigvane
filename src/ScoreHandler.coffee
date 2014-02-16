@@ -1,8 +1,6 @@
 class Pigvane.Classes.scoreHandler
     constructor: (@game) ->
 
-        Pigvane.score = 0
-
         @recentScore = 0
         @recentTimer = 0
 
