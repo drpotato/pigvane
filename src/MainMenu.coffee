@@ -4,20 +4,15 @@ class Pigvane.States.MainMenu
 
     preload: () ->
         # Add background + logo to current state
-        @bg = @add.sprite -40, 40, 'menuBG'
+        @bg = @add.sprite -360, 12, 'menuBG'
 
-        @logo = @add.sprite 518, 150, 'logo' 
+        @game.stage.backgroundColor = "#222"
+
+        @logo = @add.sprite 198, 122, 'logo' 
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
         
-        # Allows us to fade in background
-        # @background.alpha = 0
-
-        # Fade in background and logo
-        # @add.tween(@background).to({ alpha: 1}, 2000, Phaser.Easing.Bounce.InOut, true);
-        # @add.tween(@logo).to({ y: 220 }, 2000, Phaser.Easing.Elastic.Out, true, 2000);
-        
-        @insertCoinText = @add.text(820, 500, "Insert Coin(s)", {
+        @insertCoinText = @add.text(490, 500, "Insert Coin(s)", {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -26,7 +21,7 @@ class Pigvane.States.MainMenu
             })
 
         
-        @cursor = @add.text(735, 700, '>', {
+        @cursor = @add.text(375, 700, '>', {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -35,12 +30,13 @@ class Pigvane.States.MainMenu
 
         @options = [
             ['Press Start to Play', @fadeOut],
-            ['Help', @help]
+            ['Controls', @help],
+            ['High Scores', @highscore]
         ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
-        @startText = @add.text(765, 700, text, {
+        @startText = @add.text(450, 700, text, {
             font: '20px Emulogic',
             fill: 'DBB4A5',
             strokeThickness: 5,
@@ -50,15 +46,16 @@ class Pigvane.States.MainMenu
 
         twitterText = '@freelyfred - lead dev\n@xxNxT - lead artist\n@dr__potato - project manager, dev'
 
-        @twitter = @add.text(10, 980, twitterText, {
+        @twitter = @add.text(10, 944, twitterText, {
             font: '13px Emulogic',
             fill: '8D5074',
             strokeThickness: 0,
             stroke: '3C033A'
             })
 
-        # @input.keyboard.addKey( Phaser.Keyboard.DOWN ).onDown.add()
         @input.keyboard.addCallbacks @, @keyDown
+
+        @capture = true
 
         @cursorPosition = 0
 
@@ -67,18 +64,17 @@ class Pigvane.States.MainMenu
     update: () ->
         if @time.now > @blinkTimer
             @blinkTimer = @time.now + 400
-            #@cursor.visible = !@cursor.visible
-            #I don't think that this should blink - it's distracting.
             @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
-        switch e.keyCode
-            when Phaser.Keyboard.DOWN
-                @updateCursor('down')
-            when Phaser.Keyboard.UP
-                @updateCursor('up')
-            when Phaser.Keyboard.ENTER
-                @selectOption()
+        if @capture == true
+            switch e.keyCode
+                when Phaser.Keyboard.DOWN
+                    @updateCursor('down')
+                when Phaser.Keyboard.UP
+                    @updateCursor('up')
+                when Phaser.Keyboard.ENTER
+                    @selectOption()
 
     selectOption: () ->
         @options[@cursorPosition][1].call(this)
@@ -99,12 +95,19 @@ class Pigvane.States.MainMenu
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
         # tween = @add.tween(@logo).to {alpha: 0}, 1000, Phaser.Easing.Linear.None, true
-        @add.tween(@startText).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
-        tween = @add.tween(@cursor).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
+        # @add.tween(@startText).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
+        # tween = @add.tween(@cursor).to({alpha: 0}, 500,Phaser.Easing.Linear.None, true)
 
         # Once the animation completes
-        tween.onComplete.add @startGame, this
-        # @startGame()
+        # tween.onComplete.add @startGame, this
+        @startGame()
+
+    help: () ->
+        @game.state.start 'Help'
+
+    highscore: () ->
+        @capture = false
+        @game.state.start 'HighScore'
 
     startGame: () ->
         # Go to the main game!

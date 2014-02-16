@@ -7,17 +7,14 @@ class Pigvane.Classes.HealthOverlay
         livesLeft = Pigvane.Main.dude.lives
         
         @hearts = @game.add.group()
-        @hearts.x = 15
-        @hearts.y = 5
+        @hearts.x = -5
+        @hearts.y = 80
 
         @heartsArray = []
 
         for i in [0...livesLeft]
             heartContainer = @game.add.sprite(0,0)
-            heart = @game.add.sprite(40*i, 0, 'lives')
-
-            heart.animations.add('main', [0,1,2,3])
-            heart.animations.play('main', 4, true)
+            heart = @game.add.sprite(65*i, 0, 'lives')
 
             heartContainer.addChild heart
             heartContainer.fixedToCamera = true
@@ -30,9 +27,9 @@ class Pigvane.Classes.HealthOverlay
         sprite.cameraOffset.x = 10;
         sprite.cameraOffset.y = 10;
 
-        @healthBar = @game.add.sprite 15, 40, 'healthBar'
+        @healthBar = @game.add.sprite 25, 0, 'healthBar'
         @healthBar.cropEnabled = true
-        @healthBar.crop = new Phaser.Rectangle 0, 0, 128, 32
+        @healthBar.crop = new Phaser.Rectangle 0, 0, 512, 128
         @healthBar.fixedToCamera = true
         
     update: () ->

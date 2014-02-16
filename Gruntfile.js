@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         copy: {
             main: {
                 files: [
-                    {cwd: 'src/', expand: true, src: ['*.html'], dest: 'dev/'},
+                    {cwd: 'src/', expand: true, src: ['*.html', '*.json'], dest: 'dev/'},
                     {cwd: 'src/res/public/noupscale', expand: true, src: ['**'], dest: 'dev/res/'},
                     {cwd: 'src/res/public/2x', expand: true, src: ['**.json'], dest: 'dev/res/'},
                     {cwd: 'src/res/public/4x', expand: true, src: ['**.json'], dest: 'dev/res/'},
@@ -117,7 +117,7 @@ module.exports = function(grunt) {
                 }
             },
             statics: {
-                files: ['src/res/public/**', 'src/*.html', 'src/res/public/tilemap/**'],
+                files: ['src/res/public/**', 'src/*.html', 'src/*.json', 'src/res/public/tilemap/**'],
                 tasks: ['copy:main'],
                 options: {
                     livereload: true,
