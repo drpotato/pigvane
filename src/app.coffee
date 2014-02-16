@@ -39,11 +39,15 @@ $.ajax
         console.log error
 
 $.ajax
-    url: 'highscores.json'
+    url: 'retrieve_scores'
     async: false
     datatype: 'json'
     success: (data) -> 
-        Pigvane.highscores = data.highscores
+        Pigvane.highscores = JSON.parse(data)
+
+        data.forEach( (obj) ->
+            console.log(obj.name)
+        );
 
     error: (error) ->
         console.log 'Fucked up', error
