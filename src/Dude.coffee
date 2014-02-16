@@ -221,7 +221,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @health == 0
             Pigvane.Main.soundManager.sfxDeathScream.play()
             @respawn()
-            @health = @maxHealth
+            @health = 10
             @lives--
             Pigvane.Main.healthBar.removeLife()
             if @lives == 0
