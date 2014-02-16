@@ -15,19 +15,19 @@ class Pigvane.Classes.weaponHandler
             {   
                 name: 'Assault Rifle',
                 damage: 3,
-                fireRate: 100,
+                fireRate: 150,
                 velocity: 1000,
                 threshold: 500,
                 sprite: 'gun_smg'
             },
             {   
                 name: 'Minigun',
-                damage: 10,
-                fireRate: 120,
+                damage: 5,
+                fireRate: 80,
                 velocity: 1500,
                 threshold: 2000,
                 sprite: 'gun_minigun'
-            }
+            },
             {   
                 name: 'Shotgun',
                 damage: 30,
