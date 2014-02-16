@@ -94,7 +94,7 @@ class Pigvane.States.Preloader
         
 
         # Music
-        # @game.load.audio 'music', 'res/pigvane_music.wav'
+        @game.load.audio 'music', 'res/pigvane_music.wav'
         
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'
