@@ -41,6 +41,15 @@ app.get('/enter_score', function (req, res) {
 	res.send("");
 });
 
+app.get('/delete_database', function (req, res) {
+	var query = "DROP TABLE highscore;";
+	db.serialize(function() {
+		db.run(query);
+	});
+
+	res.send("");
+});
+
 process.on('SIGTERM', function () {
   console.log("Closing");
   db.close()
