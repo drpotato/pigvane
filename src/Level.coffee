@@ -137,8 +137,7 @@ class Pigvane.Classes.Level
             Pigvane.Main.dlc.popup()
 
         # if Pigvane.Main.dude.x > 22000
-        if Pigvane.Main.dude.x > 2000
-            console.log Pigvane.currentLevel
+        if Pigvane.Main.dude.x > @config.nextLevelX
             @nextLevel()
             # @game.state.start('Level2')
 
@@ -175,7 +174,6 @@ class Pigvane.Classes.Level
             @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, @config.prefix+'npc')
 
     nextLevel: () ->
-        console.log Pigvane.currentLevel
         Pigvane.currentLevel++
         @game.state.start('Level'+Pigvane.currentLevel)
 
