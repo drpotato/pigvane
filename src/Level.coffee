@@ -47,7 +47,7 @@ class Pigvane.Classes.Level
 
         @createFloor()
 
-        @game.stage.backgroundColor = "#b2dcef"
+        @game.stage.backgroundColor = "#000000"
 
         # Add the main guy 
         
@@ -137,7 +137,7 @@ class Pigvane.Classes.Level
             Pigvane.Main.dlc.popup()
 
         # if Pigvane.Main.dude.x > 22000
-        if Pigvane.Main.dude.x > @config.nextLevelX
+        if @dude.x > @config.nextLevelX
             @nextLevel()
             # @game.state.start('Level2')
 
@@ -166,7 +166,6 @@ class Pigvane.Classes.Level
         obj1.kill()
 
     spawnRandomNPCs: (number=10) ->
-        console.log @game.camera
         rightBound = @game.camera.x + 1280
         for i in [0...number]
             x = @game.rnd.integerInRange(rightBound, rightBound + 1000)
@@ -176,7 +175,11 @@ class Pigvane.Classes.Level
     nextLevel: () ->
         @soundManager.music.stop()
         Pigvane.currentLevel++
-        @game.state.start('Level'+Pigvane.currentLevel)
+        if Pigvane.currentLevel <= 3
+            @game.state.start('Level'+Pigvane.currentLevel)
+        else
+            @cameraController.reset()
+            @game.state.start('HighScore')
 
     exit: () ->
         @soundManager.music.stop()

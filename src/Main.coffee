@@ -6,7 +6,9 @@ class Pigvane.States.Main
     preload: (@game) ->
         @game.state.add '1', Pigvane.Classes.Level1, false
         @game.state.add '2', Pigvane.Classes.Level2, false
-        @game.state.add '3', Pigvane.Classes.Level2, false
+        @game.state.add '3', Pigvane.Classes.Level3, false
+        @game.state.add '4', Pigvane.Classes.Level4, false
+        @game.state.add '5', Pigvane.Classes.Level5, false
         @loadLevel()
         # @levelCity = new Pigvane.Classes.LevelCity(@game)
         
@@ -22,6 +24,12 @@ class Pigvane.States.Main
                 @game.state.start '2'
             when 2
                 @game.state.start '3'
+            when 3
+                @game.state.start '4'
+            when 4
+                @game.state.start '5'
+            when 5
+                @game.state.start '0'
 
     changeToLevel: () ->
         # @game.state.remove 'City'

@@ -39,6 +39,26 @@ $.ajax
         console.log error
 
 $.ajax
+    url: 'res/level4-platform-data.json'
+    async: false
+    datatype: 'json'
+    success: (data) -> 
+        Pigvane.platformData.lvl4 = data.platforms
+        console.log data.platforms
+    error: (error) ->
+        console.log error
+
+$.ajax
+    url: 'res/level5-platform-data.json'
+    async: false
+    datatype: 'json'
+    success: (data) -> 
+        Pigvane.platformData.lvl5 = data.platforms
+        console.log data.platforms
+    error: (error) ->
+        console.log error
+
+$.ajax
     url: 'retrieve_scores'
     async: false
     datatype: 'json'

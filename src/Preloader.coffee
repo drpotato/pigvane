@@ -63,6 +63,39 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'lvl3-dude',     'res/level3/char-red-2x.png', 48, 48
         @game.load.spritesheet 'lvl3-npc',      'res/level3/ninjamaster-red-2x.png', 48, 48
         
+                # LEVEL 4
+        @game.load.tilemap  'lvl4-tm',          'res/level4.json', null, Phaser.Tilemap.TILED_JSON
+        @game.load.image    'lvl4-bg',          'res/level4/level4-cloudlayer-2x.png'
+        @game.load.image    'lvl4-bgScroll1',   'res/level4/level4-bg1-2x.png'
+        @game.load.image    'lvl4-bgScroll2',   'res/level4/level4-bg2-2x.png'
+        @game.load.image    'lvl4-floor',       'res/level4/level4-floorforeground-2x.png'
+        @game.load.image    'lvl4-gun_pistol',  'res/level4/gun2-yellow-2x.png'
+        @game.load.image    'lvl4-gun_shotgun', 'res/level4/gun4-yellow-2x.png'
+        @game.load.image    'lvl4-gun_smg',     'res/level4/gun1-yellow-2x.png'
+        @game.load.image    'lvl4-gun_minigun', 'res/level4/gun3-yellow-2x.png'
+        @game.load.image    'lvl4-platform.1',  'res/level4/level4-platform1-2x.png'
+        @game.load.image    'lvl4-platform.2',  'res/level4/level4-platform2-2x.png'
+        @game.load.image    'lvl4-platform.3',  'res/level4/level4-platform3-2x.png'
+        @game.load.spritesheet 'lvl4-dude',     'res/level4/char-yellow-2x.png', 48, 48
+        @game.load.spritesheet 'lvl4-npc',      'res/level4/ninjamaster-yellow-2x.png', 48, 48
+        
+                        # LEVEL 5
+        @game.load.tilemap  'lvl5-tm',          'res/level5.json', null, Phaser.Tilemap.TILED_JSON
+        @game.load.image    'lvl5-bg',          'res/level5/level5-cloudlayer-2x.png'
+        @game.load.image    'lvl5-bgScroll1',   'res/level5/level5-bg1-2x.png'
+        @game.load.image    'lvl5-bgScroll2',   'res/level5/level5-bg2-2x.png'
+        @game.load.image    'lvl5-floor',       'res/level5/level5-floorforeground-2x.png'
+        @game.load.image    'lvl5-gun_pistol',  'res/level5/gun2-purple-2x.png'
+        @game.load.image    'lvl5-gun_shotgun', 'res/level5/gun4-purple-2x.png'
+        @game.load.image    'lvl5-gun_smg',     'res/level5/gun1-purple-2x.png'
+        @game.load.image    'lvl5-gun_minigun', 'res/level5/gun3-purple-2x.png'
+        @game.load.image    'lvl5-platform.1',  'res/level5/level5-platform1-2x.png'
+        @game.load.image    'lvl5-platform.2',  'res/level5/level5-platform2-2x.png'
+        @game.load.image    'lvl5-platform.3',  'res/level5/level5-platform3-2x.png'
+        @game.load.spritesheet 'lvl5-dude',     'res/level5/char-purple-2x.png', 48, 48
+        @game.load.spritesheet 'lvl5-npc',      'res/level5/ninjamaster-purple-2x.png', 48, 48
+        
+        
         # Platforms
         
 
