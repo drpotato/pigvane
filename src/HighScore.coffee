@@ -144,7 +144,9 @@ class Pigvane.States.HighScore
         @newHighScorePlayer.setText(@newScore.player)
 
     insertScore: (index, text = "", score = 0) ->
-        Pigvane.highscores.splice(index, 0, [text, score])
+          $.ajax
+            url: 'enter_score?name=' + text + '&score=' + score
+            async: false
 
     updateScore: (index, text = "", score = 0) ->
         Pigvane.highscores[index] = [text, score]
