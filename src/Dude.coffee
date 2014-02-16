@@ -21,8 +21,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Special NPC ignores
         @ignores = 0
 
-        @heartbeat = false
-
         # Set up animations
         @animations.add 'walk', [0,1,2,3,4,5,6,7]
 
@@ -65,9 +63,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
     update: () ->
 
         @game.physics.collide @, Pigvane.Main.mainLayer
-        
-        if @game.input.keyboard.isDown Phaser.Keyboard.D
-            Pigvane.Main.dlc.popup()
 
         # Set resulting speed of body
         @vStep = 15
@@ -117,14 +112,6 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.input.keyboard.isDown Phaser.Keyboard.V
             @damage()
 
-        if @body.velocity.x is 0 and @body.velocity.y is 0
-            @animations.stop()
-        else
-            if @gunDrawn is true
-                @animations.play 'walk', 16, true
-            else
-                @animations.play 'walk', 16, true
-
         # Not moving
         if !@cursors.left.isDown and !@cursors.right.isDown and !@cursors.up.isDown
             if Math.abs( @body.velocity.x ) < 30
@@ -133,6 +120,11 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @body.velocity.x -= 30
             else if @body.velocity.x < 0
                 @body.velocity.x += 30
+
+        if @body.velocity.x is 0
+            @animations.stop()
+        else
+            @animations.play 'walk', 16, true
 
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
