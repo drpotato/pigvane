@@ -112,4 +112,4 @@ class Pigvane.States.MainMenu
     startGame: () ->
         # Go to the main game!
         console.log Pigvane.currentLevel
-        @game.state.start 'Level3'
+        @game.state.start 'Level1'
