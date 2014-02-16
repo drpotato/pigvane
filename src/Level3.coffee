@@ -7,7 +7,7 @@ class Pigvane.Classes.Level3 extends Pigvane.Classes.Level
         
     doSound: () ->
         
-        @soundManager.music.play()
+        @soundManager.music.play('', 0, 1, true)
         
     initConfig: () ->
         @config.prefix =        'lvl3-'
