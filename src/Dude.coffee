@@ -219,8 +219,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         Pigvane.Main.healthBar.update()
 
     respawn: () ->
-        @x = @game.world.camera.x + 50
-        @y = 500
+        @x -= 800
+        @y = 900
 
     addText: (text, colour='white', size=10) ->
         text = @game.add.text(@x-10, @y, text, {
