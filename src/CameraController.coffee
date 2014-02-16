@@ -34,3 +34,6 @@ class Pigvane.Classes.CameraController
 
     shakeScreen: () ->
         @screenShakeTimer = @game.time.now + 100
+
+    resetCamera: () ->
+        @camera.x = 0
