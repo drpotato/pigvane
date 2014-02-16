@@ -94,7 +94,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
         if @game.time.now > @shootTimer
 
-            if Math.abs( @body.x - dude.x ) < 50 && Math.abs( @body.y - dude.y ) < 50
+            if Math.abs( @body.x - dude.x ) < 200 && Math.abs( @body.y - dude.y ) < 50
                 p = @game.rnd.integerInRange(0,50)
                 if dude.gunDrawn
                     p = p*2

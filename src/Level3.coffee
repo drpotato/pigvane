@@ -17,7 +17,7 @@ class Pigvane.Classes.Level3 extends Pigvane.Classes.Level
         @config.bgScroll1 =     'lvl3-bgScroll1'
         @config.bgScroll2 =     'lvl3-bgScroll2'
         @config.fgScroll =      'lvl3-fg'
-        @config.nextLeveLX = 24000
+        @config.nextLeveLX = 8200
         @config.floor =         'lvl3-floor'
         @config.platformData =  'lvl3'
         
