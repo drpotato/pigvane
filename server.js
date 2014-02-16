@@ -26,7 +26,6 @@ app.get('/retrieve_scores', function (req, res) {
 	var query = "SELECT * FROM highscore ORDER BY score DESC LIMIT 10;";
 	db.serialize(function() {
 		db.all(query, function (err, rows){
-			console.log("Sending Data.");
 			res.send(JSON.stringify(rows));
 		});
 	});
