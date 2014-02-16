@@ -31,14 +31,19 @@ class Pigvane.States.HighScore
     renderScores: () ->
         @highScoresPlayers = ""
         @highScores = ""
-        for score, i in Pigvane.highscores
-            @highScoresPlayers += (i+1) + ") " + score[0] + "\n"
-            @highScores += score[1] + "\n"
+
+        for entry in Pigvane.highscores
+            console.log "Adding: " + entry.name + ": " + entry.score
+            @highScoresPlayers += entry.name + ")\n"
+            @highScores += entry.score + "\n"
+
+        console.log @highScoresPlayers
+        console.log @highscores
 
         @highScorePlayersText.setText @highScoresPlayers
         @highScoreText.setText @highScores
 
-        @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1][1]
+        @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
 
 
 
@@ -144,7 +149,9 @@ class Pigvane.States.HighScore
         @newHighScorePlayer.setText(@newScore.player)
 
     insertScore: (index, text = "", score = 0) ->
-        Pigvane.highscores.splice(index, 0, [text, score])
+          $.ajax
+            url: 'enter_score?name=' + text + '&score=' + score
+            async: false
 
     updateScore: (index, text = "", score = 0) ->
         Pigvane.highscores[index] = [text, score]

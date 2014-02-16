@@ -62,18 +62,27 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                     @body.velocity.x = @game.rnd.integerInRange(-40, 0)
                 else if @getLeftEdgy == true
                     @body.velocity.x = @game.rnd.integerInRange(40, 0)
+
+                if @body.velocity.x < 0
+                    @scale.x = -1
+                    @facing = 'left'
+                else 
+                    @scale.x = 1
+                    @facing = 'right'
                 
                 @animations.play 'walk', 2, true
             else if (Math.abs( @body.x - dude.x ) < 800 && Math.abs( @body.y - dude.y ) < 200 ) || @alerted == true
                 runVelocity = @runVelocity
                 @body.velocity.x = @game.rnd.integerInRange(-40, 40)                
                 if dude.x < @x
+                    @facing = 'left'
                     if @getLeftEdgy == true
                         @body.velocity.x = 10
                     else
                         @body.velocity.x += -runVelocity
 
                 else if dude.x > @x
+                    @facing = 'right'
                     if @getRightEdgy == true
                         @body.velocity.x = -10
                     else
@@ -82,12 +91,10 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @alerted = true
                 @animations.play 'walk', 4, true
             
-            if @body.velocity.x < 0
+            if @facing == 'left'
                 @scale.x = -1
-                @facing = 'left'
             else 
                 @scale.x = 1
-                @facing = 'right'
 
 
             @updateTimer = @game.time.now + @game.rnd.integerInRange(5, 9)*100
