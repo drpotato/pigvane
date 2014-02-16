@@ -150,6 +150,12 @@ class Pigvane.Classes.Level
         @background.tilePosition.x += 0.2
         # @fgScroll.tilePosition.x = @game.world.camera.x/0.5
 
+        @bullets.forEach( (obj) ->
+            if (obj.body.velocity.x == 0)
+                obj.visible = false
+                obj.kill()
+            )
+
         @onUpdate.dispatch()
 
     nextState: () ->

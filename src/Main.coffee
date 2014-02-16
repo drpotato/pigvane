@@ -30,5 +30,3 @@ class Pigvane.States.Main
         # @game.state.remove 'City'
         @currentLevelIndex = @nextLevelIndex
         @loadLevel()
-
-        
