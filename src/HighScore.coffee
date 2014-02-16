@@ -31,14 +31,17 @@ class Pigvane.States.HighScore
     renderScores: () ->
         @highScoresPlayers = ""
         @highScores = ""
-        for score, i in Pigvane.highscores
-            @highScoresPlayers += (i+1) + ") " + score[0] + "\n"
-            @highScores += score[1] + "\n"
+        Pigvane.highscores.forEach(
+            (obj) ->
+                console.log "Adding: " + obj.name + ": " + obj.score
+                @highScoresPlayers += obj.name + ") " + obj.score + "\n"
+                @highScores += obj.score + "\n"
+        )
 
         @highScorePlayersText.setText @highScoresPlayers
         @highScoreText.setText @highScores
 
-        @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1][1]
+        @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
 
 
 

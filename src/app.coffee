@@ -45,9 +45,6 @@ $.ajax
     success: (data) -> 
         Pigvane.highscores = JSON.parse(data)
 
-        data.forEach( (obj) ->
-            console.log(obj.name)
-        );
 
     error: (error) ->
         console.log 'Fucked up', error
