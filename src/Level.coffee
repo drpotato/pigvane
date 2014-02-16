@@ -19,13 +19,14 @@ class Pigvane.Classes.Level
         @soundManager.sfxGunshotEnemy = @soundManager.add 'sfx_gunshot_enemy', 0.25
         @soundManager.sfxDeathScream = @soundManager.add 'sfx_death_scream', 1
         @soundManager.sfxCollectable = @soundManager.add 'sfx_collectable', 0.5
+        @soundManager.music = @soundManager.add 'music', 1
         
         @doSound()
         
         @config = {}
         @initConfig()
         
-        @background = @game.add.sprite 0, 0, @config.background
+        @background = @game.add.tileSprite 0, 0, 8000, 1000, @config.background
         @background.fixedToCamera = true 
 
         # Add the map and tileset that we loaded earlier 
@@ -34,11 +35,11 @@ class Pigvane.Classes.Level
 
         @map.setCollisionBetween 0, 2
         
-        @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
+        @bgScroll1 = @add.tileSprite(0, 0, 32000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @add.tileSprite(0, 400, 8000, 1000, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 400, 32000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
@@ -128,7 +129,7 @@ class Pigvane.Classes.Level
     createFloor: () ->
         @floorGroup = @game.add.group()
 
-        for i in [0...20]
+        for i in [0...100]
             sprite = @game.add.sprite(i*(8*48), 19*48, 'floor')
 
 
@@ -148,6 +149,7 @@ class Pigvane.Classes.Level
         
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
+        @background.tilePosition.x += 0.2
         # @fgScroll.tilePosition.x = @game.world.camera.x/0.5
 
         @onUpdate.dispatch()
