@@ -73,6 +73,8 @@ Pigvane.game.state.add 'HighScore',     Pigvane.States.HighScore,   false
 Pigvane.game.state.add 'Level1', Pigvane.Classes.Level1, false
 Pigvane.game.state.add 'Level2', Pigvane.Classes.Level2, false
 Pigvane.game.state.add 'Level3', Pigvane.Classes.Level3, false
+Pigvane.game.state.add 'Level4', Pigvane.Classes.Level4, false
+Pigvane.game.state.add 'Level5', Pigvane.Classes.Level5, false
 
 String.prototype.replaceAt = (index, character) ->
     return this.substr(0, index) + character + this.substr(index+character.length)

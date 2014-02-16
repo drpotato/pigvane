@@ -1,4 +1,4 @@
-class Pigvane.Classes.Level3 extends Pigvane.Classes.Level
+class Pigvane.Classes.Level5 extends Pigvane.Classes.Level
 
     constructor: (@game) ->
         super(@game)
