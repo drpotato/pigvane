@@ -42,6 +42,7 @@ class Pigvane.Classes.Level
 
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
+        @mainLayer.alpha = 0
 
         @createPlatforms()
 
@@ -130,7 +131,7 @@ class Pigvane.Classes.Level
     # Called every frame
     update: ->
         if @game.time.now > @NPCspawntimer
-            @spawnRandomNPCs(5)
+            @spawnRandomNPCs(10)
             @NPCspawntimer = @game.time.now + 5000
 
         if Pigvane.Main.dlc? and @dude.x > 6240
@@ -166,7 +167,6 @@ class Pigvane.Classes.Level
         obj1.kill()
 
     spawnRandomNPCs: (number=10) ->
-        console.log @game.camera
         rightBound = @game.camera.x + 1280
         for i in [0...number]
             x = @game.rnd.integerInRange(rightBound, rightBound + 1000)
