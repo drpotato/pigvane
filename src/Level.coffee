@@ -47,7 +47,7 @@ class Pigvane.Classes.Level
 
         @createFloor()
 
-        @game.stage.backgroundColor = "#b2dcef"
+        @game.stage.backgroundColor = "#000000"
 
         # Add the main guy 
         
@@ -137,7 +137,7 @@ class Pigvane.Classes.Level
             Pigvane.Main.dlc.popup()
 
         # if Pigvane.Main.dude.x > 22000
-        if Pigvane.Main.dude.x > @config.nextLevelX
+        if @dude.x > @config.nextLevelX
             @nextLevel()
             # @game.state.start('Level2')
 

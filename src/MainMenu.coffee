@@ -44,7 +44,7 @@ class Pigvane.States.MainMenu
             align: 'center'
             })
 
-        twitterText = '@freelyfred - code monkey\n@xxNxT - art bitch\n@dr__potato - wizard'
+        twitterText = '@freelyfred - lead programmer\n@xxNxT - artist & designer\n@dr__potato - programming & audio'
 
         @twitter = @add.text(10, 900, twitterText, {
             font: '30px Emulogic',
@@ -112,4 +112,4 @@ class Pigvane.States.MainMenu
     startGame: () ->
         # Go to the main game!
         console.log Pigvane.currentLevel
-        @game.state.start 'Level1'
+        @game.state.start 'Level3'

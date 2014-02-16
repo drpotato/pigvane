@@ -68,7 +68,7 @@ class Pigvane.Classes.weaponHandler
         if @weapons[@currentWeapon+1]?
             @threshold = @weapons[@currentWeapon+1].threshold
         else 
-            @threshold = 10000000000 # Good luck - this is the length of my dick, <3 O
+            @threshold = 10000000000 # Good luck - this is the length of my dick, <3 -O
 
     onScoreUpdate: () ->
         if Pigvane.score >= @threshold
