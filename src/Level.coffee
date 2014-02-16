@@ -164,7 +164,8 @@ class Pigvane.Classes.Level
         rightBound = @game.camera.x + 1280
         for i in [0...number]
             x = @game.rnd.integerInRange(rightBound, rightBound + 1000)
-            @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, 800, 'npc_ninja_master')
+            y = @game.rnd.integerInRange(400, 850)
+            @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, 'npc_ninja_master')
 
     exit: () ->
         @game.state.start('MainMenu')

@@ -75,6 +75,8 @@ class Pigvane.States.Preloader
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
         @game.load.spritesheet 'logo', 'res/title-2x.png', 896, 256
         @game.load.image 'menuBG', 'res/background-2x.png'
+        @game.load.image 'submenuBG', 'res/menubackground-2x.png'
+        
 
     create: () ->
         # Animate the preloadBar

@@ -2,20 +2,23 @@ class Pigvane.States.HighScore
     constructor: (@game) ->
        
     preload: () ->
-        @title = @add.text(475, 400, "High Scores", {
-            font: '40px Emulogic'
-            fill: 'white'
+        
+        @bg = @add.sprite -360, 12, 'submenuBG'
+        
+        @title = @add.text(380, 400, "High Scores", {
+            font: '80px Emulogic'
+            fill: '8D5074'
             })
 
-        @highScorePlayersText = @add.text(500, 500, "", {
-            font: '20px Emulogic'
-            fill: 'white',
+        @highScorePlayersText = @add.text(480, 500, "", {
+            font: '40px Emulogic'
+            fill: '8D5074',
             align: 'left'
             })
 
-        @highScoreText = @add.text(720, 500, "", {
-            font: '20px Emulogic'
-            fill: 'white',
+        @highScoreText = @add.text(700, 500, "", {
+            font: '40px Emulogic'
+            fill: '8D5074',
             align: 'left'
             })
 
@@ -72,12 +75,12 @@ class Pigvane.States.HighScore
             @blink = true
 
             @newHighScorePlayer = @add.text(560, 500 + 27*@newScore.position, @newScore.player, {
-                font: '20px Emulogic'
-                fill: 'white'
+                font: '40px Emulogic'
+                fill: '8D5074'
             })
             @newHighScoreCursor = @add.text(560, 500 + 27*@newScore.position, "_", {
-                font: '20px Emulogic'
-                fill: 'white'
+                font: '40px Emulogic'
+                fill: '8D5074'
             })
             @updateCursorPosition()
 

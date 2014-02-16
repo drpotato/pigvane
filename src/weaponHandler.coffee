@@ -23,10 +23,10 @@ class Pigvane.Classes.weaponHandler
 
         @currentWeapon = -1
         
-        @overlay = @game.add.text(5, 994, "", {
-            font: '20px Emulogic',
+        @overlay = @game.add.text(15, 950, "", {
+            font: '80px Emulogic',
             fill: 'white',
-            strokeThickness: 5,
+            strokeThickness: 0,
             stroke: '3C033A'
             })
         @overlay.fixedToCamera = true
@@ -50,7 +50,7 @@ class Pigvane.Classes.weaponHandler
         if @weapons[@currentWeapon+1]?
             @threshold = @weapons[@currentWeapon+1].threshold
         else 
-            @threshold = 10000000000 # Good luck
+            @threshold = 10000000000 # Good luck - this is the length of my dick, <3 O
 
     onScoreUpdate: () ->
         if Pigvane.score >= @threshold
