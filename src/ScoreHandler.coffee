@@ -7,16 +7,16 @@ class Pigvane.Classes.scoreHandler
         @recentTimer = 0
 
         @scoreText = @game.add.text(1100,5, "0", {
-            font: '40px Emulogic',
+            font: '100px Emulogic',
             fill: 'white',
-            strokeThickness: 5,
+            strokeThickness: 0,
             stroke: '3C033A'
             })
 
-        @recentScoreText = @game.add.text(1100,55, "", {
-            font: '20px Emulogic',
+        @recentScoreText = @game.add.text(1100,90, "", {
+            font: '50px Emulogic',
             fill: 'white',
-            strokeThickness: 5,
+            strokeThickness: 0,
             stroke: '3C033A'
             })
 

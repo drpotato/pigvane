@@ -13,41 +13,41 @@ class Pigvane.States.MainMenu
         @logo.animations.play 'dropthebass', 1.5, true
         
         @insertCoinText = @add.text(490, 500, "Insert Coin(s)", {
-            font: '20px Emulogic',
-            fill: 'DBB4A5',
-            strokeThickness: 5,
+            font: '40px Emulogic',
+            fill: '8D5074',
+            strokeThickness: 0,
             stroke: '3C033A',
             align: 'center'
             })
 
         
-        @cursor = @add.text(375, 700, '>', {
-            font: '20px Emulogic',
-            fill: 'DBB4A5',
-            strokeThickness: 5,
+        @cursor = @add.text(400, 700, '>', {
+            font: '40px Emulogic',
+            fill: '8D5074',
+            strokeThickness: 0,
             stroke: '3C033A'
             })
 
         @options = [
             ['Press Start to Play', @fadeOut],
-            ['Controls', @help],
+            ['About & Help', @help],
             ['High Scores', @highscore]
         ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
-        @startText = @add.text(450, 700, text, {
-            font: '20px Emulogic',
-            fill: 'DBB4A5',
-            strokeThickness: 5,
+        @startText = @add.text(435, 700, text, {
+            font: '40px Emulogic',
+            fill: '8D5074',
+            strokeThickness: 0,
             stroke: '3C033A',
             align: 'center'
             })
 
         twitterText = '@freelyfred - lead dev\n@xxNxT - lead artist\n@dr__potato - project manager, dev'
 
-        @twitter = @add.text(10, 944, twitterText, {
-            font: '13px Emulogic',
+        @twitter = @add.text(10, 900, twitterText, {
+            font: '30px Emulogic',
             fill: '8D5074',
             strokeThickness: 0,
             stroke: '3C033A'
