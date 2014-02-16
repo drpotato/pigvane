@@ -226,7 +226,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             Pigvane.Main.healthBar.removeLife()
             if @lives == 0
                 # @kill()
-
+                Pigvane.Main.cameraController.reset()
                 @game.state.start 'HighScore'
 
         Pigvane.Main.healthBar.update()
