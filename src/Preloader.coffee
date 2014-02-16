@@ -63,7 +63,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'lvl3-dude',     'res/level3/char-red-2x.png', 48, 48
         @game.load.spritesheet 'lvl3-npc',      'res/level3/ninjamaster-red-2x.png', 48, 48
         
-                # LEVEL 4
+        # LEVEL 4
         @game.load.tilemap  'lvl4-tm',          'res/level4.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image    'lvl4-bg',          'res/level4/level4-cloudlayer-2x.png'
         @game.load.image    'lvl4-bgScroll1',   'res/level4/level4-bg1-2x.png'
@@ -79,7 +79,7 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'lvl4-dude',     'res/level4/char-yellow-2x.png', 48, 48
         @game.load.spritesheet 'lvl4-npc',      'res/level4/ninjamaster-yellow-2x.png', 48, 48
         
-                        # LEVEL 5
+        # LEVEL 5
         @game.load.tilemap  'lvl5-tm',          'res/level5.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image    'lvl5-bg',          'res/level5/level5-cloudlayer-2x.png'
         @game.load.image    'lvl5-bgScroll1',   'res/level5/level5-bg1-2x.png'
