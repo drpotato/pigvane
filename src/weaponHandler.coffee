@@ -14,9 +14,9 @@ class Pigvane.Classes.weaponHandler
             {   
                 name: 'Assault Rifle',
                 damage: 3,
-                fireRate: 1,
-                velocity: 1500,
-                threshold: 10,
+                fireRate: 80,
+                velocity: 100,
+                threshold: 500,
                 sprite: 'gun_smg'
             },
             {   
@@ -24,9 +24,18 @@ class Pigvane.Classes.weaponHandler
                 damage: 10,
                 fireRate: 120,
                 velocity: 1500,
-                threshold: 200,
+                threshold: 2000,
                 sprite: 'gun_minigun'
             }
+            {   
+                name: 'Shotgun',
+                damage: 30,
+                fireRate: 500,
+                velocity: 700,
+                threshold: 5000,
+                sprite: 'gun_shotgun'
+            }
+            
 
         ]
 
