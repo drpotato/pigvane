@@ -9,10 +9,10 @@ class Pigvane.Classes.Level
         @onUpdate = new Phaser.Signal()
 
         @gameWidth = 5
-        
+
         # Create a sound manager and add music
         @soundManager = new Phaser.SoundManager(@game)
-        
+
         @soundManager.sfxJump = @soundManager.add 'sfx_jump', 0.5
         @soundManager.sfxGunshotPlayer = @soundManager.add 'sfx_gunshot_player', 0.25
         @soundManager.sfxGunshotPlayerPistol = @soundManager.add 'sfx_gunshot_player_pistol', 0.25
@@ -21,27 +21,28 @@ class Pigvane.Classes.Level
         @soundManager.sfxCollectable = @soundManager.add 'sfx_collectable', 0.5
         @soundManager.sfxHeartbeat = @soundManager.add 'sfx_heartbeat', 1, true
         @soundManager.music = @soundManager.add 'music', 0.25, true
-        
+
         @doSound()
-        
+
         @config = {}
         @initConfig()
-        
-        @background = @game.add.tileSprite 0, 0, 8000, 1000, @config.background
-        @background.fixedToCamera = true 
 
-        # Add the map and tileset that we loaded earlier 
+        @background = @game.add.tileSprite 0, 0, 8000, 1000, @config.background
+        @background.fixedToCamera = true
+
+        # Add the map and tileset that we loaded earlier
         @map = @add.tilemap @config.tilemap
         @map.addTilesetImage 'tiles'
 
         @map.setCollisionBetween 0, 2
-        
+
         @bgScroll1 = @add.tileSprite(0, 0, 32000, 1000, @config.bgScroll1)
 
         @bgScroll2 = @add.tileSprite(0, 400, 32000, 1000, @config.bgScroll2)
 
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
+        @mainLayer.alpha = 0
 
         @createPlatforms()
 
@@ -49,8 +50,8 @@ class Pigvane.Classes.Level
 
         @game.stage.backgroundColor = "#000000"
 
-        # Add the main guy 
-        
+        # Add the main guy
+
         @gun = new Pigvane.Classes.Gun @game, 100, 100
         @game.add.existing @gun
 
@@ -58,9 +59,9 @@ class Pigvane.Classes.Level
         @add.existing @dude
 
         @gun.bringToTop()
-        
+
         @npcController = new Pigvane.Classes.NPCController @game
-        
+
         # Add the dialog
         @dialog = new Pigvane.Classes.Dialog @game
 
@@ -92,7 +93,7 @@ class Pigvane.Classes.Level
             )
 
         # @fgScroll = @add.tileSprite(0, 0, 8000, 2000, @config.fgScroll)
-        
+
         @healthBar = new Pigvane.Classes.HealthOverlay @game
 
         @aggroHelper = new Pigvane.Classes.aggroHelper @game
@@ -115,7 +116,7 @@ class Pigvane.Classes.Level
         for pair in Pigvane.platformData[@config.platformData]
             if pair[2]?
                 type = 'platform.'+pair[2]
-            else 
+            else
                 type = 'platform.1'
             sprite = @game.add.sprite(pair[0]*48, pair[1]*48, Pigvane.Main.config.prefix+type)
             @platformGroup.add sprite
@@ -144,7 +145,7 @@ class Pigvane.Classes.Level
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
         @game.physics.collide(@bullets, @mainLayer, @destroyBullet)
         # @game.physics.collide(@enemyBullets, @mainLayer, @destroyBullet)
-        
+
         @bgScroll1.tilePosition.x = @game.world.camera.x/2.5
         @bgScroll2.tilePosition.x = @game.world.camera.x/5
         @background.tilePosition.x += 0.2
