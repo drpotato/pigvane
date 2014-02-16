@@ -207,7 +207,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Next bullet can only be fired 80ms from now
                 @nextBullet = @game.time.now + currentWeapon.fireRate
 
-                Pigvane.Main.soundManager.sfxGunshotPlayerPistol.play()
+                Pigvane.Main.soundManager.sfxGunshotPlayer.play()
 
             Pigvane.Main.cameraController.shakeScreen()
 
