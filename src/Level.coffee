@@ -34,11 +34,11 @@ class Pigvane.Classes.Level
 
         @map.setCollisionBetween 0, 2
         
-        @bgScroll1 = @add.tileSprite(0, 0, 8000, 1000, @config.bgScroll1)
+        @bgScroll1 = @add.tileSprite(0, 0, 32000, 1000, @config.bgScroll1)
         # @bgScroll1.tilePosition.x = 0
         # @bgScroll1.tilePosition.y = -100
 
-        @bgScroll2 = @add.tileSprite(0, 400, 8000, 1000, @config.bgScroll2)
+        @bgScroll2 = @add.tileSprite(0, 400, 32000, 1000, @config.bgScroll2)
         # @bgScroll2.tilePosition.x = 0
         # @bgScroll2.tilePosition.y = -200
 
@@ -128,7 +128,7 @@ class Pigvane.Classes.Level
     createFloor: () ->
         @floorGroup = @game.add.group()
 
-        for i in [0...20]
+        for i in [0...100]
             sprite = @game.add.sprite(i*(8*48), 19*48, 'floor')
 
 
