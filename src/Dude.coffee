@@ -21,6 +21,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # Special NPC ignores
         @ignores = 0
 
+        @heartbeat = false
+
         # Is a cat? <3
         @cat = true
 
@@ -64,6 +66,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
     update: () ->
+
         @game.physics.collide @, Pigvane.Main.mainLayer
         
         if @game.input.keyboard.isDown Phaser.Keyboard.D
@@ -148,6 +151,13 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
            @facing = facing        
 
         # @updateAchievements()
+
+        if @health < 4 and !@heartbeat and !Pigvane.Main.soundManager.sfxHeartbeat.isPlaying
+            Pigvane.Main.soundManager.sfxHeartbeat.play()
+            @heartbeat = true
+        else if @health > 3 and @heartbeat and Pigvane.Main.soundManager.sfxHeartbeat.isPlaying
+            Pigvane.Main.soundManager.sfxHeartbeat.stop()
+            @heatbeat = false
 
         if @game.time.now > @aggroUpdateTimer
             @aggroUpdateTimer = @game.time.now + 1000

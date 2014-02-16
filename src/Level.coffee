@@ -19,7 +19,8 @@ class Pigvane.Classes.Level
         @soundManager.sfxGunshotEnemy = @soundManager.add 'sfx_gunshot_enemy', 0.25
         @soundManager.sfxDeathScream = @soundManager.add 'sfx_death_scream', 1
         @soundManager.sfxCollectable = @soundManager.add 'sfx_collectable', 0.5
-        @soundManager.music = @soundManager.add 'music', 1
+        @soundManager.sfxHeartbeat = @soundManager.add 'sfx_heartbeat', 1, true
+        @soundManager.music = @soundManager.add 'music', 1, true
         
         @doSound()
         
