@@ -32,17 +32,13 @@ class Pigvane.Classes.Level
 
         # Add the map and tileset that we loaded earlier 
         @map = @add.tilemap @config.tilemap
-        @map.addTilesetImage @config.tileset
+        @map.addTilesetImage 'tiles'
 
         @map.setCollisionBetween 0, 2
         
         @bgScroll1 = @add.tileSprite(0, 0, 32000, 1000, @config.bgScroll1)
-        # @bgScroll1.tilePosition.x = 0
-        # @bgScroll1.tilePosition.y = -100
 
         @bgScroll2 = @add.tileSprite(0, 400, 32000, 1000, @config.bgScroll2)
-        # @bgScroll2.tilePosition.x = 0
-        # @bgScroll2.tilePosition.y = -200
 
         @mainLayer = @map.createLayer 'Tile Layer 1'
         @mainLayer.resizeWorld()
@@ -116,30 +112,35 @@ class Pigvane.Classes.Level
     createPlatforms: () ->
         @platformGroup = @game.add.group()
 
-        for pair in Pigvane.platformData
+        for pair in Pigvane.platformData[@config.platformData]
             if pair[2]?
                 type = 'platform.'+pair[2]
             else 
                 type = 'platform.1'
-            sprite = @game.add.sprite(pair[0]*48, pair[1]*48, type)
+            sprite = @game.add.sprite(pair[0]*48, pair[1]*48, Pigvane.Main.config.prefix+type)
             @platformGroup.add sprite
 
     createFloor: () ->
         @floorGroup = @game.add.group()
 
         for i in [0...100]
-            sprite = @game.add.sprite(i*(8*48), 19*48, 'floor')
+            sprite = @game.add.sprite(i*(8*48), 19*48, @config.floor)
 
 
     # Called every frame
     update: ->
-
         if @game.time.now > @NPCspawntimer
             @spawnRandomNPCs(5)
             @NPCspawntimer = @game.time.now + 5000
 
         if Pigvane.Main.dlc? and @dude.x > 6240
             Pigvane.Main.dlc.popup()
+
+        # if Pigvane.Main.dude.x > 22000
+        if Pigvane.Main.dude.x > 2000
+            console.log Pigvane.currentLevel
+            @nextLevel()
+            # @game.state.start('Level2')
 
         @game.physics.overlap(@enemyBullets, @dude, @dude.hitByNPC)
         @game.physics.collide(@bullets, @mainLayer, @destroyBullet)
@@ -171,7 +172,12 @@ class Pigvane.Classes.Level
         for i in [0...number]
             x = @game.rnd.integerInRange(rightBound, rightBound + 1000)
             y = @game.rnd.integerInRange(400, 850)
-            @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, 'npc_ninja_master')
+            @npcController.npcs.add new Pigvane.Classes.NPC(@game, x, y, @config.prefix+'npc')
+
+    nextLevel: () ->
+        console.log Pigvane.currentLevel
+        Pigvane.currentLevel++
+        @game.state.start('Level'+Pigvane.currentLevel)
 
     exit: () ->
         @soundManager.music.stop()
