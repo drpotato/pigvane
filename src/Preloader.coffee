@@ -94,8 +94,7 @@ class Pigvane.States.Preloader
         
 
         # Music
-        # @game.load.audio 'circus_music', 'res/circus_music.mp3'
-        # @game.load.audio 'city_music', 'res/city_music_1.mp3'
+        # @game.load.audio 'music', 'res/pigvane_music.wav'
         
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'

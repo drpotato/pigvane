@@ -8,8 +8,7 @@ class Pigvane.Classes.LevelCity extends Pigvane.Classes.Level
         
     doSound: () ->
         
-        @soundManager.music = @game.add.audio 'city_music', 0.5, true
-        # @soundManager.music.play()
+        @soundManager.music.play()
         
     initConfig: () ->
         @config.background = 'city-bg'
