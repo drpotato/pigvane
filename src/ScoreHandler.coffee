@@ -93,3 +93,6 @@ class Pigvane.Classes.scoreHandler
         tween.onComplete.add -> text.destroy()
         @scoreFloaters.add text
 
+    forceScore: () ->
+        Pigvane.score += @recentScore
+        @recentScore = 0

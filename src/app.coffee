@@ -14,6 +14,8 @@ Pigvane.currentLevel = 1
 Pigvane.platformData = {}
 Pigvane.highscores = []
 
+Pigvane.weapon = -1
+
 $.ajax
     url: 'res/level1-platform-data.json'
     async: false

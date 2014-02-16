@@ -209,6 +209,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @health = @maxHealth
             @lives--
             Pigvane.Main.healthBar.removeLife()
+            Pigvane.Main.scoreHandler.forceScore()
             if @lives == 0
                 # @kill()
                 Pigvane.Main.cameraController.reset()

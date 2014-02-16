@@ -182,5 +182,6 @@ class Pigvane.Classes.Level
             @game.state.start('HighScore')
 
     exit: () ->
+        @scoreHandler.forceScore()
         @soundManager.music.stop()
         @game.state.start('MainMenu')

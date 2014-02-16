@@ -9,13 +9,14 @@ class Pigvane.Classes.weaponHandler
                 damage: 5,
                 fireRate: 250,
                 velocity: 800,
+                threshold: 250
                 sprite: 'gun_pistol'
             },
             {   
                 name: 'Assault Rifle',
                 damage: 3,
-                fireRate: 80,
-                velocity: 100,
+                fireRate: 100,
+                velocity: 1000,
                 threshold: 500,
                 sprite: 'gun_smg'
             },
@@ -32,14 +33,12 @@ class Pigvane.Classes.weaponHandler
                 damage: 30,
                 fireRate: 500,
                 velocity: 700,
-                threshold: 5000,
+                threshold: 10000000000000000000000000,
                 sprite: 'gun_shotgun'
             }
             
 
         ]
-
-        @currentWeapon = -1
         
         @overlay = @game.add.text(15, 950, "", {
             font: '80px Emulogic',
@@ -58,17 +57,14 @@ class Pigvane.Classes.weaponHandler
         @overlay.visible = @drawn    
 
     getCurrentWeapon: () ->
-        return @weapons[@currentWeapon]
+        return @weapons[Pigvane.weapon]
 
     upgrade: () ->
-        @currentWeapon++
+        Pigvane.weapon++
         @overlay.setText @getCurrentWeapon().name
-        Pigvane.Main.gun.loadTexture(Pigvane.Main.config.prefix+@getCurrentWeapon().sprite)
+        Pigvane.Main.gun.loadTexture(Pigvane.Main.config.prefix + @getCurrentWeapon().sprite)
         Pigvane.Main.dude.addText('New Weapon!', 'white', 20)
-        if @weapons[@currentWeapon+1]?
-            @threshold = @weapons[@currentWeapon+1].threshold
-        else 
-            @threshold = 10000000000 # Good luck - this is the length of my dick, <3 -O
+        @threshold = @weapons[Pigvane.weapon].threshold
 
     onScoreUpdate: () ->
         if Pigvane.score >= @threshold
