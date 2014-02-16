@@ -77,6 +77,9 @@ class Pigvane.States.MainMenu
                     @selectOption()
 
     selectOption: () ->
+        Pigvane.weapon = -1
+        Pigvane.score = 0
+        Pigvane.level = 1
         @options[@cursorPosition][1].call(this)
 
     updateCursor: (direction) ->
