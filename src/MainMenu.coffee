@@ -77,6 +77,7 @@ class Pigvane.States.MainMenu
                     @selectOption()
 
     selectOption: () ->
+        @capture = false
         Pigvane.weapon = -1
         Pigvane.score = 0
         Pigvane.level = 1
