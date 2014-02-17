@@ -44,7 +44,7 @@ class Pigvane.States.HighScore
         @highScoresPlayers = ""
         @highScores = ""
 
-        if Pigvane.highscores.length != 0
+        if Pigvane.highscores.length > 0
 
             for entry, index in Pigvane.highscores
                 console.log "Adding: " + entry.name + ": " + entry.score
@@ -56,14 +56,16 @@ class Pigvane.States.HighScore
 
             @highScorePlayersText.setText @highScoresPlayers
             @highScoreText.setText @highScores
-
-            @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
+            if Pigvane.highscores.length < 10
+                @scoreThreshold = 0
+            else
+                @scoreThreshold = Pigvane.highscores[Pigvane.highscores.length-1].score
         else
             @scoreThreshold = 0
 
 
     create: () ->
-        console.log @scoreThreshold
+        console.log "Creating high score"
         if Pigvane.score > @scoreThreshold
             @signals = {}
             @signals.UP = @input.keyboard.addKey(Phaser.Keyboard.UP)
@@ -82,6 +84,8 @@ class Pigvane.States.HighScore
             @newScore.score = Pigvane.score
             @newScore.position = @findPosition(@newScore.score)
 
+
+
             @signals.ENTER = @input.keyboard.addKey(Phaser.Keyboard.ENTER)
             setTimeout( $.proxy(() ->
                 @signals.ENTER.onDown.add(@confirmScore, @)
@@ -93,15 +97,19 @@ class Pigvane.States.HighScore
 
             @blink = true
 
-            @newHighScorePlayer = @add.text(560, 500 + 27*@newScore.position, @newScore.player, {
+            @newHighScorePlayer = @add.text(550, 500 + 27*@newScore.position, @newScore.player, {
                 font: '40px Emulogic'
                 fill: '8D5074'
             })
-            @newHighScoreCursor = @add.text(560, 500 + 27*@newScore.position, "_", {
+            @newHighScoreCursor = @add.text(550, 500 + 27*@newScore.position, "_", {
                 font: '40px Emulogic'
                 fill: '8D5074'
             })
             @updateCursorPosition()
+        else if (Pigvane.score == 0)
+
+        else
+            @exit()
 
 
     update: () ->
@@ -172,14 +180,7 @@ class Pigvane.States.HighScore
 
     findPosition: (score) ->
 
-        if Pigvane.highscores.length == 0
-            return 0
-
-        for index in [0..Pigvane.highscores.length]
-            if score > Pigvane.highscores[index].score
-
-                console.log "Return Index: " + index
-                return index
+        return Pigvane.highscores.length + 1
 
     exit: () ->
         @game.state.start('MainMenu')

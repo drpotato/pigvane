@@ -3,7 +3,7 @@
 width = 1280
 height = 1024
 
-# The global Pigvane variable is set in index.html to avoide out-of-order assignment issues.  
+# The global Pigvane variable is set in index.html to avoide out-of-order assignment issues.
 # Creates the game instance, notice ommitance of states `preload`, `create`, and `update`
 Pigvane.game = new Phaser.Game width, height, Phaser.WEBGL, 'game'
 
@@ -20,21 +20,21 @@ $.ajax
     url: 'res/level1-platform-data.json'
     async: false
     datatype: 'json'
-    success: (data) -> 
+    success: (data) ->
         Pigvane.platformData.lvl1 = data.platforms
 
 $.ajax
     url: 'res/level2-platform-data.json'
     async: false
     datatype: 'json'
-    success: (data) -> 
+    success: (data) ->
         Pigvane.platformData.lvl2 = data.platforms
 
 $.ajax
     url: 'res/level3-platform-data.json'
     async: false
     datatype: 'json'
-    success: (data) -> 
+    success: (data) ->
         Pigvane.platformData.lvl3 = data.platforms
         console.log data.platforms
     error: (error) ->
@@ -44,7 +44,7 @@ $.ajax
     url: 'res/level4-platform-data.json'
     async: false
     datatype: 'json'
-    success: (data) -> 
+    success: (data) ->
         Pigvane.platformData.lvl4 = data.platforms
         console.log data.platforms
     error: (error) ->
@@ -54,7 +54,7 @@ $.ajax
     url: 'res/level5-platform-data.json'
     async: false
     datatype: 'json'
-    success: (data) -> 
+    success: (data) ->
         Pigvane.platformData.lvl5 = data.platforms
         console.log data.platforms
     error: (error) ->
