@@ -36,15 +36,15 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
     update: () ->
         
-        @game.physics.collide @, Pigvane.Main.mainLayer
+        @game.physics.collide @, @game.Main.mainLayer
 
-        dude = Pigvane.Main.dude
+        dude = @game.Main.dude
 
         if @game.time.now > @edgeUpdateTimer
-            if Pigvane.Main.map.getTile( Math.floor(@x/48)-1, Math.ceil(@y/48) ) == null
+            if @game.Main.map.getTile( Math.floor(@x/48)-1, Math.ceil(@y/48) ) == null
                 @body.velocity.x = 0
                 @getLeftEdgy = true
-            else if Pigvane.Main.map.getTile( Math.floor(@x/48)+1, Math.ceil(@y/48) ) == null
+            else if @game.Main.map.getTile( Math.floor(@x/48)+1, Math.ceil(@y/48) ) == null
                 @body.velocity.x = 0
                 @getRightEdgy = true
             else
@@ -136,7 +136,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     fire: () ->
 
         # See if there is a free bullet 
-        bullet = Pigvane.Main.enemyBullets.getFirstExists false
+        bullet = @game.Main.enemyBullets.getFirstExists false
 
         bulletVelocity = 1000
 
@@ -155,8 +155,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
             setTimeout callback, 17
 
-            deltaX = @body.x - Pigvane.Main.dude.body.x
-            deltaY = @body.y - Pigvane.Main.dude.body.y
+            deltaX = @body.x - @game.Main.dude.body.x
+            deltaY = @body.y - @game.Main.dude.body.y
 
            
 
@@ -175,16 +175,16 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         
         if @health > 0
             @health -= 1
-            Pigvane.Main.dude.incAggro(1)
+            @game.Main.dude.incAggro(1)
         
             if @health <= 0
                 @die()
                 return 'kill'
     
     die: () ->
-        Pigvane.Main.scoreHandler.add(10)
+        @game.Main.scoreHandler.add(10)
+        @game.Main.dude.kills += 1
+        @game.Main.dude.aggro += 1
         @kill()
         @destroy()
-        Pigvane.Main.dude.kills += 1
-        Pigvane.Main.dude.aggro += 1
     

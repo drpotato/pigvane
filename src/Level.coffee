@@ -4,7 +4,7 @@ class Pigvane.Classes.Level
 
     preload: () ->
         # Set up cross Class communication as we cannot access parent classes in js
-        Pigvane.Main = @
+        @game.Main = @
 
         @onUpdate = new Phaser.Signal()
 
@@ -118,7 +118,7 @@ class Pigvane.Classes.Level
                 type = 'platform.'+pair[2]
             else
                 type = 'platform.1'
-            sprite = @game.add.sprite(pair[0]*48, pair[1]*48, Pigvane.Main.config.prefix+type)
+            sprite = @game.add.sprite(pair[0]*48, pair[1]*48, @config.prefix+type)
             @platformGroup.add sprite
 
     createFloor: () ->
@@ -134,11 +134,8 @@ class Pigvane.Classes.Level
             @spawnRandomNPCs(5)
             @NPCspawntimer = @game.time.now + 5000
 
-        if Pigvane.Main.dlc? and @dude.x > 6240
-            Pigvane.Main.dlc.popup()
-
-        # if Pigvane.Main.dude.x > 22000
-        if @dude.x > @config.nextLevelX
+        if @dude.x > 2000
+        # if @dude.x > @config.nextLevelX
             @nextLevel()
             # @game.state.start('Level2')
 
@@ -175,9 +172,9 @@ class Pigvane.Classes.Level
 
     nextLevel: () ->
         @soundManager.music.stop()
-        Pigvane.currentLevel++
-        if Pigvane.currentLevel <= 5
-            @game.state.start('Level'+Pigvane.currentLevel)
+        @game.currentLevel++
+        if @game.currentLevel <= 5
+            @game.state.start('Level'+@game.currentLevel)
         else
             @cameraController.reset()
             @game.state.start('HighScore')

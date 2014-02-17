@@ -66,7 +66,7 @@ class Pigvane.States.HighScore
 
     create: () ->
         console.log "Creating high score"
-        if Pigvane.score > @scoreThreshold
+        if @game.score > @scoreThreshold
             @signals = {}
             @signals.UP = @input.keyboard.addKey(Phaser.Keyboard.UP)
             @signals.DOWN = @input.keyboard.addKey(Phaser.Keyboard.DOWN)
@@ -81,7 +81,7 @@ class Pigvane.States.HighScore
 
             @newScore = {}
             @newScore.player = "   "
-            @newScore.score = Pigvane.score
+            @newScore.score = @game.score
             @newScore.position = @findPosition(@newScore.score)
 
 
@@ -106,7 +106,7 @@ class Pigvane.States.HighScore
                 fill: '8D5074'
             })
             @updateCursorPosition()
-        else if (Pigvane.score == 0)
+        else if (@game.score == 0)
 
         else
             @exit()

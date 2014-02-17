@@ -4,7 +4,7 @@ class Pigvane.Classes.HealthOverlay
         sprite = @game.add.sprite(0,0);
         sprite.fixedToCamera = true;
 
-        livesLeft = Pigvane.Main.dude.lives
+        livesLeft = @game.Main.dude.lives
         
         @hearts = @game.add.group()
         @hearts.x = -5
@@ -33,7 +33,7 @@ class Pigvane.Classes.HealthOverlay
         @healthBar.fixedToCamera = true
         
     update: () ->
-        @healthBar.crop.width = (Pigvane.Main.dude.health/Pigvane.Main.dude.maxHealth) * 512
+        @healthBar.crop.width = (@game.Main.dude.health/@game.Main.dude.maxHealth) * 512
 
     removeLife: () ->
         toDestroy = @heartsArray.pop()

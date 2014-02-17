@@ -6,10 +6,10 @@ class Pigvane.Classes.Gun extends Phaser.Sprite
 
         @visible = false
 
-        Pigvane.Main.onUpdate.add @update, @
+        @game.Main.onUpdate.add @update, @
 
     update: () ->
-        dude = Pigvane.Main.dude
+        dude = @game.Main.dude
         @x = dude.x - 2
         @y = dude.y + 13
 

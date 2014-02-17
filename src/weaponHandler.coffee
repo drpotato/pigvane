@@ -1,7 +1,7 @@
 class Pigvane.Classes.weaponHandler
     constructor: (@game) ->
 
-        Pigvane.Main.scoreHandler.onScoreUpdate.add @onScoreUpdate, @
+        @game.Main.scoreHandler.onScoreUpdate.add @onScoreUpdate, @
 
         @weapons = [
             {
@@ -57,17 +57,18 @@ class Pigvane.Classes.weaponHandler
         @overlay.visible = @drawn    
 
     getCurrentWeapon: () ->
-        return @weapons[Pigvane.weapon]
+        return @weapons[@game.weapon]
 
     upgrade: () ->
-        Pigvane.weapon++
+        @game.weapon++
+        @game.weapon++
         @overlay.setText @getCurrentWeapon().name
-        Pigvane.Main.gun.loadTexture(Pigvane.Main.config.prefix + @getCurrentWeapon().sprite)
-        Pigvane.Main.dude.addText('New Weapon!', 'white', 20)
-        @threshold = @weapons[Pigvane.weapon].threshold
+        @game.Main.gun.loadTexture(@game.Main.config.prefix + @getCurrentWeapon().sprite)
+        @game.Main.dude.addText('New Weapon!', 'white', 20)
+        @threshold = @weapons[@game.weapon].threshold
 
     onScoreUpdate: () ->
-        if Pigvane.score >= @threshold
+        if @game.score >= @threshold
             @upgrade()
 
         return true

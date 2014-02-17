@@ -1,20 +1,28 @@
-
 # Set up game width and height
 width = 1280
-height = 1024
+height = if twoplayer? then 512 else 1280
 
 # The global Pigvane variable is set in index.html to avoide out-of-order assignment issues.
 # Creates the game instance, notice ommitance of states `preload`, `create`, and `update`
-Pigvane.game = new Phaser.Game width, height, Phaser.WEBGL, 'game'
+Pigvane.game = new Phaser.Game width, height, Phaser.CANVAS, 'game1'
 
-Pigvane.score = 0
 
-Pigvane.currentLevel = 1
+Pigvane.game.score = 0
+
+Pigvane.game.currentLevel = 1
 
 Pigvane.platformData = {}
 Pigvane.highscores = []
 
 Pigvane.weapon = -1
+Pigvane.game.weapon = -1
+
+if twoplayer?
+    Pigvane.game2 = then new Phaser.Game width, height, Phaser.CANVAS, 'game2' 
+    Pigvane.game2.secondGame = true # For different controls
+    Pigvane.game2.score = 0
+    Pigvane.game2.currentLevel = 1
+    Pigvane.game2.weapon = -1
 
 $.ajax
     url: 'res/level1-platform-data.json'
@@ -69,12 +77,24 @@ Pigvane.game.state.add 'MainMenu',      Pigvane.States.MainMenu,    false
 Pigvane.game.state.add 'Restart',       Pigvane.States.Restart,     false
 Pigvane.game.state.add 'Help',          Pigvane.States.Help,        false
 Pigvane.game.state.add 'HighScore',     Pigvane.States.HighScore,   false
-
 Pigvane.game.state.add 'Level1', Pigvane.Classes.Level1, false
 Pigvane.game.state.add 'Level2', Pigvane.Classes.Level2, false
 Pigvane.game.state.add 'Level3', Pigvane.Classes.Level3, false
 Pigvane.game.state.add 'Level4', Pigvane.Classes.Level4, false
 Pigvane.game.state.add 'Level5', Pigvane.Classes.Level5, false
+
+if twoplayer?
+    Pigvane.game2.state.add 'Boot',          Pigvane.States.Boot,        true
+    Pigvane.game2.state.add 'Preloader',     Pigvane.States.Preloader,   false
+    Pigvane.game2.state.add 'MainMenu',      Pigvane.States.MainMenu,    false
+    Pigvane.game2.state.add 'Restart',       Pigvane.States.Restart,     false
+    Pigvane.game2.state.add 'Help',          Pigvane.States.Help,        false
+    Pigvane.game2.state.add 'HighScore',     Pigvane.States.HighScore,   false
+    Pigvane.game2.state.add 'Level1', Pigvane.Classes.Level1, false
+    Pigvane.game2.state.add 'Level2', Pigvane.Classes.Level2, false
+    Pigvane.game2.state.add 'Level3', Pigvane.Classes.Level3, false
+    Pigvane.game2.state.add 'Level4', Pigvane.Classes.Level4, false
+    Pigvane.game2.state.add 'Level5', Pigvane.Classes.Level5, false
 
 String.prototype.replaceAt = (index, character) ->
     return this.substr(0, index) + character + this.substr(index+character.length)

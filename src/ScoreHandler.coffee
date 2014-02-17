@@ -25,7 +25,7 @@ class Pigvane.Classes.scoreHandler
 
         @onScoreUpdate = new Phaser.Signal()
 
-        Pigvane.Main.onUpdate.add @update, @
+        @game.Main.onUpdate.add @update, @
 
     update: () ->
 
@@ -37,11 +37,11 @@ class Pigvane.Classes.scoreHandler
             recentScoreString = ""
 
         if @recentTimer < @game.time.now && @recentScore > 0
-                Pigvane.score += 2
+                @game.score += 2
                 @recentScore -= 2
 
 
-        @scoreText.setText(Pigvane.score)
+        @scoreText.setText(@game.score)
         @scoreText.x = 1266 - @scoreText.content.length * 46
 
         @recentScoreText.setText(recentScoreString)
@@ -65,7 +65,7 @@ class Pigvane.Classes.scoreHandler
         @update()
 
     set: (score) ->
-        Pigvane.score = score
+        @game.score = score
         @update()
 
     remove: (remove) ->
@@ -81,7 +81,7 @@ class Pigvane.Classes.scoreHandler
         @update()
 
     addFloatingText: (text, colour='green') ->
-        text = @game.add.text(Pigvane.Main.dude.x-10, Pigvane.Main.dude.y, text, {
+        text = @game.add.text(@game.Main.dude.x-10, @game.Main.dude.y, text, {
             font: '10px Emulogic',
             fill: colour,
             strokeThickness: 5,
@@ -94,5 +94,5 @@ class Pigvane.Classes.scoreHandler
         @scoreFloaters.add text
 
     forceScore: () ->
-        Pigvane.score += @recentScore
+        @game.score += @recentScore
         @recentScore = 0

@@ -1,7 +1,7 @@
 class Pigvane.Classes.Dude extends Phaser.Sprite
     constructor: (@game, x, y) ->
         # Make sure sprite is actually created
-        super @game, x, y, Pigvane.Main.config.prefix+'dude'
+        super @game, x, y, @game.Main.config.prefix+'dude'
 
         # Used in collisions
         @name = 'dude'
@@ -56,13 +56,21 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
         @body.bounce.y = 0.01
 
-        @gun = Pigvane.Main.gun
+        @gun = @game.Main.gun
 
         @game.input.keyboard.addKey(Phaser.Keyboard.Z).onDown.add(@switchDrawnState, @)
 
+        @keys = {}
+        if twoplayer?
+            @keys.run = Phaser.Keyboard.SPACEBAR
+            @keys.left = Phaser.Keyboard.A
+            @keys.right = Phaser.Keyboard.D
+            @keys.up = Phaser.Keyboard.W
+        
+
     update: () ->
 
-        @game.physics.collide @, Pigvane.Main.mainLayer
+        @game.physics.collide @, @game.Main.mainLayer
 
         # Set resulting speed of body
         @vStep = 15
@@ -70,7 +78,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @velocity = 300
 
         # More if running
-        @velocity = 450 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
+        @velocity = 450 if @game.input.keyboard.isDown @keys.run
         @vStep = 50 if @game.input.keyboard.isDown Phaser.Keyboard.SPACEBAR
 
         # Less if shooting
@@ -95,7 +103,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 @body.velocity.y = -@jumpVelocity
                 @canceledJump = false
                 soundCallback = () ->
-                    # Pigvane.Main.soundManager.sfxJump.play()
+                    # @game.Main.soundManager.sfxJump.play()
 
                 setTimeout soundCallback, 150
 
@@ -134,19 +142,19 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         else
            @facing = facing
 
-        if @game.time.now > @aggroUpdateTimer
-            @aggroUpdateTimer = @game.time.now + 1000
-            @recentAggro -= 2 if @recentAggro > 2
-            Pigvane.Main.aggroHelper.updateOverlay()
+        # if @game.time.now > @aggroUpdateTimer
+        #     @aggroUpdateTimer = @game.time.now + 1000
+        #     @recentAggro -= 2 if @recentAggro > 2
+        #     @game.Main.aggroHelper.updateOverlay()
 
     switchDrawnState: () ->
         @gunDrawn = !@gunDrawn
-        Pigvane.Main.weaponHandler.toggleOverlay()
+        @game.Main.weaponHandler.toggleOverlay()
         @gun.visible = @gunDrawn
 
     hitByNPC: (obj1, obj2) ->
-        obj2.kill()
-        Pigvane.Main.dude.damage()
+        @game.Main.damage()
+        obj1.kill()
 
     # Fire his non-existent gun!
     fire: () ->
@@ -154,7 +162,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         if @game.time.now > @nextBullet
 
             # See if there is a free bullet
-            bullet = Pigvane.Main.bullets.getFirstExists( false )
+            bullet = @game.Main.bullets.getFirstExists( false )
 
             # If there is one
             if bullet
@@ -164,7 +172,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
 
-                currentWeapon = Pigvane.Main.weaponHandler.getCurrentWeapon()
+                currentWeapon = @game.Main.weaponHandler.getCurrentWeapon()
 
                 callback = () ->
                     bullet.animations.stop()
@@ -192,31 +200,31 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
                 # Next bullet can only be fired 80ms from now
                 @nextBullet = @game.time.now + currentWeapon.fireRate
 
-                Pigvane.Main.soundManager.sfxGunshotPlayer.play()
+                @game.Main.soundManager.sfxGunshotPlayer.play()
 
-            Pigvane.Main.cameraController.shakeScreen()
+            @game.Main.cameraController.shakeScreen()
 
     incAggro: (aggro) ->
         @aggro += aggro
         @recentAggro += aggro
-        Pigvane.Main.aggroHelper.update()
+        @game.Main.aggroHelper.update()
 
     damage: () ->
         @health -=1
         if @health == 0
-            Pigvane.Main.soundManager.sfxDeathScream.play()
+            @game.Main.soundManager.sfxDeathScream.play()
             @respawn()
             @health = @maxHealth
             @lives--
-            Pigvane.Main.healthBar.removeLife()
-            Pigvane.Main.scoreHandler.forceScore()
+            @game.Main.healthBar.removeLife()
+            @game.Main.scoreHandler.forceScore()
             if @lives == 0
                 # @kill()
-                Pigvane.Main.cameraController.reset()
-                Pigvane.Main.soundManager.music.stop()
+                @game.Main.cameraController.reset()
+                @game.Main.soundManager.music.stop()
                 @game.state.start 'HighScore'
 
-        Pigvane.Main.healthBar.update()
+        @game.Main.healthBar.update()
 
     respawn: () ->
         @x -= 800

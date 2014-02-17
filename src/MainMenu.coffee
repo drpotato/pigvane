@@ -4,11 +4,17 @@ class Pigvane.States.MainMenu
 
     preload: () ->
         # Add background + logo to current state
-        @bg = @add.sprite -360, 12, 'menuBG'
+        if twoplayer?
+            @bg = @add.sprite -360, -138, 'menuBG'
+        else
+            @bg = @add.sprite -360, 12, 'menuBG'
+
+        console.log @bg
 
         @game.stage.backgroundColor = "#222"
 
         @logo = @add.sprite 198, 122, 'logo' 
+        if twoplayer? then @logo.y -= 150
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
         
@@ -20,6 +26,8 @@ class Pigvane.States.MainMenu
             align: 'center'
             })
 
+        if twoplayer?
+            @insertCoinText.visible = false
         
         @cursor = @add.text(400, 700, '>', {
             font: '40px Emulogic',
@@ -28,11 +36,20 @@ class Pigvane.States.MainMenu
             stroke: '3C033A'
             })
 
-        @options = [
-            ['Press Start to Play', @fadeOut],
-            ['About & Help', @help],
-            ['High Scores', @highscore]
-        ]
+        if twoplayer? 
+            @options = [
+                ['Press Start to Play', @fadeOut],
+                ['About & Help', @help],
+                ['High Scores', @highscore],
+                ['Switch to 2 Player', @twoplayer]
+            ]
+        else
+            @options = [
+                ['Press Start to Play', @fadeOut],
+                ['About & Help', @help],
+                ['High Scores', @highscore],
+                ['Switch to 2 Player', @twoplayer]
+            ]
 
         text = (opt[0]+'\n' for opt in @options).reduce (x,y) -> x + y
 
@@ -43,6 +60,8 @@ class Pigvane.States.MainMenu
             stroke: '3C033A',
             align: 'center'
             })
+
+        if twoplayer? then @startText.y = 300
 
         twitterText = '@freelyfred - lead programmer\n@xxNxT - artist & designer\n@dr__potato - programming & audio'
 
@@ -64,17 +83,27 @@ class Pigvane.States.MainMenu
     update: () ->
         if @time.now > @blinkTimer
             @blinkTimer = @time.now + 400
-            @insertCoinText.visible = !@insertCoinText.visible
+            if !twoplayer?
+                @insertCoinText.visible = !@insertCoinText.visible
 
     keyDown: (e) ->
         if @capture == true
-            switch e.keyCode
-                when Phaser.Keyboard.DOWN
-                    @updateCursor('down')
-                when Phaser.Keyboard.UP
-                    @updateCursor('up')
-                when Phaser.Keyboard.ENTER
-                    @selectOption()
+            if @game.secondGame?
+                switch e.keyCode
+                    when Phaser.Keyboard.S
+                        @updateCursor('down')
+                    when Phaser.Keyboard.W
+                        @updateCursor('up')
+                    when Phaser.Keyboard.E
+                        @selectOption()
+            else
+                switch e.keyCode
+                    when Phaser.Keyboard.DOWN
+                        @updateCursor('down')
+                    when Phaser.Keyboard.UP
+                        @updateCursor('up')
+                    when Phaser.Keyboard.ENTER
+                        @selectOption()
 
     selectOption: () ->
         @capture = false
@@ -110,10 +139,9 @@ class Pigvane.States.MainMenu
         @game.state.start 'Help'
 
     highscore: () ->
-        @capture = false
         @game.state.start 'HighScore'
 
     startGame: () ->
         # Go to the main game!
-        console.log Pigvane.currentLevel
+        console.log @game.currentLevel
         @game.state.start 'Level1'

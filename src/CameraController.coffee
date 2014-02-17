@@ -1,10 +1,10 @@
 class Pigvane.Classes.CameraController
     constructor: (@game) ->
         @camera = @game.world.camera
-        @dude = Pigvane.Main.dude
+        @dude = @game.Main.dude
         @screenShakeTimer = 0
 
-        Pigvane.Main.onUpdate.add @update, @
+        @game.Main.onUpdate.add @update, @
 
         @frozen = false
 
