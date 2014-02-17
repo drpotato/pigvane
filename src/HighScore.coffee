@@ -1,10 +1,10 @@
 class Pigvane.States.HighScore
     constructor: (@game) ->
-       
+
     preload: () ->
-        
+
         @bg = @add.sprite -360, 12, 'submenuBG'
-        
+
         @title = @add.text(380, 400, "High Scores", {
             font: '80px Emulogic'
             fill: '8D5074'
@@ -34,7 +34,7 @@ class Pigvane.States.HighScore
             url: 'retrieve_scores'
             async: false
             datatype: 'json'
-            success: (data) -> 
+            success: (data) ->
                 Pigvane.highscores = JSON.parse(data)
 
 
@@ -46,9 +46,9 @@ class Pigvane.States.HighScore
 
         if Pigvane.highscores.length != 0
 
-            for entry in Pigvane.highscores
+            for entry, index in Pigvane.highscores
                 console.log "Adding: " + entry.name + ": " + entry.score
-                @highScoresPlayers += entry.name + "\n"
+                @highScoresPlayers += index + 1 + " ) " + entry.name + "\n"
                 @highScores += entry.score + "\n"
 
             console.log @highScoresPlayers
@@ -68,22 +68,22 @@ class Pigvane.States.HighScore
             @signals = {}
             @signals.UP = @input.keyboard.addKey(Phaser.Keyboard.UP)
             @signals.DOWN = @input.keyboard.addKey(Phaser.Keyboard.DOWN)
-            
+
             @signals.LEFT = @input.keyboard.addKey(Phaser.Keyboard.LEFT)
             @signals.RIGHT = @input.keyboard.addKey(Phaser.Keyboard.RIGHT)
-            
+
             @signals.UP.onDown.add(@decrementCursor, @)
             @signals.DOWN.onDown.add(@incrementCursor, @)
-            @signals.LEFT.onDown.add(@moveCursor, @)  
+            @signals.LEFT.onDown.add(@moveCursor, @)
             @signals.RIGHT.onDown.add(@moveCursor, @)
 
             @newScore = {}
             @newScore.player = "   "
             @newScore.score = Pigvane.score
             @newScore.position = @findPosition(@newScore.score)
-            
+
             @signals.ENTER = @input.keyboard.addKey(Phaser.Keyboard.ENTER)
-            setTimeout( $.proxy(() -> 
+            setTimeout( $.proxy(() ->
                 @signals.ENTER.onDown.add(@confirmScore, @)
             , this) , 1000)
 

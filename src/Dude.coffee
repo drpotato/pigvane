@@ -129,10 +129,10 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         # If shooting, fire?
         if @game.input.keyboard.isDown(Phaser.Keyboard.X) and @gunDrawn is true
             @fire()
-            
+
         # If not, update his facing, and display the correct animation
         else
-           @facing = facing        
+           @facing = facing
 
         if @game.time.now > @aggroUpdateTimer
             @aggroUpdateTimer = @game.time.now + 1000
@@ -163,7 +163,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 bullet.animations.frame = 0
                 # bullet.animations.play('repeat', 4, true)
-                
+
                 currentWeapon = Pigvane.Main.weaponHandler.getCurrentWeapon()
 
                 callback = () ->
@@ -220,6 +220,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
     respawn: () ->
         @x -= 800
+        if @x < 10
+            @x = 10
         @y = 900
 
     addText: (text, colour='white', size=10) ->
