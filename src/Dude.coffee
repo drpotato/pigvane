@@ -66,6 +66,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
             @keys.left = Phaser.Keyboard.A
             @keys.right = Phaser.Keyboard.D
             @keys.up = Phaser.Keyboard.W
+            @keys.shoot = Phaser.Keyboard.N
         
 
     update: () ->
@@ -153,7 +154,7 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
         @gun.visible = @gunDrawn
 
     hitByNPC: (obj1, obj2) ->
-        @game.Main.damage()
+        @game.Main.dude.damage()
         obj1.kill()
 
     # Fire his non-existent gun!

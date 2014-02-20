@@ -5,16 +5,18 @@ class Pigvane.States.MainMenu
     preload: () ->
         # Add background + logo to current state
         if twoplayer?
-            @bg = @add.sprite -360, -138, 'menuBG'
+            if @game.secondGame?
+                @bg = @add.sprite -360, -500, 'menuBG'
+            else 
+                @bg = @add.sprite -360, -38, 'menuBG'
         else
             @bg = @add.sprite -360, 12, 'menuBG'
-
-        console.log @bg
 
         @game.stage.backgroundColor = "#222"
 
         @logo = @add.sprite 198, 122, 'logo' 
-        if twoplayer? then @logo.y -= 150
+        if twoplayer? then @logo.y -= 50
+        if @game.secondGame? then @logo.visible = false
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
         
@@ -36,13 +38,24 @@ class Pigvane.States.MainMenu
             stroke: '3C033A'
             })
 
+        if twoplayer? and @game.secondGame? then @cursor.y = 200
+        if twoplayer? and !@game.secondGame? then @cursor.y = 350
+
         if twoplayer? 
-            @options = [
-                ['Press Start to Play', @fadeOut],
-                ['About & Help', @help],
-                ['High Scores', @highscore],
-                ['Switch to 2 Player', @twoplayer]
-            ]
+            if @game.secondGame?
+                @options = [
+                    ['Press Start to Ready Up', @fadeOut],
+                    ['About & Help', @help],
+                    ['High Scores', @highscore],
+                    ['Switch to 1 Player', @oneplayer]
+                ]
+            if !@game.secondGame?
+                @options = [
+                    ['Press Start to Ready Up', @fadeOut],
+                    ['About & Help', @help],
+                    ['High Scores', @highscore],
+                    ['Switch to 1 Player', @oneplayer]
+                ]
         else
             @options = [
                 ['Press Start to Play', @fadeOut],
@@ -61,7 +74,8 @@ class Pigvane.States.MainMenu
             align: 'center'
             })
 
-        if twoplayer? then @startText.y = 300
+        if twoplayer? and @game.secondGame? then @startText.y = 200
+        if twoplayer? and !@game.secondGame? then @startText.y = 350
 
         twitterText = '@freelyfred - lead programmer\n@xxNxT - artist & designer\n@dr__potato - programming & audio'
 
@@ -123,7 +137,13 @@ class Pigvane.States.MainMenu
                 if @cursorPosition < 0
                     @cursorPosition = @options.length-1
 
-        @cursor.y = 700 + 32 * @cursorPosition
+        if twoplayer? 
+            if @game.secondGame?
+                @cursor.y = 200 + 26 * @cursorPosition
+            else
+                @cursor.y = 350 + 26 * @cursorPosition
+        else 
+            @cursor.y = 700 + 26 * @cursorPosition
 
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true
@@ -134,6 +154,12 @@ class Pigvane.States.MainMenu
         # Once the animation completes
         # tween.onComplete.add @startGame, this
         @startGame()
+
+    twoplayer: () ->
+        window.location.pathname = "/index2.html"
+
+    oneplayer: () ->
+        window.location.pathname = "/index.html"
 
     help: () ->
         @game.state.start 'Help'
