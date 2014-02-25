@@ -8,10 +8,10 @@ class Pigvane.States.MainMenu
 
         @game.stage.backgroundColor = "#222"
 
-        @logo = @add.sprite 198, 122, 'logo' 
+        @logo = @add.sprite 198, 122, 'logo'
         @logo.animations.add 'dropthebass', [0,1]
         @logo.animations.play 'dropthebass', 1.5, true
-        
+
         @insertCoinText = @add.text(490, 500, "Insert Coin(s)", {
             font: '40px Emulogic',
             fill: '8D5074',
@@ -20,7 +20,7 @@ class Pigvane.States.MainMenu
             align: 'center'
             })
 
-        
+
         @cursor = @add.text(400, 700, '>', {
             font: '40px Emulogic',
             fill: '8D5074',
@@ -78,7 +78,6 @@ class Pigvane.States.MainMenu
 
     selectOption: () ->
         @capture = false
-        Pigvane.weapon = -1
         Pigvane.score = 0
         Pigvane.level = 1
         @options[@cursorPosition][1].call(this)

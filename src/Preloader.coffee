@@ -10,7 +10,7 @@ class Pigvane.States.Preloader
         @load.setPreloadSprite @preloadBar
 
         # Load game resources
-        
+
         # Tilemap and bg
         @game.load.image 'tiles', 'res/citytiles-2x.png'
         # @game.load.image    'lvl1-fg',          'res/level1/foreground-2x.png'
@@ -46,7 +46,7 @@ class Pigvane.States.Preloader
         @game.load.image    'lvl2-platform.3',  'res/level2/level2-platform3-2x.png'
         @game.load.spritesheet 'lvl2-dude',     'res/level2/char-pink-2x.png', 48, 48
         @game.load.spritesheet 'lvl2-npc',      'res/level2/ninjamaster-pink-2x.png', 48, 48
-        
+
         # LEVEL 3
         @game.load.tilemap  'lvl3-tm',          'res/level3.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image    'lvl3-bg',          'res/level3/level3-cloudlayer-2x.png'
@@ -62,7 +62,7 @@ class Pigvane.States.Preloader
         @game.load.image    'lvl3-platform.3',  'res/level3/level3-platform3-2x.png'
         @game.load.spritesheet 'lvl3-dude',     'res/level3/char-red-2x.png', 48, 48
         @game.load.spritesheet 'lvl3-npc',      'res/level3/ninjamaster-red-2x.png', 48, 48
-        
+
         # LEVEL 4
         @game.load.tilemap  'lvl4-tm',          'res/level4.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image    'lvl4-bg',          'res/level4/level4-cloudlayer-2x.png'
@@ -78,7 +78,7 @@ class Pigvane.States.Preloader
         @game.load.image    'lvl4-platform.3',  'res/level4/level4-platform3-2x.png'
         @game.load.spritesheet 'lvl4-dude',     'res/level4/char-yellow-2x.png', 48, 48
         @game.load.spritesheet 'lvl4-npc',      'res/level4/ninjamaster-yellow-2x.png', 48, 48
-        
+
         # LEVEL 5
         @game.load.tilemap  'lvl5-tm',          'res/level5.json', null, Phaser.Tilemap.TILED_JSON
         @game.load.image    'lvl5-bg',          'res/level5/level5-cloudlayer-2x.png'
@@ -94,10 +94,10 @@ class Pigvane.States.Preloader
         @game.load.image    'lvl5-platform.3',  'res/level5/level5-platform3-2x.png'
         @game.load.spritesheet 'lvl5-dude',     'res/level5/char-purple-2x.png', 48, 48
         @game.load.spritesheet 'lvl5-npc',      'res/level5/ninjamaster-purple-2x.png', 48, 48
-        
-        
+
+
         # Platforms
-        
+
 
         # Health
         @game.load.image 'lives', 'res/heart-2x.png', 128, 128
@@ -121,11 +121,11 @@ class Pigvane.States.Preloader
         @game.load.spritesheet 'npc_kitty', 'res/kitty-2x.png', 32, 32
         @game.load.spritesheet 'npc_fruit_ninja', 'res/fruitninja-2x.png', 32, 32
         # @game.load.spritesheet 'npc_angry_pig_green', 'res/angrypig-green-2x.png', 32, 32
-        
+
 
         # Music
-        @game.load.audio 'music', 'res/pigvane_music.wav'
-        
+        @game.load.audio 'music', 'res/pigvane_music.mp3'
+
         # SFX
         @game.load.audio 'sfx_jump', 'res/Jump.mp3'
         @game.load.audio 'sfx_gunshot_player', 'res/gun.wav'
@@ -134,20 +134,20 @@ class Pigvane.States.Preloader
         @game.load.audio 'sfx_death_scream', 'res/DeathScream.mp3'
         @game.load.audio 'sfx_collectable', 'res/Collectable.mp3'
         @game.load.audio 'sfx_heartbeat', 'res/heartbeat.wav'
-        
+
         # Load title screen resources
         # @game.load.image 'titlepage', 'res/rickroll.jpg'
         @game.load.spritesheet 'logo', 'res/title-2x.png', 896, 256
         @game.load.image 'menuBG', 'res/background-2x.png'
         @game.load.image 'submenuBG', 'res/menubackground-2x.png'
-        
+
 
     create: () ->
         # Animate the preloadBar
         tween = @add.tween(@preloadBar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
         # When it completes, go to `startMainMenu`
         tween.onComplete.add(@startMainMenu, this);
-        
+
     startMainMenu: () ->
         # Continue to the `MainMenu` state since all resources have been loaded
         @game.state.start 'MainMenu'

@@ -12,7 +12,7 @@ class Pigvane.Classes.weaponHandler
                 threshold: 250
                 sprite: 'gun_pistol'
             },
-            {   
+            {
                 name: 'Assault Rifle',
                 damage: 3,
                 fireRate: 150,
@@ -20,7 +20,7 @@ class Pigvane.Classes.weaponHandler
                 threshold: 500,
                 sprite: 'gun_smg'
             },
-            {   
+            {
                 name: 'Minigun',
                 damage: 5,
                 fireRate: 80,
@@ -28,18 +28,18 @@ class Pigvane.Classes.weaponHandler
                 threshold: 2000,
                 sprite: 'gun_minigun'
             },
-            {   
-                name: 'Shotgun',
-                damage: 30,
-                fireRate: 500,
-                velocity: 700,
+            {
+                name: 'Ultima Gun',
+                damage: 500,
+                fireRate: 1,
+                velocity: 500   ,
                 threshold: 10000000000000000000000000,
                 sprite: 'gun_shotgun'
             }
-            
+
 
         ]
-        
+
         @overlay = @game.add.text(15, 950, "", {
             font: '80px Emulogic',
             fill: 'white',
@@ -48,23 +48,26 @@ class Pigvane.Classes.weaponHandler
             })
         @overlay.fixedToCamera = true
         @overlay.visible = false
-        @upgrade()
+        @loadWeapon()
 
         @drawn = false
-    
+
     toggleOverlay: ->
         @drawn = !@drawn
-        @overlay.visible = @drawn    
+        @overlay.visible = @drawn
 
     getCurrentWeapon: () ->
         return @weapons[Pigvane.weapon]
 
-    upgrade: () ->
-        Pigvane.weapon++
+    loadWeapon: () ->
         @overlay.setText @getCurrentWeapon().name
         Pigvane.Main.gun.loadTexture(Pigvane.Main.config.prefix + @getCurrentWeapon().sprite)
         Pigvane.Main.dude.addText('New Weapon!', 'white', 20)
-        @threshold = @weapons[Pigvane.weapon].threshold
+        @threshold = @getCurrentWeapon().threshold
+
+    upgrade: () ->
+        Pigvane.weapon++
+        loadWeapon()
 
     onScoreUpdate: () ->
         if Pigvane.score >= @threshold

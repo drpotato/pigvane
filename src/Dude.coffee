@@ -194,6 +194,8 @@ class Pigvane.Classes.Dude extends Phaser.Sprite
 
                 Pigvane.Main.soundManager.sfxGunshotPlayer.play()
 
+
+
             Pigvane.Main.cameraController.shakeScreen()
 
     incAggro: (aggro) ->
