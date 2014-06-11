@@ -1,0 +1,22 @@
+class Pigvane.Classes.Level1 extends Pigvane.Classes.Level
+
+    constructor: (@game) ->
+        super(@game)
+
+    subPreload: () ->
+        
+    doSound: () ->
+        
+        @soundManager.music.play('', 0, 0.5, true)
+        
+    initConfig: () ->
+        @config.prefix =        'lvl1-'
+        @config.tilemap =       'lvl1-tm'
+        @config.tileset =       'tiles'
+        @config.background =    'lvl1-bg'
+        @config.bgScroll1 =     'lvl1-bgScroll1'
+        @config.bgScroll2 =     'lvl1-bgScroll2'
+        @config.fgScroll =      'lvl1-fg'
+        @config.nextLevelX = 22000
+        @config.floor =         'lvl1-floor'
+        @config.platformData =  'lvl1'        

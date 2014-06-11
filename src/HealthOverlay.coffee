@@ -3,25 +3,18 @@ class Pigvane.Classes.HealthOverlay
         #Created a Sprite with fixedToCamera = true
         sprite = @game.add.sprite(0,0);
         sprite.fixedToCamera = true;
-        #addChild of my text at x:0, y:0
-        @livesTitle = 'Lives :'
+
         livesLeft = Pigvane.Main.dude.lives
         
-        @livesText = @game.add.bitmapText(0, 0, @livesTitle, {font: '28px pixelFont'});
-
         @hearts = @game.add.group()
-        # @hearts.fixedToCamera = true
-        @hearts.x = 120
-        @hearts.y = 10
+        @hearts.x = -5
+        @hearts.y = 80
 
         @heartsArray = []
 
         for i in [0...livesLeft]
             heartContainer = @game.add.sprite(0,0)
-            heart = @game.add.sprite(40*i, 0, 'lives')
-
-            heart.animations.add('main', [0,1,2,3])
-            heart.animations.play('main', 4, true)
+            heart = @game.add.sprite(65*i, 0, 'lives')
 
             heartContainer.addChild heart
             heartContainer.fixedToCamera = true
@@ -29,22 +22,19 @@ class Pigvane.Classes.HealthOverlay
             @hearts.add heartContainer
             @heartsArray.push heartContainer
 
-        sprite.addChild(@livesText);
-        @healthTitle = 'Health : ';
-        healthLeft = Pigvane.Main.dude.health;
-        @healthText = @game.add.bitmapText(0,30,@healthTitle + healthLeft, {font: '28px pixelFont'});
-        sprite.addChild(@healthText);
-        #position the cameraOffset of my Sprite
+        # sprite.addChild(@livesText);
+
         sprite.cameraOffset.x = 10;
         sprite.cameraOffset.y = 10;
+
+        @healthBar = @game.add.sprite 25, 0, 'healthBar'
+        @healthBar.cropEnabled = true
+        @healthBar.crop = new Phaser.Rectangle 0, 0, 512, 128
+        @healthBar.fixedToCamera = true
         
     update: () ->
-        healthLeft = Pigvane.Main.dude.health
-        @healthText.setText( @healthTitle + healthLeft )
-        # livesLeft = Pigvane.Main.dude.lives
-        # @livesText.content = @livesTitle + livesLeft
+        @healthBar.crop.width = (Pigvane.Main.dude.health/Pigvane.Main.dude.maxHealth) * 512
 
     removeLife: () ->
         toDestroy = @heartsArray.pop()
         toDestroy.destroy()
-        # @hearts.getAt(@hearts.length-1).destroy()

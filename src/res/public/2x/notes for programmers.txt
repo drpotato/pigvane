@@ -1,0 +1,15 @@
+Render the floorforeground.png image at: (in tiles)
+3, 16
+33, 15
+54, 15
+71, 15
+88, 17
+105, 15
+122, 14
+
+In tiled, alt-c copies current cursor position to clipboard.
+
+You should also tile floorforeground below 0, 19 in front of the other platforms
+
+Collisions are in newlevel1.json
+You can make the tileset image, basetiles, transparent afterwards
