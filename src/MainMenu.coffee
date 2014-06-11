@@ -78,6 +78,7 @@ class Pigvane.States.MainMenu
 
     selectOption: () ->
         @capture = false
+        Pigvane.weapon = 0
         Pigvane.score = 0
         Pigvane.level = 1
         @options[@cursorPosition][1].call(this)
@@ -93,7 +94,7 @@ class Pigvane.States.MainMenu
                 if @cursorPosition < 0
                     @cursorPosition = @options.length-1
 
-        @cursor.y = 700 + 32 * @cursorPosition
+        @cursor.y = 700 + 26 * @cursorPosition
 
     fadeOut: () ->
         # @add.tween(@background).to {alpha: 0}, 2000, Phaser.Easing.Linear.None, true

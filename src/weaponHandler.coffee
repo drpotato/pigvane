@@ -23,16 +23,16 @@ class Pigvane.Classes.weaponHandler
             {
                 name: 'Minigun',
                 damage: 5,
-                fireRate: 80,
+                fireRate: 100,
                 velocity: 1500,
                 threshold: 2000,
                 sprite: 'gun_minigun'
             },
             {
-                name: 'Ultima Gun',
-                damage: 500,
-                fireRate: 1,
-                velocity: 500   ,
+                name: 'Shotgun',
+                damage: 15,
+                fireRate: 250,
+                velocity: 2000   ,
                 threshold: 10000000000000000000000000,
                 sprite: 'gun_shotgun'
             }
@@ -67,7 +67,7 @@ class Pigvane.Classes.weaponHandler
 
     upgrade: () ->
         Pigvane.weapon++
-        loadWeapon()
+        @loadWeapon()
 
     onScoreUpdate: () ->
         if Pigvane.score >= @threshold

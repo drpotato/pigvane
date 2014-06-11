@@ -168,7 +168,7 @@ class Pigvane.States.HighScore
 
 
     updateCursorPosition: () ->
-        @newHighScoreCursor.x = 560 + 24.5 * @cursorPosition
+        @newHighScoreCursor.x = 550 + 24.5 * @cursorPosition
 
     updateNewHighScoreText: () ->
         @newHighScorePlayer.setText(@newScore.player)

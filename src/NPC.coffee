@@ -1,8 +1,8 @@
 class Pigvane.Classes.NPC extends Phaser.Sprite
     constructor: (@game, x, y, name) ->
-        
+
         super @game, x, y, name
-        
+
         # Set collision size
         @anchor.setTo(0.5,0.5)
 
@@ -14,8 +14,8 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
         @facing = 'left'
 
         @body.gravity.y = 500
-        
-        @health = 3
+
+        @health = 15
 
         @updateTimer = 0
         @shootTimer = 0
@@ -33,9 +33,9 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
     addAnimations: () ->
         @animations.add 'walk', [0,1,2,3]
         @animations.play 'walk', 2, true
-        
+
     update: () ->
-        
+
         @game.physics.collide @, Pigvane.Main.mainLayer
 
         dude = Pigvane.Main.dude
@@ -51,7 +51,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 @getLeftEdgy = false
                 @getRightEdgy = false
 
-            @edgeUpdateTimer = @game.time.now + 50          
+            @edgeUpdateTimer = @game.time.now + 50
 
         if @game.time.now > @updateTimer and @firing is false
             if !dude.gunDrawn && @alerted == false
@@ -66,14 +66,14 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 if @body.velocity.x < 0
                     @scale.x = -1
                     @facing = 'left'
-                else 
+                else
                     @scale.x = 1
                     @facing = 'right'
-                
+
                 @animations.play 'walk', 2, true
             else if (Math.abs( @body.x - dude.x ) < 800 && Math.abs( @body.y - dude.y ) < 200 ) || @alerted == true
                 runVelocity = @runVelocity
-                @body.velocity.x = @game.rnd.integerInRange(-40, 40)                
+                @body.velocity.x = @game.rnd.integerInRange(-40, 40)
                 if dude.x < @x
                     @facing = 'left'
                     if @getLeftEdgy == true
@@ -87,13 +87,13 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                         @body.velocity.x = -10
                     else
                         @body.velocity.x += runVelocity
-               
+
                 @alerted = true
                 @animations.play 'walk', 4, true
-            
+
             if @facing == 'left'
                 @scale.x = -1
-            else 
+            else
                 @scale.x = 1
 
 
@@ -105,7 +105,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 p = @game.rnd.integerInRange(0,50)
                 if dude.gunDrawn
                     p = p*2
-                    
+
                 if p > 25
                 #     @body.velocity.x = 0
                 #     @animations.stop()
@@ -114,7 +114,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
                 #     if @body.x - Pigvane.Main.dude.x > 0
                 #         @scale.x = -1
                 #         @facing = 'left'
-                #     else 
+                #     else
                 #         @scale.x = 1
                 #         @facing = 'right'
 
@@ -135,7 +135,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
 
     fire: () ->
 
-        # See if there is a free bullet 
+        # See if there is a free bullet
         bullet = Pigvane.Main.enemyBullets.getFirstExists false
 
         bulletVelocity = 1000
@@ -158,7 +158,7 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             deltaX = @body.x - Pigvane.Main.dude.body.x
             deltaY = @body.y - Pigvane.Main.dude.body.y
 
-           
+
 
             if @facing is 'right'
                 bullet.body.velocity.x = bulletVelocity
@@ -172,19 +172,18 @@ class Pigvane.Classes.NPC extends Phaser.Sprite
             bullet.body.velocity.y += @game.rnd.integerInRange(-40, 40)
 
     hit: () ->
-        
+
         if @health > 0
-            @health -= 1
+            @health -= Pigvane.Main.weaponHandler.getCurrentWeapon().damage
             Pigvane.Main.dude.incAggro(1)
-        
+
             if @health <= 0
                 @die()
                 return 'kill'
-    
+
     die: () ->
         Pigvane.Main.scoreHandler.add(10)
         @kill()
         @destroy()
         Pigvane.Main.dude.kills += 1
         Pigvane.Main.dude.aggro += 1
-    
